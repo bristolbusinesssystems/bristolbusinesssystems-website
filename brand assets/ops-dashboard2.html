@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Operations Analytics</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F4F6F8; color: #1A1A2E; display: flex; height: 100vh; overflow: hidden; font-size: 13px; }
+
+  .sidebar {
+    width: 148px;
+    background: #1C3A5E;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 100vh;
+  }
+  .sidebar-header {
+    padding: 14px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .sidebar-badge {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: #1E6340;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; font-weight: 800; color: #fff; letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+  .sidebar-name { line-height: 1.25; }
+  .sidebar-name strong { display: block; font-size: 10px; font-weight: 700; color: #fff; }
+  .sidebar-name span { font-size: 9px; color: rgba(255,255,255,0.5); }
+  .sidebar-section { padding: 10px 0 4px; }
+  .sidebar-section-label { font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); padding: 0 12px 6px; }
+  .sidebar-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 12px;
+    color: rgba(255,255,255,0.62);
+    font-size: 11.5px;
+    font-weight: 500;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+  }
+  .sidebar-item.active {
+    background: rgba(255,255,255,0.10);
+    color: #fff;
+    border-left-color: #4DAF82;
+  }
+  .sidebar-item svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .topbar {
+    background: #fff;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 9px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .breadcrumb { font-size: 11.5px; color: #6B7A94; }
+  .breadcrumb a { color: #2D5A8E; }
+  .breadcrumb span { margin: 0 5px; }
+  .live-badge {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 600; color: #2D7C3C;
+    background: #EDF7EF; border: 1px solid #AEDBB8;
+    border-radius: 20px; padding: 3px 10px;
+  }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #27AE60; }
+
+  .main { padding: 20px; overflow-y: auto; flex: 1; }
+  .page-header { margin-bottom: 16px; }
+  .page-title { font-size: 20px; font-weight: 700; color: #1A1A2E; margin-bottom: 2px; }
+  .page-sub { font-size: 11.5px; color: #6B7A94; }
+  .page-sub a { color: #1E6340; font-weight: 600; }
+
+  /* Three stat cards */
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+  .stat-card {
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    min-height: 72px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .stat-card::before {
+    content: "";
+    position: absolute; top: -20px; right: -20px;
+    width: 80px; height: 80px; border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+  }
+  .stat-card-icon {
+    position: absolute; top: 12px; left: 14px;
+    width: 20px; height: 20px; opacity: 0.9;
+  }
+  .stat-card-icon svg { width: 18px; height: 18px; }
+  .stat-value { font-size: 20px; font-weight: 800; line-height: 1; margin-bottom: 2px; }
+  .stat-label { font-size: 10px; opacity: 0.82; }
+  .stat-detail { font-size: 9px; opacity: 0.65; }
+  .stat-green  { background: linear-gradient(135deg, #1A6E38, #2D9A52); }
+  .stat-blue   { background: linear-gradient(135deg, #1E4C8A, #2D6BC0); }
+  .stat-red    { background: linear-gradient(135deg, #8C2020, #BC3030); }
+
+  /* Two charts */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .panel {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #E2E8F0;
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #E8ECF2;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .panel-title { font-size: 12px; font-weight: 700; color: #1A1A2E; display: flex; align-items: center; gap: 6px; }
+  .panel-title svg { width: 14px; height: 14px; color: #2D5A8E; }
+  .panel-body { padding: 16px; display: flex; flex-direction: column; align-items: center; }
+
+  /* Donut charts via SVG */
+  .donut-wrap { position: relative; width: 150px; height: 150px; margin: 8px auto 12px; }
+  .donut-wrap svg { width: 150px; height: 150px; transform: rotate(-90deg); }
+  .donut-label {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .donut-val { font-size: 18px; font-weight: 800; color: #1A1A2E; line-height: 1; }
+  .donut-sub { font-size: 9.5px; color: #6B7A94; margin-top: 2px; }
+
+  /* Legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 12px; justify-content: center; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #4A5568; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-badge">OPS</div>
+    <div class="sidebar-name">
+      <strong>Bristol Business Systems</strong>
+      <span>Operations</span>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Main Menu</div>
+    <div class="sidebar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </div>
+    <div class="sidebar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M3 14h7v7H3z"/><path d="M14 14h7v7h-7z"/></svg>
+      Projects
+    </div>
+    <div class="sidebar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      Tasks
+    </div>
+    <div class="sidebar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      Automations
+    </div>
+    <div class="sidebar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      Team
+    </div>
+    <div class="sidebar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+      SOPs
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Insights</div>
+    <div class="sidebar-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Analytics
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Platform</div>
+    <div class="sidebar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Admin
+    </div>
+  </div>
+</aside>
+
+<div class="content">
+  <div class="topbar">
+    <div class="breadcrumb">
+      <a>Bristol Business Systems</a>
+      <span>›</span>
+      Analytics
+    </div>
+    <div class="live-badge"><div class="live-dot"></div> Live</div>
+  </div>
+  <div class="main">
+    <div class="page-header">
+      <div class="page-title">Analytics</div>
+      <div class="page-sub">Business performance overview for <a>Bristol Business Systems</a>.</div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card stat-green">
+        <div class="stat-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <div class="stat-value">87%</div>
+        <div class="stat-label">On-Time Rate</div>
+        <div class="stat-detail">34 of 39 tasks completed on time</div>
+      </div>
+      <div class="stat-card stat-blue">
+        <div class="stat-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div class="stat-value">124</div>
+        <div class="stat-label">Tasks Completed</div>
+        <div class="stat-detail">52 tasks closed this month</div>
+      </div>
+      <div class="stat-card stat-red">
+        <div class="stat-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        </div>
+        <div class="stat-value">18</div>
+        <div class="stat-label">SOPs Documented</div>
+        <div class="stat-detail">3 new SOPs added this month</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Task Status Distribution
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="donut-wrap">
+            <svg viewBox="0 0 100 100">
+              <!-- Completed: 45% -->
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#2D9A52" stroke-width="14"
+                stroke-dasharray="107 231" stroke-dashoffset="0"/>
+              <!-- In Progress: 28% -->
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#2D6BC0" stroke-width="14"
+                stroke-dasharray="66 231" stroke-dashoffset="-107"/>
+              <!-- Review: 15% -->
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#E07A30" stroke-width="14"
+                stroke-dasharray="36 231" stroke-dashoffset="-173"/>
+              <!-- Blocked: 12% -->
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#BC3030" stroke-width="14"
+                stroke-dasharray="28 231" stroke-dashoffset="-209"/>
+            </svg>
+            <div class="donut-label">
+              <div class="donut-val">124</div>
+              <div class="donut-sub">Total Tasks</div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#2D9A52"></div>completed</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#2D6BC0"></div>in progress</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#E07A30"></div>review</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#BC3030"></div>blocked</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            SOP Completion by Category
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="donut-wrap">
+            <svg viewBox="0 0 100 100">
+              <!-- Operations: 38% -->
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#1DA8A8" stroke-width="14"
+                stroke-dasharray="88 231" stroke-dashoffset="0"/>
+              <!-- Marketing: 25% -->
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#7B5CC5" stroke-width="14"
+                stroke-dasharray="58 231" stroke-dashoffset="-88"/>
+              <!-- Sales: 22% -->
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#2D9A52" stroke-width="14"
+                stroke-dasharray="51 231" stroke-dashoffset="-146"/>
+              <!-- HR: 15% -->
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#D49620" stroke-width="14"
+                stroke-dasharray="35 231" stroke-dashoffset="-197"/>
+            </svg>
+            <div class="donut-label">
+              <div class="donut-val">18</div>
+              <div class="donut-sub">Total SOPs</div>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#1DA8A8"></div>operations</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#7B5CC5"></div>marketing</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#2D9A52"></div>sales</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#D49620"></div>hr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

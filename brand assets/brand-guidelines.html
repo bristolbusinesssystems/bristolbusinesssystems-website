@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bristol Business Systems Brand Guidelines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07120f;
+      --surface: #0d221a;
+      --panel: rgba(18, 43, 33, 0.92);
+      --border: rgba(176, 219, 185, 0.12);
+      --text: #edf5ea;
+      --muted: #98ac96;
+      --primary: #1e6340;
+      --primary-light: #559e6f;
+      --primary-soft: #305744;
+      --secondary: #0f3b27;
+      --accent: #cba469;
+      --accent-soft: #d0b686;
+      --neutral: #e8efe9;
+      --shadow: 0 28px 80px rgba(1, 16, 10, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top right, rgba(103, 181, 126, 0.18), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(68, 136, 93, 0.18), transparent 30%),
+        linear-gradient(180deg, #07120f 0%, #07120f 100%);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(1200px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2.5rem 0 4rem;
+    }
+
+    .hero {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+      padding: 2rem 2rem 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(16, 44, 29, 0.92), rgba(6, 14, 10, 0.92));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+    }
+
+    .eyebrow {
+      margin: 0;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(3rem, 4vw, 4.5rem);
+      letter-spacing: -0.07em;
+      line-height: 0.93;
+    }
+
+    .hero p {
+      margin: 1.25rem 0 0;
+      max-width: 54ch;
+      color: #d9e3d7;
+    }
+
+    .hero .logo-card {
+      padding: 1.75rem;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      display: grid;
+      gap: 1.5rem;
+      align-items: center;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .logo-card img {
+      width: 120px;
+      height: auto;
+    }
+
+    .logo-card h2 {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--neutral);
+    }
+
+    .logo-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .section {
+      display: grid;
+      gap: 1.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 50ch;
+    }
+
+    .card-row {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      padding: 1.5rem;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+    }
+
+    .palette-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    }
+
+    .swatch {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .swatch-swatch {
+      min-height: 120px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .swatch-info {
+      padding: 1rem;
+    }
+
+    .swatch-info strong {
+      display: block;
+      margin-bottom: 0.4rem;
+      color: var(--neutral);
+      font-size: 0.98rem;
+    }
+
+    .swatch-info span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .logo-stack {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .logo-variation {
+      display: grid;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .logo-preview {
+      width: 100%;
+      min-height: 90px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .preview-dark {
+      background: var(--surface);
+    }
+
+    .preview-light {
+      background: #f7f9f4;
+      color: #1f351f;
+    }
+
+    .preview-accent {
+      background: linear-gradient(135deg, #26644b, #58a57c);
+    }
+
+    .clearspace-grid {
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: 1.3fr 1fr;
+    }
+
+    .clearspace-graphic {
+      position: relative;
+      min-height: 280px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(30, 99, 64, 0.22), rgba(7, 18, 15, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .clearspace-graphic::before {
+      content: "";
+      position: absolute;
+      inset: 1rem;
+      border: 2px dashed rgba(255, 255, 255, 0.24);
+      border-radius: 24px;
+    }
+
+    .clearspace-graphic .logo-frame {
+      position: relative;
+      z-index: 1;
+      width: 140px;
+      height: 140px;
+      display: grid;
+      place-items: center;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .clearspace-note {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .clearspace-note p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .type-sample {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .type-card {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .type-card h3 {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .type-card p {
+      margin: 0;
+      color: var(--neutral);
+    }
+
+    .type-sample .sample-text {
+      padding: 1.35rem;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .icon-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .icon-block {
+      padding: 1rem;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+      display: grid;
+      gap: 0.85rem;
+      text-align: center;
+    }
+
+    .icon-block svg {
+      width: 32px;
+      height: 32px;
+      color: var(--primary);
+    }
+
+    .icon-block span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .button-samples {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      border-radius: 999px;
+      padding: 0 1.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px rgba(22, 80, 45, 0.25);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--neutral);
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .clearspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Brand Guidelines</p>
+          <h1>Bristol Business Systems</h1>
+          <p>Built for the gateway to Vermont’s Green Mountains. Trusted systems, honest service, and a visual palette rooted in forest, stone, and calm sky.</p>
+        </div>
+        <div class="logo-card">
+          <img src="brand assets/Bristol Business Systems Logo.png" alt="Bristol Business Systems logo" />
+          <h2>Primary Brand Mark</h2>
+          <p>The icon is the core mark. Use it with ample clearspace and pair with the wordmark for official identity applications.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Logo Variations</h2>
+          <p>Maintain contrast and legibility across applications. Use dark, light, and monochrome versions depending on background support.</p>
+        </div>
+      </div>
+
+      <div class="logo-stack">
+        <div class="logo-variation">
+          <div class="logo-preview preview-dark">Dark background version</div>
+          <span>White-on-dark or full-color mark for on-brand panels.</span>
+        </div>
+        <div class="logo-variation">
+          <div class="logo-preview preview-light">Light background version</div>
+          <span>Neutral on light surfaces with strong readability.</span>
+        </div>
+        <div class="logo-variation">
+          <div class="logo-preview preview-accent">Accent background version</div>
+          <span>High-impact use on gradients, cards, and hero blocks.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Brand Palette</h2>
+          <p>A grounded palette inspired by Vermont’s mountains: deep evergreens, soft stone, pale sky, and a warm accent for clarity and focus.</p>
+        </div>
+      </div>
+
+      <div class="palette-grid">
+        <article class="swatch">
+          <div class="swatch-swatch" style="background: #1E6340;"></div>
+          <div class="swatch-info">
+            <strong>Evergreen</strong>
+            <span>#1E6340</span>
+          </div>
+        </article>
+        <article class="swatch">
+          <div class="swatch-swatch" style="background: #4DAF82;"></div>
+          <div class="swatch-info">
+            <strong>Moss</strong>
+            <span>#4DAF82</span>
+          </div>
+        </article>
+        <article class="swatch">
+          <div class="swatch-swatch" style="background: #0F3B27;"></div>
+          <div class="swatch-info">
+            <strong>Pine</strong>
+            <span>#0F3B27</span>
+          </div>
+        </article>
+        <article class="swatch">
+          <div class="swatch-swatch" style="background: #D0B686;"></div>
+          <div class="swatch-info">
+            <strong>Amber</strong>
+            <span>#D0B686</span>
+          </div>
+        </article>
+        <article class="swatch">
+          <div class="swatch-swatch" style="background: #F3F7F3;"></div>
+          <div class="swatch-info">
+            <strong>Cloud</strong>
+            <span>#F3F7F3</span>
+          </div>
+        </article>
+        <article class="swatch">
+          <div class="swatch-swatch" style="background: #2C3A36;"></div>
+          <div class="swatch-info">
+            <strong>Granite</strong>
+            <span>#2C3A36</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Logo Clearspace</h2>
+          <p>Always surround the mark with clear, unobstructed space. No text, imagery, or visual elements should infringe on this boundary.</p>
+        </div>
+      </div>
+
+      <div class="clearspace-grid">
+        <div class="clearspace-graphic">
+          <div class="logo-frame">
+            <img src="brand assets/Bristol Business Systems Logo.png" alt="Logo clearspace demonstration" style="width: 92px; height: auto;" />
+          </div>
+        </div>
+        <div class="clearspace-note">
+          <p>Minimum clearspace equals the height of the mark’s container. Use this margin in all layouts, digital headers, print, and signage.</p>
+          <p>For compact applications, prioritize the icon version only when the full wordmark cannot fit legibly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Typography</h2>
+          <p>Modern and professional with a clear hierarchy. Use a strong display font for headings and a neutral sans serif for supporting text.</p>
+        </div>
+      </div>
+
+      <div class="type-sample">
+        <article class="type-card">
+          <h3>Primary heading</h3>
+          <p style="font-family: 'Montserrat', sans-serif; font-size: 2rem; color: var(--neutral); margin: 0;">Montserrat Bold</p>
+        </article>
+        <article class="type-card">
+          <h3>Body copy</h3>
+          <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: var(--muted); margin: 0;">Inter Regular</p>
+        </article>
+        <div class="sample-text">
+          <p style="margin:0; font-family: 'Inter', sans-serif; color: var(--neutral); font-size: 1rem;">Bristol Business Systems combines dependable technology with a calm, Vermont-inspired visual personality. This typography pairing keeps content readable while supporting bold, scenic messaging.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Iconography Style</h2>
+          <p>Use minimal line icons with rounded geometry. Keep strokes steady and spacing generous for a calm, professional appearance.</p>
+        </div>
+      </div>
+
+      <div class="icon-grid">
+        <div class="icon-block">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M12 4v16"/></svg>
+          <span>Navigation</span>
+        </div>
+        <div class="icon-block">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><path d="M12 8v4l2 2"/></svg>
+          <span>Support</span>
+        </div>
+        <div class="icon-block">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg>
+          <span>Documentation</span>
+        </div>
+        <div class="icon-block">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8l6-4 6 4v8l-6 4-6-4z"/></svg>
+          <span>Security</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Button Style</h2>
+          <p>Buttons should feel solid and inviting. Use gradient primary buttons for calls to action and subtle outlines for secondary actions.</p>
+        </div>
+      </div>
+
+      <div class="button-samples">
+        <button class="btn btn-primary">Primary action</button>
+        <button class="btn btn-secondary">Secondary action</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

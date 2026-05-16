@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bristol Business Systems — Operations & Marketing Systems for Growing Businesses</title>
+  <meta name="description" content="Bristol Business Systems builds the operations and marketing infrastructure growing businesses need to scale with confidence." />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --primary:        #1E6340;
+      --primary-hi:     #268a58;
+      --primary-lt:     #4DAF82;
+      --primary-dark:   #0F3B27;
+      --primary-dim:    #163d27;
+      --primary-soft:   rgba(30,99,64,0.07);
+      --primary-mid:    rgba(30,99,64,0.14);
+      --accent:         #D0B686;
+      --danger:         #C0392B;
+      --danger-soft:    rgba(192,57,43,0.08);
+      --text:           #141414;
+      --text-soft:      #4a4a4d;
+      --muted:          #717174;
+      --border:         #e8e8eb;
+      --border-alt:     #d8d8dc;
+      --bg:             #ffffff;
+      --bg-soft:        #f7f9f8;
+      --bg-alt:         #f2f6f4;
+      --surface:        #ffffff;
+      --dark-bg:        #0a2318;
+      --dark-surface:   #112e1f;
+      --shadow-sm:      0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md:      0 6px 24px rgba(0,0,0,0.08);
+      --shadow-lg:      0 20px 60px rgba(0,0,0,0.10);
+      --r-sm:           10px;
+      --r-md:           16px;
+      --r-lg:           22px;
+      --r-xl:           30px;
+      --r-2xl:          40px;
+      --r-full:         999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+    .container {
+      width: min(1180px, calc(100% - 2.5rem));
+      margin: 0 auto;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────── */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1rem 0;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-shrink: 0;
+    }
+    .nav-logo img { width: 42px; height: auto; }
+    .nav-logo-text {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+    .nav-links a {
+      padding: 0.45rem 0.8rem;
+      border-radius: var(--r-full);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--bg-alt); }
+    .nav-links a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .nav-actions { display: flex; gap: 0.5rem; align-items: center; flex-shrink: 0; }
+
+    /* ── Buttons ─────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border-radius: var(--r-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.6rem 1.4rem;
+      min-height: 44px;
+      transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease, background 0.2s;
+      cursor: pointer;
+    }
+    .btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+    .btn:active { transform: scale(0.97) !important; }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(30,99,64,0.22);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hi);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(30,99,64,0.28);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border-alt);
+    }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+    .btn-ghost-dark {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+    .btn-ghost-dark:hover { background: rgba(255,255,255,0.22); transform: translateY(-1px); }
+    .btn-lg { padding: 0.9rem 2.1rem; font-size: 0.95rem; min-height: 52px; }
+    .btn-sm { padding: 0.45rem 1.05rem; font-size: 0.82rem; min-height: 38px; }
+
+    /* ── Chips ───────────────────────────────────────────── */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.28rem 0.85rem;
+      border-radius: var(--r-full);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid rgba(30,99,64,0.14);
+    }
+
+    /* ── Section commons ─────────────────────────────────── */
+    .section { padding: 6rem 0; }
+    .s-label { margin-bottom: 0.9rem; }
+    .s-h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.9rem, 3.2vw, 2.85rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: var(--text);
+      margin-bottom: 0.85rem;
+    }
+    .s-h2 em { font-style: normal; color: var(--primary); }
+    .s-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 52ch;
+    }
+    .center-block { text-align: center; }
+    .center-block .s-desc { margin: 0 auto; }
+    .center-block .s-label { display: flex; justify-content: center; }
+
+    /* ── Hero ────────────────────────────────────────────── */
+    .hero {
+      padding: 5.5rem 0 4.5rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(165deg, #f6f9f7 0%, #ffffff 55%, #f9fbf9 100%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -180px; right: -220px;
+      width: 680px; height: 680px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,99,64,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -120px; left: -160px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(77,175,130,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .hero-badge {
+      padding: 0.28rem 0.85rem;
+      border-radius: var(--r-full);
+      border: 1.5px solid var(--border-alt);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      background: var(--surface);
+    }
+    [data-theme="dark"] .hero-badge { border-color: rgba(176,219,185,0.22); }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme="light"]) .hero-badge { border-color: rgba(176,219,185,0.22); }
+    }
+    h1.hero-h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(2.7rem, 5vw, 4.1rem);
+      font-weight: 900;
+      line-height: 1.03;
+      letter-spacing: -0.045em;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    h1.hero-h1 em {
+      font-style: normal;
+      color: var(--primary);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      line-height: 1.82;
+      max-width: 48ch;
+      margin-bottom: 2rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.75rem;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2.75rem;
+      flex-wrap: wrap;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stat strong {
+      display: block;
+      font-family: "Montserrat", sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .hero-stat span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* Hero screenshot visual */
+    .hero-visual {
+      position: relative;
+      padding-bottom: 4rem;
+    }
+    .hero-screen-main {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.13), 0 4px 16px rgba(0,0,0,0.07), 0 0 0 1px rgba(255,255,255,0.6) inset;
+      border: 1px solid var(--border);
+      position: relative;
+      z-index: 2;
+      background: var(--bg-soft);
+    }
+    .hero-screen-main img { width: 100%; height: auto; display: block; }
+    .hero-screen-secondary {
+      position: absolute;
+      bottom: 0;
+      right: -1.5rem;
+      width: 58%;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.1);
+      border: 1px solid var(--border);
+      z-index: 3;
+      background: var(--bg-soft);
+    }
+    .hero-screen-secondary img { width: 100%; height: auto; display: block; }
+
+    /* kept for dash-float only */
+    .dash-card {
+      background: var(--surface);
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255,255,255,0.8) inset;
+      overflow: hidden;
+    }
+    .dash-header {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .dash-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+    }
+    .dash-title {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      margin-left: auto;
+      letter-spacing: 0.04em;
+    }
+    .dash-body { padding: 1.4rem; }
+    .dash-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #E8F5EE;
+      color: var(--primary);
+      padding: 0.28rem 0.7rem;
+      border-radius: var(--r-full);
+      font-size: 0.73rem;
+      font-weight: 700;
+      margin-bottom: 1.1rem;
+    }
+    .dash-tag svg { width: 11px; height: 11px; }
+    .dash-bars { display: grid; gap: 0.85rem; margin-bottom: 1rem; }
+    .dash-bar-row {}
+    .dash-bar-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      margin-bottom: 0.3rem;
+    }
+    .dash-bar-label { color: var(--text-soft); font-weight: 500; }
+    .dash-bar-val { color: var(--primary); font-weight: 700; }
+    .dash-bar {
+      height: 6px;
+      border-radius: 99px;
+      background: var(--border);
+      overflow: hidden;
+    }
+    .dash-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary-lt));
+    }
+    .dash-divider { height: 1px; background: var(--border); margin: 1rem 0; }
+    .dash-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+    }
+    .dash-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 0.9rem;
+      border-radius: var(--r-sm);
+      background: var(--bg-alt);
+    }
+    .dash-metric-label { font-size: 0.78rem; color: var(--text-soft); font-weight: 500; }
+    .dash-metric-val {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .dash-float {
+      position: absolute;
+      bottom: -1.1rem;
+      left: -2.2rem;
+      background: var(--surface);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .dash-float-icon {
+      width: 34px; height: 34px;
+      border-radius: var(--r-sm);
+      background: #E8F5EE;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .dash-float-icon svg { width: 16px; height: 16px; color: var(--primary); }
+    .dash-float-label strong {
+      display: block;
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .dash-float-label span { font-size: 0.72rem; color: var(--muted); }
+
+    /* ── Trust logos bar ─────────────────────────────────── */
+    .logos-bar {
+      padding: 2.5rem 0;
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .logos-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .logos-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .logo-pill {
+      padding: 0.5rem 1.15rem;
+      border-radius: var(--r-full);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ── Problem section ─────────────────────────────────── */
+    .problem { background: var(--bg-soft); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3.5rem;
+    }
+    .prob-card {
+      padding: 1.85rem;
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .prob-icon {
+      width: 46px; height: 46px;
+      border-radius: var(--r-md);
+      background: var(--danger-soft);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .prob-icon svg { width: 20px; height: 20px; color: var(--danger); }
+    .prob-card h3 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .prob-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.78; }
+
+    /* ── All-in-one / split sections ─────────────────────── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-bottom: 5rem;
+    }
+    .split:last-child { margin-bottom: 0; }
+    .split-text-right .split-visual { order: -1; }
+    .split-h3 {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.65rem, 2.5vw, 2.15rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 0.85rem;
+    }
+    .split-h3 em { font-style: normal; color: var(--primary); }
+    .split-desc { font-size: 0.97rem; color: var(--muted); line-height: 1.82; margin-bottom: 1.75rem; }
+    .feat-list { display: grid; gap: 1.1rem; }
+    .feat-item {
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+    }
+    .feat-icon {
+      width: 38px; height: 38px;
+      border-radius: var(--r-sm);
+      background: var(--primary-soft);
+      border: 1px solid rgba(30,99,64,0.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .feat-icon svg { width: 17px; height: 17px; color: var(--primary); }
+    .feat-item h4 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .feat-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    /* Visual mock cards */
+    .vis-card {
+      background: var(--bg-soft);
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .vis-card-header {
+      padding: 0.9rem 1.3rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--surface);
+    }
+    .vc-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ── Screenshot fade-switcher ────────────────────────── */
+    .vis-card-body.ss-outer { padding: 0; }
+    .ss-inner { position: relative; height: 310px; overflow: hidden; }
+    .ss-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      transition: opacity 0.85s ease;
+    }
+    .ss-img-b { position: absolute; top: 0; left: 0; opacity: 0; }
+    .vc-dot:nth-child(1) { background: #FF6058; }
+    .vc-dot:nth-child(2) { background: #FFBD2E; }
+    .vc-dot:nth-child(3) { background: #28C840; }
+    .vc-title { font-size: 0.74rem; font-weight: 600; color: var(--muted); margin-left: auto; }
+    .vis-card-body { padding: 1.25rem; }
+
+    /* ── Feature cards grid ──────────────────────────────── */
+    .feat-grid-bg { background: var(--bg-soft); }
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+      margin-top: 3.25rem;
+    }
+    .feat-card {
+      padding: 1.65rem;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s, border-color 0.25s;
+    }
+    .feat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(30,99,64,0.2);
+    }
+    .feat-card-icon {
+      width: 42px; height: 42px;
+      border-radius: var(--r-sm);
+      background: var(--primary-soft);
+      border: 1px solid rgba(30,99,64,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.15rem;
+    }
+    .feat-card-icon svg { width: 19px; height: 19px; color: var(--primary); }
+    .feat-card h3 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.45rem;
+    }
+    .feat-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
+
+    /* ── Industry section ────────────────────────────────── */
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+      margin-top: 3rem;
+    }
+    .ind-card {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+      cursor: default;
+    }
+    .ind-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+    .ind-card:hover img { transform: scale(1.04); }
+    .ind-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,35,24,0.88) 0%, rgba(10,35,24,0.25) 55%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.4rem;
+    }
+    .ind-tag {
+      display: inline-block;
+      padding: 0.18rem 0.6rem;
+      border-radius: var(--r-full);
+      background: rgba(255,255,255,0.18);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 0.45rem;
+      width: fit-content;
+    }
+    .ind-name {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ── Dark testimonial section ────────────────────────── */
+    .testi-section {
+      padding: 6.5rem 0;
+      background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-dark) 50%, var(--dark-bg) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .testi-section::before {
+      content: "";
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(77,175,130,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .testi-section::after {
+      content: "";
+      position: absolute;
+      bottom: -150px; left: -150px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,99,64,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+    }
+    .testi-mark {
+      font-family: "Montserrat", sans-serif;
+      font-size: 6rem;
+      line-height: 0.75;
+      color: rgba(255,255,255,0.15);
+      margin-bottom: 0.5rem;
+    }
+    .testi-quote {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.88);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+    .testi-avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.22);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .testi-name {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.92rem;
+    }
+    .testi-role { font-size: 0.8rem; color: rgba(255,255,255,0.58); }
+    .testi-stats { display: grid; gap: 1.1rem; }
+    .testi-stat-card {
+      padding: 1.6rem 1.75rem;
+      border-radius: var(--r-lg);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .testi-stat-card strong {
+      display: block;
+      font-family: "Montserrat", sans-serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .testi-stat-card p { font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.55; }
+
+    /* ── Integrations ────────────────────────────────────── */
+    .int-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+    .int-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--r-full);
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .int-pill:hover { border-color: rgba(30,99,64,0.25); color: var(--primary); background: var(--surface); }
+    .int-pill-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--primary-lt);
+      flex-shrink: 0;
+    }
+
+    /* ── Setup / Get started ─────────────────────────────── */
+    .setup-section { background: var(--bg-soft); }
+    .setup-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .step-card {
+      padding: 2rem 1.75rem;
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .step-num {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-hi));
+      color: #fff;
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 6px 18px rgba(30,99,64,0.25);
+    }
+    .step-card h4 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.55rem;
+    }
+    .step-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.78; }
+
+    /* ── Final CTA ───────────────────────────────────────── */
+    .cta-section {
+      padding: 7.5rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: "";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(30,99,64,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner { max-width: 660px; margin: 0 auto; position: relative; }
+    .cta-h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 1.1rem;
+    }
+    .cta-h2 em { font-style: normal; color: var(--primary); }
+    .cta-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.82;
+      max-width: 46ch;
+      margin: 0 auto 2.25rem;
+    }
+    .cta-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.1rem; }
+    .cta-note { font-size: 0.78rem; color: var(--muted); }
+    .cta-note span { color: var(--text-soft); }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    footer {
+      background: var(--text);
+      color: #fff;
+      padding: 4.5rem 0 2.5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+    .footer-logo img {
+      width: 36px; height: auto;
+      filter: invert(1);
+      opacity: 0.82;
+    }
+    .footer-logo-text {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.35;
+    }
+    .footer-brand > p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.78;
+      max-width: 28ch;
+    }
+    .footer-col h5 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.42);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; display: grid; gap: 0.65rem; }
+    .footer-col a {
+      font-size: 0.86rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-col a:focus-visible { outline: 2px solid var(--primary-lt); outline-offset: 2px; border-radius: 2px; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+    .footer-email {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.38);
+      transition: color 0.2s;
+    }
+    .footer-email:hover { color: rgba(255,255,255,0.75); }
+    .footer-email svg { width: 13px; height: 13px; }
+
+    /* ── Theme transition ────────────────────────────────── */
+    *, *::before, *::after {
+      transition-property: background-color, border-color, color, box-shadow;
+      transition-duration: 0.22s;
+      transition-timing-function: ease;
+    }
+    /* Exclude motion-heavy transforms from the catch-all */
+    .btn, .feat-card, .testi-stat-card, .ind-card img, .int-pill {
+      transition: transform 0.25s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.25s ease,
+                  background-color 0.22s ease,
+                  border-color 0.22s ease,
+                  color 0.22s ease;
+    }
+
+    /* ── Dark mode toggle button ─────────────────────────── */
+    .theme-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--r-full);
+      border: 1.5px solid var(--border-alt);
+      background: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      color: var(--muted);
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.22,1,0.36,1);
+    }
+    .theme-toggle:hover { border-color: var(--primary); color: var(--primary); transform: rotate(15deg); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+    .theme-toggle:active { transform: scale(0.92); }
+    .theme-toggle svg { width: 17px; height: 17px; }
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    /* When system is dark and no manual choice */
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme="light"]) .icon-sun { display: block; }
+      html:not([data-theme="light"]) .icon-moon { display: none; }
+    }
+
+    /* ── Dark mode variables ─────────────────────────────── */
+    /* Applied when: data-theme="dark" OR system prefers dark (with no manual override) */
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg:           #06110e;
+        --bg-soft:      #091711;
+        --bg-alt:       #0d221a;
+        --surface:      #0d221a;
+        --text:         #edf5ea;
+        --text-soft:    #c8d5c6;
+        --muted:        #8fa88c;
+        --border:       rgba(176,219,185,0.10);
+        --border-alt:   rgba(176,219,185,0.16);
+        --primary-soft: rgba(77,175,130,0.10);
+        --primary-mid:  rgba(77,175,130,0.18);
+        --danger-soft:  rgba(231,76,60,0.14);
+        --shadow-sm:    0 2px 8px rgba(0,0,0,0.35);
+        --shadow-md:    0 6px 24px rgba(0,0,0,0.50);
+        --shadow-lg:    0 20px 60px rgba(0,0,0,0.65);
+      }
+    }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg:           #06110e;
+      --bg-soft:      #091711;
+      --bg-alt:       #0d221a;
+      --surface:      #0d221a;
+      --text:         #edf5ea;
+      --text-soft:    #c8d5c6;
+      --muted:        #8fa88c;
+      --border:       rgba(176,219,185,0.10);
+      --border-alt:   rgba(176,219,185,0.16);
+      --primary-soft: rgba(77,175,130,0.10);
+      --primary-mid:  rgba(77,175,130,0.18);
+      --danger-soft:  rgba(231,76,60,0.14);
+      --shadow-sm:    0 2px 8px rgba(0,0,0,0.35);
+      --shadow-md:    0 6px 24px rgba(0,0,0,0.50);
+      --shadow-lg:    0 20px 60px rgba(0,0,0,0.65);
+    }
+
+    /* Dark mode: elements that need explicit overrides beyond variables */
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme="light"]) .hero {
+        background: linear-gradient(165deg, #07120f 0%, #06110e 50%, #071310 100%);
+      }
+      html:not([data-theme="light"]) .nav-wrap {
+        background: rgba(6,17,14,0.92);
+      }
+      html:not([data-theme="light"]) .dash-tag {
+        background: rgba(77,175,130,0.12);
+        color: var(--primary-lt);
+      }
+      html:not([data-theme="light"]) .dash-metric {
+        background: var(--bg-soft);
+      }
+      html:not([data-theme="light"]) .feat-card:hover {
+        border-color: rgba(77,175,130,0.2);
+      }
+      html:not([data-theme="light"]) .vis-card {
+        background: var(--bg-alt);
+      }
+    }
+    [data-theme="dark"] .hero {
+      background: linear-gradient(165deg, #07120f 0%, #06110e 50%, #071310 100%);
+    }
+    [data-theme="dark"] .nav-wrap {
+      background: rgba(6,17,14,0.92);
+    }
+    [data-theme="dark"] .dash-tag {
+      background: rgba(77,175,130,0.12);
+      color: var(--primary-lt);
+    }
+    [data-theme="dark"] .dash-metric {
+      background: var(--bg-soft);
+    }
+    [data-theme="dark"] .feat-card:hover {
+      border-color: rgba(77,175,130,0.2);
+    }
+    [data-theme="dark"] .vis-card {
+      background: var(--bg-alt);
+    }
+    [data-theme="dark"] footer { background: #040d09; }
+    [data-theme="dark"] .nav-logo img { filter: invert(1); }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme="light"]) footer { background: #040d09; }
+      html:not([data-theme="light"]) .vis-card { background: var(--bg-alt); }
+      html:not([data-theme="light"]) .nav-logo img { filter: invert(1); }
+    }
+
+    /* ── Mobile menu button ─────────────────────────────── */
+    .menu-btn {
+      display: none;
+      width: 38px; height: 38px;
+      border-radius: var(--r-full);
+      border: 1.5px solid var(--border-alt);
+      background: var(--bg-soft);
+      align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--muted);
+    }
+    .menu-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .menu-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+    .menu-btn[aria-expanded="true"] { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
+    .menu-btn svg { width: 18px; height: 18px; }
+    .menu-btn .icon-close { display: none; }
+    .menu-btn[aria-expanded="true"] .icon-open { display: none; }
+    .menu-btn[aria-expanded="true"] .icon-close { display: block; }
+
+    /* ── Mobile nav drawer ───────────────────────────────── */
+    .mobile-nav {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .mobile-nav.open {
+      display: block;
+      animation: mobileNavIn 0.22s cubic-bezier(0.22,1,0.36,1);
+    }
+    @keyframes mobileNavIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .mobile-nav-inner { padding: 0.75rem 0 1.25rem; }
+    .mobile-nav-link {
+      display: block;
+      padding: 0.8rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s;
+    }
+    .mobile-nav-link:last-of-type { border-bottom: none; }
+    .mobile-nav-link:hover { color: var(--primary); }
+    .mobile-nav-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 3px; }
+    .mobile-nav-cta { margin-top: 1rem; }
+    .mobile-nav-cta .btn { width: 100%; justify-content: center; }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 1040px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .dash-card { max-width: 520px; margin: 0 auto; }
+      .hero-screen-secondary { display: none; }
+      .hero-visual { padding-bottom: 1rem; }
+      .problem-grid { grid-template-columns: repeat(2, 1fr); }
+      .split { grid-template-columns: 1fr; gap: 3rem; }
+      .split-text-right .split-visual { order: 1; }
+      .feat-grid { grid-template-columns: repeat(2, 1fr); }
+      .industry-grid { grid-template-columns: repeat(2, 1fr); }
+      .testi-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+    }
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .menu-btn { display: flex; }
+      .section { padding: 4.75rem 0; }
+      .testi-section { padding: 5rem 0; }
+      .cta-section { padding: 5.5rem 0; }
+      .hero { padding: 4rem 0 3.25rem; }
+    }
+    @media (max-width: 700px) {
+      .section { padding: 3.75rem 0; }
+      .hero { padding: 3rem 0 2.5rem; }
+      .nav-actions .btn-outline { display: none; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .industry-grid { grid-template-columns: repeat(2, 1fr); }
+      .setup-steps { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.65rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .hero-stat strong { font-size: 1.6rem; }
+      .hero-stat span { font-size: 0.72rem; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { justify-content: center; }
+      .cta-actions { flex-direction: column; align-items: center; }
+      .ss-inner { height: 220px; }
+      .testi-mark { font-size: 4rem; }
+      .testi-quote { font-size: 1rem; }
+      .testi-stat-card { padding: 1.25rem 1.4rem; }
+      .testi-stat-card strong { font-size: 2rem; }
+      .step-card { padding: 1.5rem 1.25rem; }
+    }
+    @media (max-width: 600px) {
+      .nav-logo-text { display: none; }
+      nav { gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .section { padding: 3rem 0; }
+      .hero { padding: 2.5rem 0 2rem; }
+      h1.hero-h1 { font-size: 2.15rem; }
+      .hero-stat strong { font-size: 1.35rem; }
+      .hero-stat span { font-size: 0.66rem; }
+      .dash-float { display: none; }
+      .industry-grid { grid-template-columns: 1fr; }
+      .testi-section { padding: 4rem 0; }
+      .cta-section { padding: 4.25rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ───────────────────────────────────────────── -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav aria-label="Main navigation">
+        <a class="nav-logo" href="#home" aria-label="Bristol Business Systems home">
+          <img src="brand assets/Bristol Business Systems Logo.png" alt="Bristol Business Systems logo" />
+          <div class="nav-logo-text">Bristol Business<br>Systems</div>
+        </a>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#toolkit">Toolkit</a>
+          <a href="#results">Results</a>
+          <a href="#industry">Industries</a>
+          <a href="#integrations">Integrations</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          </button>
+          <a class="btn btn-outline btn-sm" href="#how">How It Works</a>
+          <a class="btn btn-primary btn-sm" href="#contact">Book a Call</a>
+          <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <div class="container">
+        <div class="mobile-nav-inner">
+          <a href="#services" class="mobile-nav-link">Services</a>
+          <a href="#toolkit" class="mobile-nav-link">Toolkit</a>
+          <a href="#results" class="mobile-nav-link">Results</a>
+          <a href="#industry" class="mobile-nav-link">Industries</a>
+          <a href="#integrations" class="mobile-nav-link">Integrations</a>
+          <a href="#how" class="mobile-nav-link">How It Works</a>
+          <div class="mobile-nav-cta">
+            <a class="btn btn-primary" href="#contact">Book a Free Call</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Hero ──────────────────────────────────────────── -->
+  <section class="hero" id="home" aria-labelledby="hero-h1">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-badges">
+            <span class="hero-badge">More Revenue</span>
+            <span class="hero-badge">Better Operations</span>
+            <span class="hero-badge">Less Chaos</span>
+          </div>
+          <h1 class="hero-h1" id="hero-h1">
+            Built for<br><em>Small &amp; Medium<br>Business</em>
+          </h1>
+          <p class="hero-sub">
+            Bristol Business Systems delivers the operations and marketing infrastructure growing businesses need — so you can scale with confidence, not chaos.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#contact">Get Started Free</a>
+            <a class="btn btn-outline btn-lg" href="#how">See How It Works</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>40%</strong>
+              <span>Faster project<br>delivery on average</span>
+            </div>
+            <div class="hero-stat">
+              <strong>3×</strong>
+              <span>More consistent<br>lead flow</span>
+            </div>
+            <div class="hero-stat">
+              <strong>90</strong>
+              <span>Days to<br>measurable results</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <!-- Main: CRM dashboard screenshot -->
+          <div class="hero-screen-main">
+            <img src="brand assets/marketingpipelinecrm1.png"
+                 alt="Bristol Business Systems — live CRM sales pipeline and contacts dashboard"
+                 width="860" loading="eager" />
+          </div>
+          <!-- Secondary: Ops dashboard floating bottom-right -->
+          <div class="hero-screen-secondary" aria-hidden="true">
+            <img src="brand assets/opsdashboard1.png"
+                 alt="Operations dashboard"
+                 width="500" loading="eager" />
+          </div>
+          <!-- Floating status badge -->
+          <div class="dash-float" aria-hidden="true">
+            <div class="dash-float-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <div class="dash-float-label">
+              <strong>Systems Online</strong>
+              <span>All automations running</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Trust logos bar ───────────────────────────────── -->
+  <div class="logos-bar" aria-label="Trusted by">
+    <div class="container">
+      <p class="logos-label">Trusted by growing businesses across Vermont &amp; beyond</p>
+      <div class="logos-row">
+        <div class="logo-pill">Green Mountain Retail</div>
+        <div class="logo-pill">Champlain Services</div>
+        <div class="logo-pill">Vermont Pro Group</div>
+        <div class="logo-pill">Bristol &amp; Co.</div>
+        <div class="logo-pill">Northeast Builds</div>
+        <div class="logo-pill">Summit Trades</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Problem section ───────────────────────────────── -->
+  <section class="section problem" id="problem" aria-labelledby="problem-h2">
+    <div class="container">
+      <div class="center-block">
+        <div class="s-label"><span class="chip">The Problem</span></div>
+        <h2 class="s-h2" id="problem-h2">Small Businesses Are Losing Revenue<br>Due to <em>Scattered Systems</em></h2>
+        <p class="s-desc">When operations, marketing, and customer data live in silos, growth stalls — no matter how hard your team works.</p>
+      </div>
+      <div class="problem-grid">
+        <div class="prob-card">
+          <div class="prob-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3>No Repeatable Processes</h3>
+          <p>Every job runs differently. Tribal knowledge replaces systems, and growth creates chaos instead of scale — costing you time and money every week.</p>
+        </div>
+        <div class="prob-card">
+          <div class="prob-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <h3>Inconsistent Lead Flow</h3>
+          <p>Marketing happens in bursts when things are slow, then stops when you get busy. Qualified leads dry up just when you need them most.</p>
+        </div>
+        <div class="prob-card">
+          <div class="prob-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>No Visibility or Data</h3>
+          <p>You don't know what's working until it's too late. No dashboards, no tracking — just gut feelings when decisions require clear data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── All-in-One split sections ─────────────────────── -->
+  <section class="section" id="services" aria-labelledby="solution-h2">
+    <div class="container">
+      <div class="center-block" style="margin-bottom: 4.5rem;">
+        <div class="s-label"><span class="chip">The Solution</span></div>
+        <h2 class="s-h2" id="solution-h2">All-in-One Systems to<br><em>Outperform</em> the Competition</h2>
+        <p class="s-desc">We build the operational backbone and marketing engine your business needs — together, so they compound over time.</p>
+      </div>
+
+      <!-- Operations -->
+      <div class="split">
+        <div class="split-text">
+          <div class="s-label"><span class="chip">Operations</span></div>
+          <h3 class="split-h3">Replace firefighting<br>with systems that<br><em>run themselves</em></h3>
+          <p class="split-desc">We map your processes, eliminate bottlenecks, and build repeatable workflows your team can follow without you in the room.</p>
+          <div class="feat-list">
+            <div class="feat-item">
+              <div class="feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              </div>
+              <div>
+                <h4>Process Documentation &amp; SOPs</h4>
+                <p>Every core process documented, so your team always knows what to do and how to do it right.</p>
+              </div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+              </div>
+              <div>
+                <h4>Workflow Automation</h4>
+                <p>Repetitive admin tasks handled automatically, freeing your team for high-value work.</p>
+              </div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <div>
+                <h4>Team Accountability Systems</h4>
+                <p>Clear ownership, trackable tasks, and communication frameworks that keep everyone aligned.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="split-visual">
+          <div class="vis-card">
+            <div class="vis-card-header">
+              <div class="vc-dot"></div><div class="vc-dot"></div><div class="vc-dot"></div>
+              <span class="vc-title">Operations Dashboard</span>
+            </div>
+            <div class="vis-card-body ss-outer">
+              <div class="ss-inner">
+                <img class="ss-img ss-img-a" src="brand assets/opsdashboard1.png" alt="Operations dashboard" />
+                <img class="ss-img ss-img-b" src="brand assets/opsdashboard2.png" alt="Operations analytics" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marketing -->
+      <div class="split split-text-right">
+        <div class="split-visual">
+          <div class="vis-card">
+            <div class="vis-card-header">
+              <div class="vc-dot"></div><div class="vc-dot"></div><div class="vc-dot"></div>
+              <span class="vc-title">Marketing Pipeline &amp; CRM</span>
+            </div>
+            <div class="vis-card-body ss-outer">
+              <div class="ss-inner">
+                <img class="ss-img ss-img-a" src="brand assets/marketingpipelinecrm1.png" alt="CRM dashboard" />
+                <img class="ss-img ss-img-b" src="brand assets/marketingpipelinecrm2.png" alt="CRM analytics" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="split-text">
+          <div class="s-label"><span class="chip">Marketing</span></div>
+          <h3 class="split-h3">Generate <em>steady,<br>predictable growth</em><br>on autopilot</h3>
+          <p class="split-desc">We build campaigns, funnels, and follow-up systems that generate qualified leads while you focus on delivering your best work.</p>
+          <div class="feat-list">
+            <div class="feat-item">
+              <div class="feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div>
+                <h4>Lead Generation &amp; Funnels</h4>
+                <p>Targeted campaigns that attract qualified prospects and convert them into paying clients.</p>
+              </div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <h4>Email Marketing &amp; Nurture</h4>
+                <p>Automated sequences that keep your business top of mind and drive repeat business.</p>
+              </div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              </div>
+              <div>
+                <h4>CRM &amp; Pipeline Management</h4>
+                <p>Track every lead, follow up automatically, and never let a deal fall through the cracks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Feature grid ───────────────────────────────────── -->
+  <section class="section feat-grid-bg" id="toolkit" aria-labelledby="toolkit-h2">
+    <div class="container">
+      <div class="center-block">
+        <div class="s-label"><span class="chip">Complete Toolkit</span></div>
+        <h2 class="s-h2" id="toolkit-h2">Everything You Need to<br><em>Grow With Confidence</em></h2>
+        <p class="s-desc">A full suite of systems, tools, and support — all working together, all built specifically for your business.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <h3>Dashboard &amp; Reporting</h3>
+          <p>Simple dashboards that give you a clear view of your business performance at a glance — no spreadsheet archaeology required.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3>Workflow Automation</h3>
+          <p>Set up once, run forever. Automate the repetitive tasks that drain your team's time and energy every single day.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h3>Email &amp; Nurture Campaigns</h3>
+          <p>Sequences that educate, build trust, and convert prospects into paying clients — automatically, without daily attention.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3>Lead Generation System</h3>
+          <p>Targeted funnels and campaigns that attract ideal clients consistently, so your pipeline stays full month after month.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Team Onboarding &amp; SOPs</h3>
+          <p>Documented systems and training so your team can run everything without relying on you to be in the room.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>CRM &amp; Sales Pipeline</h3>
+          <p>Track every opportunity, automate follow-ups, and close more deals with less effort using a purpose-built pipeline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Industry section ───────────────────────────────── -->
+  <section class="section" id="industry" aria-labelledby="industry-h2">
+    <div class="container">
+      <div class="center-block">
+        <div class="s-label"><span class="chip">Industries</span></div>
+        <h2 class="s-h2" id="industry-h2">Built For Your <em>Industry</em></h2>
+        <p class="s-desc">Whether you're in services, retail, construction, or hospitality — we design systems that fit how your business actually operates.</p>
+      </div>
+      <div class="industry-grid">
+        <div class="ind-card">
+          <img src="https://placehold.co/480x360/1e6340/e8f5ee?text=Professional+Services" alt="Professional services" />
+          <div class="ind-overlay">
+            <span class="ind-tag">Top Vertical</span>
+            <div class="ind-name">Professional Services</div>
+          </div>
+        </div>
+        <div class="ind-card">
+          <img src="https://placehold.co/480x360/268a58/e8f5ee?text=Retail+%26+E-Commerce" alt="Retail and e-commerce" />
+          <div class="ind-overlay">
+            <span class="ind-tag">Fast Growing</span>
+            <div class="ind-name">Retail &amp; E-Commerce</div>
+          </div>
+        </div>
+        <div class="ind-card">
+          <img src="https://placehold.co/480x360/0f3b27/e8f5ee?text=Construction+%26+Trades" alt="Construction and trades" />
+          <div class="ind-overlay">
+            <span class="ind-tag">High Demand</span>
+            <div class="ind-name">Construction &amp; Trades</div>
+          </div>
+        </div>
+        <div class="ind-card">
+          <img src="https://placehold.co/480x360/4daf82/0f3b27?text=Hospitality+%26+Food" alt="Hospitality and food service" />
+          <div class="ind-overlay">
+            <span class="ind-tag">Local Focus</span>
+            <div class="ind-name">Hospitality &amp; Food Service</div>
+          </div>
+        </div>
+        <div class="ind-card">
+          <img src="https://placehold.co/480x360/163d27/e8f5ee?text=Health+%26+Wellness" alt="Health and wellness" />
+          <div class="ind-overlay">
+            <span class="ind-tag">Growing</span>
+            <div class="ind-name">Health &amp; Wellness</div>
+          </div>
+        </div>
+        <div class="ind-card">
+          <img src="https://placehold.co/480x360/2c3a36/e8f5ee?text=Home+Services" alt="Home services" />
+          <div class="ind-overlay">
+            <span class="ind-tag">Vermont Strong</span>
+            <div class="ind-name">Home Services</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Dark testimonial section ──────────────────────── -->
+  <section class="testi-section" id="results" aria-labelledby="testi-h2">
+    <div class="container">
+      <div class="testi-grid">
+        <div>
+          <div class="testi-mark" aria-hidden="true">"</div>
+          <p class="testi-quote">
+            Bristol Business Systems helped us finally organize our marketing and operations in one place. Our team is more aligned, we're converting more leads than ever — and I'm not the bottleneck anymore.
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar" aria-hidden="true">HL</div>
+            <div>
+              <div class="testi-name">Hannah L.</div>
+              <div class="testi-role">Retail Operations Manager, Central Vermont</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-stats" aria-label="Key results">
+          <div class="testi-stat-card">
+            <strong>40%</strong>
+            <p>Faster project delivery — from better workflows and less rework across the team.</p>
+          </div>
+          <div class="testi-stat-card">
+            <strong>3×</strong>
+            <p>More consistent leads — from marketing systems that run in the background while you work.</p>
+          </div>
+          <div class="testi-stat-card">
+            <strong>90 days</strong>
+            <p>To measurable results — most clients see improvements before the engagement even ends.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Integrations ───────────────────────────────────── -->
+  <section class="section" id="integrations" aria-labelledby="int-h2">
+    <div class="container">
+      <div class="center-block">
+        <div class="s-label"><span class="chip">Integrations</span></div>
+        <h2 class="s-h2" id="int-h2">Works With the Apps Your<br>Team <em>Already Uses</em></h2>
+        <p class="s-desc">We configure and connect the right tools for your business — no bloated tech stacks, no underused subscriptions gathering dust.</p>
+      </div>
+      <div class="int-grid">
+        <div class="int-pill"><div class="int-pill-dot"></div>Google Workspace</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>HubSpot</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Mailchimp</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Slack</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Notion</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>QuickBooks</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Asana</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Zapier</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Shopify</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>ActiveCampaign</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Meta Ads</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Google Ads</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Monday.com</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>ClickUp</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Stripe</div>
+        <div class="int-pill"><div class="int-pill-dot"></div>Calendly</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Setup steps ────────────────────────────────────── -->
+  <section class="section setup-section" id="how" aria-labelledby="setup-h2">
+    <div class="container">
+      <div class="center-block">
+        <div class="s-label"><span class="chip">Getting Started</span></div>
+        <h2 class="s-h2" id="setup-h2">Up and Running<br><em>in Days</em></h2>
+        <p class="s-desc">A clear, structured process that transforms how your business operates — with results you can see fast.</p>
+      </div>
+      <div class="setup-steps">
+        <div class="step-card">
+          <div class="step-num" aria-hidden="true">01</div>
+          <h4>Discovery &amp; Audit</h4>
+          <p>We map your current operations and marketing, identify what's costing you time and revenue, and define what success looks like for your business.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num" aria-hidden="true">02</div>
+          <h4>Build &amp; Implement</h4>
+          <p>We design and build your systems — workflows, automations, campaigns, and dashboards — and integrate everything in days, not months.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num" aria-hidden="true">03</div>
+          <h4>Train &amp; Optimize</h4>
+          <p>Your team gets fully trained on every system. Then we monitor, refine, and optimize as your business grows — so results keep compounding.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Final CTA ──────────────────────────────────────── -->
+  <section class="cta-section" id="contact" aria-labelledby="cta-h2">
+    <div class="container">
+      <div class="cta-inner">
+        <div style="display:flex; justify-content:center; margin-bottom:1.1rem;"><span class="chip">Let's Get Started</span></div>
+        <h2 class="cta-h2" id="cta-h2">Stop Patching Problems.<br>Start Building <em>Systems</em>.</h2>
+        <p class="cta-sub">
+          Book a free 30-minute strategy call and we'll identify the top 3 systems that would have the biggest impact on your business right now.
+        </p>
+        <div class="cta-actions">
+          <a class="btn btn-primary btn-lg" href="mailto:bristolbusinesssystems@gmail.com">Book Your Free Strategy Call</a>
+          <a class="btn btn-outline btn-lg" href="#services">Learn More</a>
+        </div>
+        <p class="cta-note">No contracts required &nbsp;·&nbsp; <span>Free 30-minute consultation</span> &nbsp;·&nbsp; Results in 90 days</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
+  <footer id="about">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="brand assets/Bristol Business Systems Logo.png" alt="Bristol Business Systems logo" />
+            <div class="footer-logo-text">Bristol Business<br>Systems</div>
+          </div>
+          <p>Operations and marketing systems that help small and medium businesses grow with clarity, consistency, and confidence.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#services">Operations Systems</a></li>
+            <li><a href="#services">Marketing Systems</a></li>
+            <li><a href="#toolkit">Dashboard &amp; Reporting</a></li>
+            <li><a href="#toolkit">Workflow Automation</a></li>
+            <li><a href="#toolkit">CRM &amp; Pipeline</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#industry">Industries</a></li>
+            <li><a href="#integrations">Integrations</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:bristolbusinesssystems@gmail.com">bristolbusinesssystems@gmail.com</a></li>
+            <li><a href="#contact">Book a Free Call</a></li>
+            <li><a href="#problem">See the Problem We Solve</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Bristol Business Systems. All rights reserved.</p>
+        <a class="footer-email" href="mailto:bristolbusinesssystems@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          bristolbusinesssystems@gmail.com
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const btn  = document.getElementById('theme-toggle');
+      const STORAGE_KEY = 'bbs-theme';
+
+      function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+
+      // On load: apply stored preference, or let CSS handle it via media query
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'dark' || stored === 'light') {
+        applyTheme(stored);
+      }
+      // If no stored preference, data-theme stays unset and CSS @media handles it
+
+      btn.addEventListener('click', function () {
+        // Read the *current* effective theme (manual or system)
+        const current = root.getAttribute('data-theme') || getSystemTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        localStorage.setItem(STORAGE_KEY, next);
+      });
+
+      // Keep in sync if the OS theme changes while the page is open (and no manual override)
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (!localStorage.getItem(STORAGE_KEY)) {
+          root.removeAttribute('data-theme');
+        }
+      });
+    })();
+
+    // Mobile nav toggle
+    (function () {
+      var menuBtn = document.getElementById('menu-btn');
+      var mobileNav = document.getElementById('mobile-nav');
+      if (!menuBtn || !mobileNav) return;
+      function close() {
+        mobileNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.setAttribute('aria-label', 'Open menu');
+      }
+      menuBtn.addEventListener('click', function () {
+        var isOpen = mobileNav.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(isOpen));
+        menuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      });
+      mobileNav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', close);
+      });
+    })();
+
+    // Screenshot fade-switcher — alternates between ss-img-a and ss-img-b every 3.5s
+    (function () {
+      document.querySelectorAll('.ss-outer').forEach(function (outer) {
+        var imgA = outer.querySelector('.ss-img-a');
+        var imgB = outer.querySelector('.ss-img-b');
+        if (!imgA || !imgB) return;
+        var showingA = true;
+        // Stagger start so both cards don't switch simultaneously
+        var delay = outer.closest('.split-text-right') ? 1800 : 0;
+        setTimeout(function () {
+          setInterval(function () {
+            showingA = !showingA;
+            imgA.style.opacity = showingA ? '1' : '0';
+            imgB.style.opacity = showingA ? '0' : '1';
+          }, 3500);
+        }, delay);
+      });
+    })();
+  </script>
+</body>
+</html>
