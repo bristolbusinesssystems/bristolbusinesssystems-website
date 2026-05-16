@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Bristol Business Systems</title>
+  <meta name="description" content="Get in touch with Bristol Business Systems. Book a free strategy call or reach us by phone, email, or in person." />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --primary:        #1E6340;
+      --primary-hi:     #268a58;
+      --primary-lt:     #4DAF82;
+      --primary-dark:   #0F3B27;
+      --primary-dim:    #163d27;
+      --primary-soft:   rgba(30,99,64,0.07);
+      --primary-mid:    rgba(30,99,64,0.14);
+      --accent:         #D0B686;
+      --danger:         #C0392B;
+      --danger-soft:    rgba(192,57,43,0.08);
+      --text:           #141414;
+      --text-soft:      #4a4a4d;
+      --muted:          #717174;
+      --border:         #e8e8eb;
+      --border-alt:     #d8d8dc;
+      --bg:             #ffffff;
+      --bg-soft:        #f7f9f8;
+      --bg-alt:         #f2f6f4;
+      --surface:        #ffffff;
+      --dark-bg:        #0a2318;
+      --dark-surface:   #112e1f;
+      --shadow-sm:      0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md:      0 6px 24px rgba(0,0,0,0.08);
+      --shadow-lg:      0 20px 60px rgba(0,0,0,0.10);
+      --r-sm:           10px;
+      --r-md:           16px;
+      --r-lg:           22px;
+      --r-xl:           30px;
+      --r-2xl:          40px;
+      --r-full:         999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+    .container {
+      width: min(1180px, calc(100% - 2.5rem));
+      margin: 0 auto;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────── */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1rem 0;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-shrink: 0;
+    }
+    .nav-logo img { width: 42px; height: auto; }
+    .nav-logo-text {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+    .nav-links a {
+      padding: 0.45rem 0.8rem;
+      border-radius: var(--r-full);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--bg-alt); }
+    .nav-links a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .nav-links a.active { color: var(--primary); font-weight: 600; }
+    .nav-actions { display: flex; gap: 0.5rem; align-items: center; flex-shrink: 0; }
+
+    /* ── Buttons ─────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border-radius: var(--r-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.6rem 1.4rem;
+      min-height: 44px;
+      transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease, background 0.2s;
+      cursor: pointer;
+    }
+    .btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+    .btn:active { transform: scale(0.97) !important; }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(30,99,64,0.22);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hi);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(30,99,64,0.28);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border-alt);
+    }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+    .btn-lg { padding: 0.9rem 2.1rem; font-size: 0.95rem; min-height: 52px; }
+    .btn-sm { padding: 0.45rem 1.05rem; font-size: 0.82rem; min-height: 38px; }
+
+    /* ── Chip ────────────────────────────────────────────── */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.28rem 0.85rem;
+      border-radius: var(--r-full);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid rgba(30,99,64,0.14);
+    }
+
+    /* ── Page hero ───────────────────────────────────────── */
+    .page-hero {
+      padding: 4.5rem 0 3.5rem;
+      background: linear-gradient(165deg, #f6f9f7 0%, #ffffff 55%, #f9fbf9 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      top: -150px; right: -200px;
+      width: 550px; height: 550px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,99,64,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-inner {
+      position: relative;
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .page-hero-label { margin-bottom: 0.9rem; }
+    .page-hero-h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .page-hero-h1 em { font-style: normal; color: var(--primary); }
+    .page-hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.82;
+      max-width: 48ch;
+      margin: 0 auto;
+    }
+
+    /* ── Contact layout ──────────────────────────────────── */
+    .contact-section {
+      padding: 5rem 0 6rem;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4.5rem;
+      align-items: start;
+    }
+
+    /* ── Contact info panel ──────────────────────────────── */
+    .contact-info-heading {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .contact-info-sub {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2.2rem;
+      max-width: 38ch;
+    }
+    .contact-items { display: grid; gap: 1.4rem; }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-md);
+      background: var(--primary-soft);
+      border: 1px solid rgba(30,99,64,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--primary);
+    }
+    .contact-icon svg { width: 18px; height: 18px; }
+    .contact-item-body {}
+    .contact-item-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .contact-item-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+    .contact-item-value a {
+      color: var(--primary);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .contact-item-value a:hover { color: var(--primary-hi); }
+
+    .contact-note {
+      margin-top: 2.5rem;
+      padding: 1.25rem 1.4rem;
+      border-radius: var(--r-md);
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+    }
+    .contact-note p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .contact-note strong { color: var(--text-soft); font-weight: 600; }
+
+    /* ── Form card ───────────────────────────────────────── */
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .form-card-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.022em;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+    .form-card-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.1rem;
+    }
+    .form-group:last-of-type { margin-bottom: 0; }
+    label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      letter-spacing: 0.01em;
+    }
+    label .required {
+      color: var(--primary);
+      margin-left: 2px;
+    }
+    input, textarea, select {
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: var(--bg);
+      border: 1.5px solid var(--border-alt);
+      border-radius: var(--r-sm);
+      padding: 0.7rem 0.95rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: none;
+    }
+    input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.7; }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(30,99,64,0.10);
+    }
+    textarea { min-height: 130px; }
+
+    .form-submit {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .form-submit .btn { width: 100%; }
+    .form-privacy {
+      font-size: 0.76rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ── Success state ───────────────────────────────────── */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .form-success-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      color: var(--primary);
+    }
+    .form-success-icon svg { width: 28px; height: 28px; }
+    .form-success h3 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .form-success p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 36ch;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* ── CTA strip ───────────────────────────────────────── */
+    .cta-strip {
+      background: var(--primary-dark);
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-strip::before {
+      content: "";
+      position: absolute;
+      top: -120px; right: -150px;
+      width: 450px; height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(77,175,130,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-strip-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .cta-strip-copy h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+    .cta-strip-copy h2 em { font-style: normal; color: var(--primary-lt); }
+    .cta-strip-copy p {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+    }
+    .btn-ghost-dark {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+    .btn-ghost-dark:hover { background: rgba(255,255,255,0.22); transform: translateY(-1px); }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    footer {
+      background: var(--text);
+      color: #fff;
+      padding: 4.5rem 0 2.5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+    .footer-logo img {
+      width: 36px; height: auto;
+      filter: invert(1);
+      opacity: 0.82;
+    }
+    .footer-logo-text {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.35;
+    }
+    .footer-brand > p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.78;
+      max-width: 28ch;
+    }
+    .footer-col h5 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.42);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; display: grid; gap: 0.65rem; }
+    .footer-col a {
+      font-size: 0.86rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-col a:focus-visible { outline: 2px solid var(--primary-lt); outline-offset: 2px; border-radius: 2px; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+    .footer-email {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.38);
+      transition: color 0.2s;
+    }
+    .footer-email:hover { color: rgba(255,255,255,0.75); }
+    .footer-email svg { width: 13px; height: 13px; }
+
+    /* ── Theme transition ────────────────────────────────── */
+    *, *::before, *::after {
+      transition-property: background-color, border-color, color, box-shadow;
+      transition-duration: 0.22s;
+      transition-timing-function: ease;
+    }
+    .btn, .form-card, .contact-icon {
+      transition: transform 0.25s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.25s ease,
+                  background-color 0.22s ease,
+                  border-color 0.22s ease,
+                  color 0.22s ease;
+    }
+
+    /* ── Dark mode toggle ────────────────────────────────── */
+    .theme-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--r-full);
+      border: 1.5px solid var(--border-alt);
+      background: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      color: var(--muted);
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.22,1,0.36,1);
+    }
+    .theme-toggle:hover { border-color: var(--primary); color: var(--primary); transform: rotate(15deg); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+    .theme-toggle:active { transform: scale(0.92); }
+    .theme-toggle svg { width: 17px; height: 17px; }
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme="light"]) .icon-sun { display: block; }
+      html:not([data-theme="light"]) .icon-moon { display: none; }
+    }
+
+    /* ── Dark mode variables ─────────────────────────────── */
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg:           #06110e;
+        --bg-soft:      #091711;
+        --bg-alt:       #0d221a;
+        --surface:      #0d221a;
+        --text:         #edf5ea;
+        --text-soft:    #c8d5c6;
+        --muted:        #8fa88c;
+        --border:       rgba(176,219,185,0.10);
+        --border-alt:   rgba(176,219,185,0.16);
+        --primary-soft: rgba(77,175,130,0.10);
+        --primary-mid:  rgba(77,175,130,0.18);
+        --danger-soft:  rgba(231,76,60,0.14);
+        --shadow-sm:    0 2px 8px rgba(0,0,0,0.35);
+        --shadow-md:    0 6px 24px rgba(0,0,0,0.50);
+        --shadow-lg:    0 20px 60px rgba(0,0,0,0.65);
+      }
+    }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg:           #06110e;
+      --bg-soft:      #091711;
+      --bg-alt:       #0d221a;
+      --surface:      #0d221a;
+      --text:         #edf5ea;
+      --text-soft:    #c8d5c6;
+      --muted:        #8fa88c;
+      --border:       rgba(176,219,185,0.10);
+      --border-alt:   rgba(176,219,185,0.16);
+      --primary-soft: rgba(77,175,130,0.10);
+      --primary-mid:  rgba(77,175,130,0.18);
+      --danger-soft:  rgba(231,76,60,0.14);
+      --shadow-sm:    0 2px 8px rgba(0,0,0,0.35);
+      --shadow-md:    0 6px 24px rgba(0,0,0,0.50);
+      --shadow-lg:    0 20px 60px rgba(0,0,0,0.65);
+    }
+    [data-theme="dark"] .page-hero {
+      background: linear-gradient(165deg, #07120f 0%, #06110e 50%, #071310 100%);
+    }
+    [data-theme="dark"] .nav-wrap { background: rgba(6,17,14,0.92); }
+    [data-theme="dark"] footer { background: #040d09; }
+    [data-theme="dark"] .nav-logo img { filter: invert(1); }
+    [data-theme="dark"] .form-card { border-color: rgba(176,219,185,0.12); }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme="light"]) .page-hero {
+        background: linear-gradient(165deg, #07120f 0%, #06110e 50%, #071310 100%);
+      }
+      html:not([data-theme="light"]) .nav-wrap { background: rgba(6,17,14,0.92); }
+      html:not([data-theme="light"]) footer { background: #040d09; }
+      html:not([data-theme="light"]) .nav-logo img { filter: invert(1); }
+      html:not([data-theme="light"]) .form-card { border-color: rgba(176,219,185,0.12); }
+    }
+
+    /* ── Mobile menu ─────────────────────────────────────── */
+    .menu-btn {
+      display: none;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--r-full);
+      border: 1.5px solid var(--border-alt);
+      background: var(--bg-soft);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--muted);
+    }
+    .menu-btn .icon-close { display: none; }
+    .menu-btn[aria-expanded="true"] .icon-open { display: none; }
+    .menu-btn[aria-expanded="true"] .icon-close { display: block; }
+    .mobile-nav {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav-inner {
+      padding: 1rem 0 1.25rem;
+      display: grid;
+      gap: 0.1rem;
+    }
+    .mobile-nav-link {
+      display: block;
+      padding: 0.7rem 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      border-radius: var(--r-sm);
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-nav-link:hover { color: var(--primary); background: var(--primary-soft); }
+    .mobile-nav-cta { margin-top: 0.75rem; }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-info { order: 2; }
+      .form-area { order: 1; }
+    }
+    @media (max-width: 720px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .menu-btn { display: flex; }
+      .cta-strip-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 1.75rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ───────────────────────────────────────────── -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav aria-label="Main navigation">
+        <a class="nav-logo" href="index.html" aria-label="Bristol Business Systems home">
+          <img src="brand assets/Bristol Business Systems Logo.png" alt="Bristol Business Systems logo" />
+          <div class="nav-logo-text">Bristol Business<br>Systems</div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html#services">Services</a>
+          <a href="index.html#toolkit">Toolkit</a>
+          <a href="index.html#results">Results</a>
+          <a href="index.html#industry">Industries</a>
+          <a href="index.html#integrations">Integrations</a>
+          <a href="contact.html" class="active">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          </button>
+          <a class="btn btn-outline btn-sm" href="index.html#how">How It Works</a>
+          <a class="btn btn-primary btn-sm" href="#form">Get in Touch</a>
+          <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <div class="container">
+        <div class="mobile-nav-inner">
+          <a href="index.html#services" class="mobile-nav-link">Services</a>
+          <a href="index.html#toolkit" class="mobile-nav-link">Toolkit</a>
+          <a href="index.html#results" class="mobile-nav-link">Results</a>
+          <a href="index.html#industry" class="mobile-nav-link">Industries</a>
+          <a href="index.html#integrations" class="mobile-nav-link">Integrations</a>
+          <a href="index.html#how" class="mobile-nav-link">How It Works</a>
+          <div class="mobile-nav-cta">
+            <a class="btn btn-primary" href="#form">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Page hero ─────────────────────────────────────── -->
+  <section class="page-hero" aria-labelledby="page-h1">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="page-hero-label">
+          <span class="chip">Let's Talk</span>
+        </div>
+        <h1 class="page-hero-h1" id="page-h1">
+          Ready to Build <em>Better<br>Systems?</em>
+        </h1>
+        <p class="page-hero-sub">
+          Book a free 30-minute strategy call or send us a message. We'll identify the systems that'll make the biggest impact on your business.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact section ───────────────────────────────── -->
+  <section class="contact-section" id="form">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Info column -->
+        <div class="contact-info">
+          <h2 class="contact-info-heading">Get in Touch</h2>
+          <p class="contact-info-sub">
+            Reach us by phone, email, or visit our Bristol, VT office. We respond to all inquiries within one business day.
+          </p>
+
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .99h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div class="contact-item-body">
+                <div class="contact-item-label">Phone</div>
+                <div class="contact-item-value">
+                  <a href="tel:+18023773369">802-377-3369</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contact-item-body">
+                <div class="contact-item-label">Email</div>
+                <div class="contact-item-value">
+                  <a href="mailto:contact@bristolbusinesssystems.com">contact@bristolbusinesssystems.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-item-body">
+                <div class="contact-item-label">Office</div>
+                <div class="contact-item-value">
+                  25 Mountain View Street, Suite A1<br>
+                  Bristol, VT 05443
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div class="contact-item-body">
+                <div class="contact-item-label">Office Hours</div>
+                <div class="contact-item-value">
+                  Monday – Friday, 9 am – 5 pm ET
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-note">
+            <p><strong>Prefer to jump right in?</strong> Book your free 30-minute strategy call directly from the form and we'll come prepared with insights specific to your business.</p>
+          </div>
+        </div>
+
+        <!-- Form column -->
+        <div class="form-area">
+          <div class="form-card" id="contact-form-card">
+            <h2 class="form-card-title">Send Us a Message</h2>
+            <p class="form-card-sub">Tell us about your business and what you're looking to improve. We'll get back to you within one business day.</p>
+
+            <form id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="first-name">First Name <span class="required" aria-hidden="true">*</span></label>
+                  <input type="text" id="first-name" name="first_name" placeholder="Jane" required autocomplete="given-name" />
+                </div>
+                <div class="form-group">
+                  <label for="last-name">Last Name <span class="required" aria-hidden="true">*</span></label>
+                  <input type="text" id="last-name" name="last_name" placeholder="Smith" required autocomplete="family-name" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" placeholder="jane@company.com" required autocomplete="email" />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="802-555-0100" autocomplete="tel" />
+              </div>
+
+              <div class="form-group">
+                <label for="business">Business Name</label>
+                <input type="text" id="business" name="business" placeholder="Your Company LLC" autocomplete="organization" />
+              </div>
+
+              <div class="form-group">
+                <label for="message">How Can We Help? <span class="required" aria-hidden="true">*</span></label>
+                <textarea id="message" name="message" placeholder="Tell us about your business goals, current challenges, or what systems you're looking to build..." required></textarea>
+              </div>
+
+              <div class="form-submit">
+                <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                <p class="form-privacy">By submitting you agree to our privacy policy. We never share your information.</p>
+              </div>
+            </form>
+
+            <!-- Success state (shown after submit) -->
+            <div class="form-success" id="form-success" aria-live="polite">
+              <div class="form-success-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h3>Message Sent!</h3>
+              <p>Thanks for reaching out. We'll be in touch within one business day.</p>
+              <a class="btn btn-outline" href="index.html">Back to Home</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA strip ──────────────────────────────────────── -->
+  <section class="cta-strip" aria-label="Book a call">
+    <div class="container">
+      <div class="cta-strip-inner">
+        <div class="cta-strip-copy">
+          <h2>Free 30-Minute <em>Strategy Call</em></h2>
+          <p>No commitment. No contracts. Just clarity on the systems that'll move your business forward.</p>
+        </div>
+        <a class="btn btn-ghost-dark btn-lg" href="mailto:contact@bristolbusinesssystems.com?subject=Free Strategy Call Request">Book a Free Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
+  <footer id="about">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="brand assets/Bristol Business Systems Logo.png" alt="Bristol Business Systems logo" />
+            <div class="footer-logo-text">Bristol Business<br>Systems</div>
+          </div>
+          <p>Operations and marketing systems that help small and medium businesses grow with clarity, consistency, and confidence.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="index.html#services">Operations Systems</a></li>
+            <li><a href="index.html#services">Marketing Systems</a></li>
+            <li><a href="index.html#toolkit">Dashboard &amp; Reporting</a></li>
+            <li><a href="index.html#toolkit">Workflow Automation</a></li>
+            <li><a href="index.html#toolkit">CRM &amp; Pipeline</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="index.html#results">Results</a></li>
+            <li><a href="index.html#industry">Industries</a></li>
+            <li><a href="index.html#integrations">Integrations</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:contact@bristolbusinesssystems.com">contact@bristolbusinesssystems.com</a></li>
+            <li><a href="tel:+18023773369">802-377-3369</a></li>
+            <li><a href="contact.html">Book a Free Call</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Bristol Business Systems. All rights reserved.</p>
+        <a class="footer-email" href="mailto:contact@bristolbusinesssystems.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          contact@bristolbusinesssystems.com
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    (function () {
+      const root = document.documentElement;
+      const btn  = document.getElementById('theme-toggle');
+      const STORAGE_KEY = 'bbs-theme';
+
+      function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'dark' || stored === 'light') applyTheme(stored);
+
+      btn.addEventListener('click', function () {
+        const current = root.getAttribute('data-theme') || getSystemTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        localStorage.setItem(STORAGE_KEY, next);
+      });
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+        if (!localStorage.getItem(STORAGE_KEY)) root.removeAttribute('data-theme');
+      });
+    })();
+
+    // Mobile nav toggle
+    (function () {
+      var menuBtn = document.getElementById('menu-btn');
+      var mobileNav = document.getElementById('mobile-nav');
+      if (!menuBtn || !mobileNav) return;
+      function close() {
+        mobileNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.setAttribute('aria-label', 'Open menu');
+      }
+      menuBtn.addEventListener('click', function () {
+        var isOpen = mobileNav.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(isOpen));
+        menuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      });
+      mobileNav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', close);
+      });
+    })();
+
+    // Contact form → mailto fallback (no server required)
+    (function () {
+      var form = document.getElementById('contact-form');
+      var success = document.getElementById('form-success');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Basic validation
+        var required = form.querySelectorAll('[required]');
+        var valid = true;
+        required.forEach(function (field) {
+          if (!field.value.trim()) {
+            field.style.borderColor = 'var(--danger)';
+            valid = false;
+          } else {
+            field.style.borderColor = '';
+          }
+        });
+        if (!valid) return;
+
+        // Build mailto link
+        var firstName = document.getElementById('first-name').value.trim();
+        var lastName  = document.getElementById('last-name').value.trim();
+        var email     = document.getElementById('email').value.trim();
+        var phone     = document.getElementById('phone').value.trim();
+        var business  = document.getElementById('business').value.trim();
+        var message   = document.getElementById('message').value.trim();
+
+        var body = [
+          'Name: ' + firstName + ' ' + lastName,
+          'Email: ' + email,
+          phone   ? 'Phone: ' + phone     : '',
+          business? 'Business: ' + business: '',
+          '',
+          message
+        ].filter(Boolean).join('\n');
+
+        var mailto = 'mailto:contact@bristolbusinesssystems.com'
+          + '?subject=' + encodeURIComponent('Website Inquiry from ' + firstName + ' ' + lastName)
+          + '&body='    + encodeURIComponent(body);
+
+        window.location.href = mailto;
+
+        // Show success state
+        form.style.display = 'none';
+        success.style.display = 'block';
+      });
+    })();
+  </script>
+</body>
+</html>
