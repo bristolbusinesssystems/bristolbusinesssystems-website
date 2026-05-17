@@ -986,16 +986,34 @@
       });
     })();
 
-    // Contact form → mailto fallback (no server required)
+    // Contact form → CRM API
     (function () {
-      var form = document.getElementById('contact-form');
+      var form    = document.getElementById('contact-form');
       var success = document.getElementById('form-success');
+      var submitBtn = form ? form.querySelector('[type="submit"]') : null;
       if (!form) return;
+
+      // Inject a reusable error banner into the form card
+      var errorBanner = document.createElement('div');
+      errorBanner.id = 'form-error';
+      errorBanner.style.cssText = [
+        'display:none',
+        'margin-bottom:1rem',
+        'padding:0.75rem 1rem',
+        'border-radius:var(--r-sm)',
+        'background:var(--danger-soft)',
+        'border:1px solid rgba(192,57,43,0.2)',
+        'color:var(--danger)',
+        'font-size:0.86rem',
+        'line-height:1.6'
+      ].join(';');
+      form.insertAdjacentElement('beforebegin', errorBanner);
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+        errorBanner.style.display = 'none';
 
-        // Basic validation
+        // Basic validation (unchanged)
         var required = form.querySelectorAll('[required]');
         var valid = true;
         required.forEach(function (field) {
@@ -1008,7 +1026,6 @@
         });
         if (!valid) return;
 
-        // Build mailto link
         var firstName = document.getElementById('first-name').value.trim();
         var lastName  = document.getElementById('last-name').value.trim();
         var email     = document.getElementById('email').value.trim();
@@ -1016,24 +1033,37 @@
         var business  = document.getElementById('business').value.trim();
         var message   = document.getElementById('message').value.trim();
 
-        var body = [
-          'Name: ' + firstName + ' ' + lastName,
-          'Email: ' + email,
-          phone   ? 'Phone: ' + phone     : '',
-          business? 'Business: ' + business: '',
-          '',
-          message
-        ].filter(Boolean).join('\n');
+        // Disable button while submitting
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
 
-        var mailto = 'mailto:contact@bristolbusinesssystems.com'
-          + '?subject=' + encodeURIComponent('Website Inquiry from ' + firstName + ' ' + lastName)
-          + '&body='    + encodeURIComponent(body);
-
-        window.location.href = mailto;
-
-        // Show success state
-        form.style.display = 'none';
-        success.style.display = 'block';
+        fetch('https://crm.bristolbusinesssystems.com/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            first_name: firstName,
+            last_name:  lastName,
+            email:      email,
+            phone:      phone || undefined,
+            business:   business || undefined,
+            message:    message
+          })
+        })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data.success) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+          } else {
+            throw new Error(data.error || 'Unexpected error.');
+          }
+        })
+        .catch(function (err) {
+          errorBanner.textContent = 'Sorry, something went wrong — please try again or email us directly at contact@bristolbusinesssystems.com.';
+          errorBanner.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        });
       });
     })();
   </script>
