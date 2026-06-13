@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bristol Business Systems — Operations & Marketing Systems for Growing Businesses</title>
-  <meta name="description" content="Bristol Business Systems builds the operations and marketing infrastructure growing businesses need to scale with confidence." />
+  <title>Bristol Business Systems — Operations, Automation & Marketing Systems for Growing Businesses</title>
+  <meta name="description" content="Bristol Business Systems builds the operations, automation, and marketing infrastructure growing businesses need to scale with confidence — with AI where it actually helps." />
   <meta name="color-scheme" content="light dark" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -293,7 +293,7 @@
     /* Hero screenshot visual */
     .hero-visual {
       position: relative;
-      padding-bottom: 4rem;
+      padding-bottom: 1.25rem;
     }
     .hero-screen-main {
       border-radius: var(--r-lg);
@@ -305,19 +305,6 @@
       background: var(--bg-soft);
     }
     .hero-screen-main img { width: 100%; height: auto; display: block; }
-    .hero-screen-secondary {
-      position: absolute;
-      bottom: 0;
-      right: -1.5rem;
-      width: 58%;
-      border-radius: var(--r-md);
-      overflow: hidden;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.1);
-      border: 1px solid var(--border);
-      z-index: 3;
-      background: var(--bg-soft);
-    }
-    .hero-screen-secondary img { width: 100%; height: auto; display: block; }
 
     /* kept for dash-float only */
     .dash-card {
@@ -565,7 +552,7 @@
 
     /* ── Screenshot fade-switcher ────────────────────────── */
     .vis-card-body.ss-outer { padding: 0; }
-    .ss-inner { position: relative; height: 310px; overflow: hidden; }
+    .ss-inner { position: relative; aspect-ratio: 25 / 14; overflow: hidden; }
     .ss-img {
       display: block;
       width: 100%;
@@ -1119,7 +1106,6 @@
     @media (max-width: 1040px) {
       .hero-grid { grid-template-columns: 1fr; }
       .dash-card { max-width: 520px; margin: 0 auto; }
-      .hero-screen-secondary { display: none; }
       .hero-visual { padding-bottom: 1rem; }
       .problem-grid { grid-template-columns: repeat(2, 1fr); }
       .split { grid-template-columns: 1fr; gap: 3rem; }
@@ -1159,7 +1145,6 @@
       .hero-actions { flex-direction: column; }
       .hero-actions .btn { justify-content: center; }
       .cta-actions { flex-direction: column; align-items: center; }
-      .ss-inner { height: 220px; }
       .testi-mark { font-size: 4rem; }
       .testi-quote { font-size: 1rem; }
       .testi-stat-card { padding: 1.25rem 1.4rem; }
@@ -1238,18 +1223,17 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <div class="hero-badges">
-            <span class="hero-badge">More Revenue</span>
-            <span class="hero-badge">Better Operations</span>
-            <span class="hero-badge">Less Chaos</span>
+            <span class="hero-badge">Built for Small &amp; Medium Business</span>
+            <span class="hero-badge">Bristol, Vermont</span>
           </div>
           <h1 class="hero-h1" id="hero-h1">
-            Built for<br><em>Small &amp; Medium<br>Business</em>
+            More Revenue.<br>Better Operations.<br><em>Less Chaos.</em>
           </h1>
           <p class="hero-sub">
-            Bristol Business Systems delivers the operations and marketing infrastructure growing businesses need — so you can scale with confidence, not chaos.
+            We build the systems that make your business run smoother — documented processes, automated workflows, and AI working quietly in the background where it actually helps.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="contact.html">Get Started Free</a>
+            <a class="btn btn-primary btn-lg" href="https://crm.bristolbusinesssystems.com/book/bristol-business-systems">Book a Free Strategy Call</a>
             <a class="btn btn-outline btn-lg" href="#how">See How It Works</a>
           </div>
           <div class="hero-stats">
@@ -1271,15 +1255,9 @@
         <div class="hero-visual">
           <!-- Main: CRM dashboard screenshot -->
           <div class="hero-screen-main">
-            <img src="brand assets/marketingpipelinecrm1.png"
-                 alt="Bristol Business Systems — live CRM sales pipeline and contacts dashboard"
-                 width="860" loading="eager" />
-          </div>
-          <!-- Secondary: Ops dashboard floating bottom-right -->
-          <div class="hero-screen-secondary" aria-hidden="true">
-            <img src="brand assets/opsdashboard1.png"
-                 alt="Operations dashboard"
-                 width="500" loading="eager" />
+            <img src="brand assets/crm-dashboard1.png"
+                 alt="Bristol Business Systems CRM — sales pipeline and top open deals for Vermont small businesses"
+                 width="1000" loading="eager" />
           </div>
           <!-- Floating status badge -->
           <div class="dash-float" aria-hidden="true">
@@ -1376,7 +1354,7 @@
               </div>
               <div>
                 <h4>Workflow Automation</h4>
-                <p>Repetitive admin tasks handled automatically, freeing your team for high-value work.</p>
+                <p>Repetitive admin tasks handled automatically — with AI where it earns its keep — freeing your team for high-value work.</p>
               </div>
             </div>
             <div class="feat-item">
@@ -1416,8 +1394,8 @@
             </div>
             <div class="vis-card-body ss-outer">
               <div class="ss-inner">
-                <img class="ss-img ss-img-a" src="brand assets/marketingpipelinecrm1.png" alt="CRM dashboard" />
-                <img class="ss-img ss-img-b" src="brand assets/marketingpipelinecrm2.png" alt="CRM analytics" />
+                <img class="ss-img ss-img-a" src="brand assets/crm-dashboard1.png" alt="CRM dashboard" />
+                <img class="ss-img ss-img-b" src="brand assets/crm-dashboard2.png" alt="CRM analytics" />
               </div>
             </div>
           </div>
@@ -1481,7 +1459,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
           </div>
           <h3>Workflow Automation</h3>
-          <p>Set up once, run forever. Automate the repetitive tasks that drain your team's time and energy every single day.</p>
+          <p>Set up once, run forever. Automate the repetitive tasks that drain your team's time — using AI where it actually helps, not where it's hype.</p>
         </div>
         <div class="feat-card">
           <div class="feat-card-icon" aria-hidden="true">
@@ -1525,42 +1503,42 @@
       </div>
       <div class="industry-grid">
         <div class="ind-card">
-          <img src="https://placehold.co/480x360/1e6340/e8f5ee?text=Professional+Services" alt="Professional services" />
+          <img src="brand assets/industries/professional-services.jpg" alt="Team collaborating around desks in a professional services office" loading="lazy" />
           <div class="ind-overlay">
             <span class="ind-tag">Top Vertical</span>
             <div class="ind-name">Professional Services</div>
           </div>
         </div>
         <div class="ind-card">
-          <img src="https://placehold.co/480x360/268a58/e8f5ee?text=Retail+%26+E-Commerce" alt="Retail and e-commerce" />
+          <img src="brand assets/industries/retail.jpg" alt="Interior of an independent retail clothing shop" loading="lazy" />
           <div class="ind-overlay">
             <span class="ind-tag">Fast Growing</span>
             <div class="ind-name">Retail &amp; E-Commerce</div>
           </div>
         </div>
         <div class="ind-card">
-          <img src="https://placehold.co/480x360/0f3b27/e8f5ee?text=Construction+%26+Trades" alt="Construction and trades" />
+          <img src="brand assets/industries/construction.jpg" alt="Construction crew working on a job site" loading="lazy" />
           <div class="ind-overlay">
             <span class="ind-tag">High Demand</span>
             <div class="ind-name">Construction &amp; Trades</div>
           </div>
         </div>
         <div class="ind-card">
-          <img src="https://placehold.co/480x360/4daf82/0f3b27?text=Hospitality+%26+Food" alt="Hospitality and food service" />
+          <img src="brand assets/industries/hospitality.jpg" alt="Restaurant dining room set for service" loading="lazy" />
           <div class="ind-overlay">
             <span class="ind-tag">Local Focus</span>
             <div class="ind-name">Hospitality &amp; Food Service</div>
           </div>
         </div>
         <div class="ind-card">
-          <img src="https://placehold.co/480x360/163d27/e8f5ee?text=Health+%26+Wellness" alt="Health and wellness" />
+          <img src="brand assets/industries/health-wellness.jpg" alt="Yoga practice at sunrise" loading="lazy" />
           <div class="ind-overlay">
             <span class="ind-tag">Growing</span>
             <div class="ind-name">Health &amp; Wellness</div>
           </div>
         </div>
         <div class="ind-card">
-          <img src="https://placehold.co/480x360/2c3a36/e8f5ee?text=Home+Services" alt="Home services" />
+          <img src="brand assets/industries/home-services.jpg" alt="Home services professional cleaning a window" loading="lazy" />
           <div class="ind-overlay">
             <span class="ind-tag">Vermont Strong</span>
             <div class="ind-name">Home Services</div>
@@ -1611,7 +1589,7 @@
       <div class="center-block">
         <div class="s-label"><span class="chip">Integrations</span></div>
         <h2 class="s-h2" id="int-h2">Works With the Apps Your<br>Team <em>Already Uses</em></h2>
-        <p class="s-desc">We configure and connect the right tools for your business — no bloated tech stacks, no underused subscriptions gathering dust.</p>
+        <p class="s-desc">We configure and connect the right tools for your business — no bloated tech stacks, no underused subscriptions. Just the right apps, talking to each other, with automation and AI handling the busywork.</p>
       </div>
       <div class="int-grid">
         <div class="int-pill"><div class="int-pill-dot"></div>Google Workspace</div>
