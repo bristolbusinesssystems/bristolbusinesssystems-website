@@ -290,21 +290,288 @@
       line-height: 1.45;
     }
 
-    /* Hero screenshot visual */
+    /* Hero 3D automation visual */
     .hero-visual {
       position: relative;
       padding-bottom: 1.25rem;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
     }
-    .hero-screen-main {
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.13), 0 4px 16px rgba(0,0,0,0.07), 0 0 0 1px rgba(255,255,255,0.6) inset;
-      border: 1px solid var(--border);
+    .hero-3d {
       position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      min-height: 430px;
+      border-radius: var(--r-2xl);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 52% 48%, rgba(77,175,130,0.26), transparent 34%),
+        linear-gradient(145deg, rgba(255,255,255,0.84), rgba(242,246,244,0.72));
+      border: 1px solid rgba(30,99,64,0.13);
+      box-shadow: 0 28px 80px rgba(15,59,39,0.14), 0 0 0 1px rgba(255,255,255,0.72) inset;
       z-index: 2;
-      background: var(--bg-soft);
+      isolation: isolate;
     }
-    .hero-screen-main img { width: 100%; height: auto; display: block; }
+    .hero-3d::before {
+      content: "";
+      position: absolute;
+      inset: 8%;
+      border: 1px solid rgba(30,99,64,0.09);
+      border-radius: 50%;
+      transform: rotateX(64deg) rotateZ(-12deg);
+      pointer-events: none;
+    }
+    .hero-3d::after {
+      content: "";
+      position: absolute;
+      inset: auto 12% 10%;
+      height: 22%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(15,59,39,0.14), transparent 68%);
+      filter: blur(8px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .hero-3d-kicker {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+      z-index: 4;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: var(--r-full);
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(30,99,64,0.12);
+      box-shadow: var(--shadow-sm);
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(14px);
+    }
+    .hero-3d-kicker::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary-lt);
+      box-shadow: 0 0 0 6px rgba(77,175,130,0.14);
+    }
+    .hero-node-label {
+      position: absolute;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      max-width: 175px;
+      padding: 0.68rem 0.78rem;
+      border-radius: var(--r-md);
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(30,99,64,0.12);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(16px);
+    }
+    .hero-node-label strong {
+      display: block;
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.76rem;
+      line-height: 1.15;
+      color: var(--text);
+    }
+    .hero-node-label span {
+      display: block;
+      font-size: 0.68rem;
+      line-height: 1.3;
+      color: var(--muted);
+      margin-top: 0.12rem;
+    }
+    .node-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+    .node-dot svg { width: 15px; height: 15px; }
+    .hero-node-label.leads { top: 20%; right: -0.4rem; }
+    .hero-node-label.ops { bottom: 18%; right: 1.2rem; }
+    .hero-node-label.ai { bottom: 16%; left: -0.7rem; }
+    .hero-node-label.crm { top: 27%; left: 0.5rem; }
+
+
+    /* ── BBS animated visuals (hero map, process board, growth chart) ── */
+    :root { --bbs-accent: var(--primary); }
+    [data-theme="dark"] { --bbs-accent: var(--primary-lt); }
+    @media (prefers-color-scheme: dark) { html:not([data-theme="light"]) { --bbs-accent: var(--primary-lt); } }
+    @keyframes bbsSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes bbsBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+    @keyframes bbsHubPulse {
+      0% { box-shadow: 0 18px 44px rgba(15,59,39,0.18), 0 0 0 0 rgba(77,175,130,0.35); }
+      70% { box-shadow: 0 18px 44px rgba(15,59,39,0.18), 0 0 0 26px rgba(77,175,130,0); }
+      100% { box-shadow: 0 18px 44px rgba(15,59,39,0.18), 0 0 0 0 rgba(77,175,130,0); }
+    }
+    @keyframes bbsDashFlow { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+    @keyframes bbsFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes bbsFloatB { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+    .bbs-orbit {
+      position: absolute; inset: 13%; border: 1.5px dashed var(--primary-mid); border-radius: 50%;
+      animation: bbsSpin 80s linear infinite; pointer-events: none;
+    }
+    .bbs-orbit2 { inset: 27%; border-width: 1px; border-style: solid; opacity: 0.6; animation: bbsSpin 120s linear infinite reverse; }
+    .bbs-map-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .bbs-line { fill: none; stroke: var(--primary-mid); stroke-width: 1.5; }
+    .bbs-pulse {
+      fill: none; stroke: var(--bbs-accent); stroke-width: 2.5; stroke-linecap: round;
+      stroke-dasharray: 9 91; animation: bbsDashFlow 3.6s linear infinite;
+    }
+    .bbs-hub {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3;
+      width: 96px; height: 96px; border-radius: 26px; background: #fdfefd;
+      border: 1px solid rgba(30,99,64,0.14); display: grid; place-items: center;
+      animation: bbsHubPulse 3.6s ease-out infinite;
+    }
+    .bbs-hub img { width: 60px; height: auto; }
+    [data-theme="dark"] .bbs-hub { background: #edf5ea; border-color: rgba(176,219,185,0.3); }
+    @media (prefers-color-scheme: dark) { html:not([data-theme="light"]) .bbs-hub { background: #edf5ea; border-color: rgba(176,219,185,0.3); } }
+    .hero-3d-kicker::before { animation: bbsBlink 2.4s ease-in-out infinite; }
+    .hero-node-label { animation: bbsFloat 6.5s ease-in-out infinite; }
+    .hero-node-label.leads { animation-name: bbsFloatB; animation-duration: 7s; }
+    .hero-node-label.ai { animation-delay: 0.6s; }
+    .hero-node-label.ops { animation-delay: 0.9s; }
+
+    /* Process board (Operations card) */
+    @keyframes bbsFlowCard {
+      0% { left: var(--c1); opacity: 0; transform: scale(0.96); }
+      6% { opacity: 1; transform: scale(1); }
+      28% { left: var(--c1); }
+      38% { left: var(--c2); }
+      62% { left: var(--c2); }
+      72% { left: var(--c3); }
+      92% { left: var(--c3); opacity: 1; }
+      100% { left: var(--c3); opacity: 0; }
+    }
+    @keyframes bbsBarFill { 0%, 28% { width: 14%; } 38%, 62% { width: 58%; } 72%, 100% { width: 100%; } }
+    @keyframes bbsCheckIn { 0%, 71% { opacity: 0; transform: scale(0.5); } 77% { opacity: 1; transform: scale(1); } 92% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes bbsChipSwap1 { 0%, 27% { opacity: 1; } 33%, 100% { opacity: 0; } }
+    @keyframes bbsChipSwap2 { 0%, 32% { opacity: 0; } 38%, 61% { opacity: 1; } 67%, 100% { opacity: 0; } }
+    @keyframes bbsChipSwap3 { 0%, 66% { opacity: 0; } 72%, 92% { opacity: 1; } 100% { opacity: 0; } }
+    .bbs-board {
+      position: absolute; inset: 0; padding: 4.2%;
+      --c1: 3%; --c2: 36.4%; --c3: 69.8%;
+      background: radial-gradient(circle at 50% 0%, var(--primary-soft), transparent 60%);
+    }
+    .bbs-board-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5%; height: 100%; }
+    .bbs-col { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 0.6rem 0.65rem; min-width: 0; }
+    .bbs-col-head {
+      display: flex; align-items: center; gap: 0.35rem;
+      font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 0.6rem;
+      letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); white-space: nowrap;
+    }
+    .bbs-col-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .bbs-col-cards { margin-top: auto; display: flex; flex-direction: column; gap: 0.4rem; }
+    .bbs-ghost { height: 2.2rem; border-radius: 9px; background: var(--bg-soft); border: 1px dashed var(--border-alt); }
+    .bbs-done {
+      min-height: 2.2rem; border-radius: 9px; background: var(--primary-soft); border: 1px solid var(--primary-mid);
+      display: flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.45rem;
+      font-size: 0.58rem; line-height: 1.25; color: var(--text-soft);
+    }
+    .bbs-done-check {
+      width: 15px; height: 15px; border-radius: 50%; background: var(--bbs-accent); color: var(--bg);
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .bbs-flow-card {
+      position: absolute; top: 30%; width: 27.2%; left: var(--c1); z-index: 2;
+      border-radius: 11px; background: var(--surface); border: 1px solid var(--border-alt);
+      box-shadow: var(--shadow-md); padding: 0.55rem 0.6rem;
+      animation: bbsFlowCard 11s cubic-bezier(0.22,1,0.36,1) infinite;
+    }
+    .bbs-flow-title { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 0.66rem; color: var(--text); line-height: 1.25; }
+    .bbs-flow-bar { margin-top: 0.4rem; height: 4px; border-radius: 999px; background: var(--primary-mid); overflow: hidden; }
+    .bbs-flow-fill { height: 100%; border-radius: 999px; background: var(--bbs-accent); animation: bbsBarFill 11s cubic-bezier(0.22,1,0.36,1) infinite; }
+    .bbs-flow-chips { position: relative; margin-top: 0.4rem; height: 1rem; }
+    .bbs-chip-swap {
+      position: absolute; left: 0; top: 0; font-size: 0.55rem; font-weight: 700;
+      border-radius: 999px; padding: 0.08rem 0.5rem; white-space: nowrap;
+    }
+    .bbs-chip1 { color: #8a6f42; background: rgba(208,182,134,0.22); animation: bbsChipSwap1 11s linear infinite; }
+    [data-theme="dark"] .bbs-chip1 { color: var(--accent); }
+    @media (prefers-color-scheme: dark) { html:not([data-theme="light"]) .bbs-chip1 { color: var(--accent); } }
+    .bbs-chip2 { color: var(--bbs-accent); background: var(--primary-soft); opacity: 0; animation: bbsChipSwap2 11s linear infinite; }
+    .bbs-chip3 { color: var(--bg); background: var(--bbs-accent); opacity: 0; animation: bbsChipSwap3 11s linear infinite; }
+    .bbs-flow-check {
+      position: absolute; top: -8px; right: -8px; width: 20px; height: 20px; border-radius: 50%;
+      background: var(--bbs-accent); color: var(--bg); display: grid; place-items: center;
+      box-shadow: var(--shadow-sm); opacity: 0; animation: bbsCheckIn 11s ease infinite;
+    }
+
+    /* Growth chart (Marketing card) */
+    @keyframes bbsDraw {
+      0% { stroke-dashoffset: 1; opacity: 1; } 42% { stroke-dashoffset: 0; }
+      90% { stroke-dashoffset: 0; opacity: 1; } 96% { stroke-dashoffset: 0; opacity: 0; }
+      97% { stroke-dashoffset: 1; opacity: 0; } 100% { stroke-dashoffset: 1; opacity: 1; }
+    }
+    @keyframes bbsArea { 0%, 8% { opacity: 0; } 45%, 90% { opacity: 1; } 96%, 100% { opacity: 0; } }
+    @keyframes bbsPop1 { 0%, 12% { opacity: 0; transform: scale(0); } 17%, 88% { opacity: 1; transform: scale(1); } 94%, 100% { opacity: 0; } }
+    @keyframes bbsPop2 { 0%, 24% { opacity: 0; transform: scale(0); } 29%, 88% { opacity: 1; transform: scale(1); } 94%, 100% { opacity: 0; } }
+    @keyframes bbsPop3 { 0%, 36% { opacity: 0; transform: scale(0); } 41%, 88% { opacity: 1; transform: scale(1); } 94%, 100% { opacity: 0; } }
+    @keyframes bbsPop4 { 0%, 42% { opacity: 0; transform: scale(0); } 47%, 88% { opacity: 1; transform: scale(1); } 94%, 100% { opacity: 0; } }
+    .bbs-pop1 { opacity: 0; animation: bbsPop1 9s ease infinite; }
+    .bbs-pop2 { opacity: 0; animation: bbsPop2 9s ease infinite; }
+    .bbs-pop3 { opacity: 0; animation: bbsPop3 9s ease infinite; }
+    .bbs-pop4 { opacity: 0; animation: bbsPop4 9s ease infinite; }
+    .bbs-chart { position: absolute; inset: 0; background: radial-gradient(circle at 75% 15%, var(--primary-soft), transparent 55%); }
+    .bbs-chart > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .bbs-grid-line { stroke: var(--border); stroke-width: 1; }
+    .bbs-growth-area { animation: bbsArea 9s linear infinite; }
+    .bbs-growth-line {
+      fill: none; stroke: var(--bbs-accent); stroke-width: 3.5; stroke-linecap: round;
+      stroke-dasharray: 1; animation: bbsDraw 9s cubic-bezier(0.4,0,0.2,1) infinite;
+    }
+    .bbs-mile-dot {
+      position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+      background: var(--surface); border: 3px solid var(--bbs-accent); box-sizing: border-box;
+    }
+    .bbs-mile-dot-end {
+      width: 16px; height: 16px; margin: -8px 0 0 -8px;
+      background: var(--bbs-accent); border-color: var(--surface);
+      box-shadow: 0 0 0 4px var(--primary-soft);
+    }
+    .bbs-badge {
+      position: absolute; top: 7%; right: 15%; display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 0.65rem; border-radius: 12px; background: var(--surface);
+      border: 1px solid var(--border-alt); box-shadow: var(--shadow-md);
+    }
+    .bbs-badge-icon {
+      width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0;
+      background: var(--primary-soft); color: var(--bbs-accent);
+    }
+    .bbs-badge strong { display: block; font-family: "Montserrat", sans-serif; font-size: 0.78rem; line-height: 1.15; color: var(--bbs-accent); }
+    .bbs-badge em { display: block; font-style: normal; font-size: 0.58rem; line-height: 1.3; color: var(--muted); margin-top: 1px; }
+    .bbs-chart-chips { position: absolute; left: 3.5%; right: 3.5%; bottom: 5.5%; display: flex; gap: 0.5rem; }
+    .bbs-chart-chip {
+      flex: 1; display: flex; align-items: center; gap: 0.4rem; min-width: 0;
+      padding: 0.35rem 0.5rem; border-radius: 10px; background: var(--surface);
+      border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      font-size: 0.58rem; font-weight: 600; color: var(--text); line-height: 1.25;
+    }
+    .bbs-chart-chip .bbs-col-dot { background: var(--primary-lt); }
+    .bbs-chart-chip em { font-style: normal; font-weight: 400; color: var(--muted); font-size: 0.53rem; display: block; }
+    @media (prefers-reduced-motion: reduce) {
+      .bbs-orbit, .bbs-orbit2, .bbs-pulse, .bbs-hub, .hero-3d-kicker::before, .hero-node-label,
+      .bbs-flow-card, .bbs-flow-fill, .bbs-chip-swap, .bbs-flow-check,
+      .bbs-growth-line, .bbs-growth-area, .bbs-pop1, .bbs-pop2, .bbs-pop3, .bbs-pop4 { animation: none !important; }
+      .bbs-pop1, .bbs-pop2, .bbs-pop3, .bbs-pop4, .bbs-flow-card { opacity: 1 !important; }
+      .bbs-chip-swap { opacity: 0 !important; }
+      .bbs-chip1 { opacity: 1 !important; }
+      .bbs-flow-fill { width: 58% !important; }
+    }
 
     /* kept for dash-float only */
     .dash-card {
@@ -391,8 +658,9 @@
     }
     .dash-float {
       position: absolute;
-      bottom: -1.1rem;
-      left: -2.2rem;
+      bottom: -0.4rem;
+      left: 50%;
+      transform: translateX(-50%);
       background: var(--surface);
       border-radius: var(--r-md);
       border: 1px solid var(--border);
@@ -401,6 +669,8 @@
       display: flex;
       align-items: center;
       gap: 0.7rem;
+      z-index: 5;
+      min-width: 240px;
     }
     .dash-float-icon {
       width: 34px; height: 34px;
@@ -495,6 +765,10 @@
       margin-bottom: 5rem;
     }
     .split:last-child { margin-bottom: 0; }
+    .split-visual { align-self: stretch; display: flex; padding: 1.25rem 0; }
+    .split-visual .vis-card { flex: 1; display: flex; flex-direction: column; }
+    .split-visual .vis-card-body.ss-outer { flex: 1; display: flex; flex-direction: column; }
+    .split-visual .ss-inner { flex: 1; }
     .split-text-right .split-visual { order: -1; }
     .split-h3 {
       font-family: "Montserrat", sans-serif;
@@ -542,7 +816,6 @@
     }
     .vis-card-header {
       padding: 0.9rem 1.3rem;
-      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       gap: 0.45rem;
@@ -1012,6 +1285,18 @@
       html:not([data-theme="light"]) .nav-wrap {
         background: rgba(6,17,14,0.92);
       }
+      html:not([data-theme="light"]) .hero-3d {
+        background:
+          radial-gradient(circle at 52% 48%, rgba(77,175,130,0.20), transparent 34%),
+          linear-gradient(145deg, rgba(13,34,26,0.90), rgba(6,17,14,0.78));
+        border-color: rgba(176,219,185,0.12);
+        box-shadow: 0 30px 90px rgba(0,0,0,0.42), 0 0 0 1px rgba(176,219,185,0.08) inset;
+      }
+      html:not([data-theme="light"]) .hero-3d-kicker,
+      html:not([data-theme="light"]) .hero-node-label {
+        background: rgba(13,34,26,0.78);
+        border-color: rgba(176,219,185,0.14);
+      }
       html:not([data-theme="light"]) .dash-tag {
         background: rgba(77,175,130,0.12);
         color: var(--primary-lt);
@@ -1031,6 +1316,18 @@
     }
     [data-theme="dark"] .nav-wrap {
       background: rgba(6,17,14,0.92);
+    }
+    [data-theme="dark"] .hero-3d {
+      background:
+        radial-gradient(circle at 52% 48%, rgba(77,175,130,0.20), transparent 34%),
+        linear-gradient(145deg, rgba(13,34,26,0.90), rgba(6,17,14,0.78));
+      border-color: rgba(176,219,185,0.12);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.42), 0 0 0 1px rgba(176,219,185,0.08) inset;
+    }
+    [data-theme="dark"] .hero-3d-kicker,
+    [data-theme="dark"] .hero-node-label {
+      background: rgba(13,34,26,0.78);
+      border-color: rgba(176,219,185,0.14);
     }
     [data-theme="dark"] .dash-tag {
       background: rgba(77,175,130,0.12);
@@ -1106,7 +1403,7 @@
     @media (max-width: 1040px) {
       .hero-grid { grid-template-columns: 1fr; }
       .dash-card { max-width: 520px; margin: 0 auto; }
-      .hero-visual { padding-bottom: 1rem; }
+      .hero-visual { width: min(580px, 100%); margin: 0 auto; padding-bottom: 1rem; }
       .problem-grid { grid-template-columns: repeat(2, 1fr); }
       .split { grid-template-columns: 1fr; gap: 3rem; }
       .split-text-right .split-visual { order: 1; }
@@ -1144,6 +1441,15 @@
       .hero-stat span { font-size: 0.72rem; }
       .hero-actions { flex-direction: column; }
       .hero-actions .btn { justify-content: center; }
+      .hero-visual { min-height: 430px; }
+      .hero-3d, #automation-canvas { min-height: 360px; }
+      .hero-node-label { max-width: 145px; padding: 0.55rem 0.62rem; }
+      .hero-node-label strong { font-size: 0.7rem; }
+      .hero-node-label span { font-size: 0.62rem; }
+      .hero-node-label.leads { right: 0.3rem; }
+      .hero-node-label.crm { left: 0.3rem; }
+      .hero-node-label.ops { right: 0.4rem; }
+      .hero-node-label.ai { left: 0.4rem; }
       .cta-actions { flex-direction: column; align-items: center; }
       .testi-mark { font-size: 4rem; }
       .testi-quote { font-size: 1rem; }
@@ -1161,6 +1467,10 @@
       h1.hero-h1 { font-size: 2.15rem; }
       .hero-stat strong { font-size: 1.35rem; }
       .hero-stat span { font-size: 0.66rem; }
+      .hero-visual { min-height: 350px; }
+      .hero-3d, #automation-canvas { min-height: 320px; }
+      .hero-node-label { display: none; }
+      .hero-3d-kicker { top: 0.85rem; left: 0.85rem; font-size: 0.64rem; }
       .dash-float { display: none; }
       .industry-grid { grid-template-columns: 1fr; }
       .testi-section { padding: 4rem 0; }
@@ -1253,13 +1563,48 @@
         </div>
 
         <div class="hero-visual">
-          <!-- Main: CRM dashboard screenshot -->
-          <div class="hero-screen-main">
-            <img src="brand assets/crm-dashboard1.png"
-                 alt="Bristol Business Systems CRM — sales pipeline and top open deals for Vermont small businesses"
-                 width="1000" loading="eager" />
+          <div class="hero-3d" aria-label="Animated map of connected business systems: bookings, follow-ups, invoicing, and reporting linked to one hub">
+            <div class="bbs-orbit" aria-hidden="true"></div>
+            <div class="bbs-orbit bbs-orbit2" aria-hidden="true"></div>
+            <svg class="bbs-map-svg" viewBox="0 0 468 468" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <path class="bbs-line" d="M234,234 Q160,200 100,145"></path>
+              <path class="bbs-line" d="M234,234 Q310,180 388,118"></path>
+              <path class="bbs-line" d="M234,234 Q310,300 372,352"></path>
+              <path class="bbs-line" d="M234,234 Q160,310 90,362"></path>
+              <path class="bbs-pulse" pathLength="100" d="M234,234 Q160,200 100,145"></path>
+              <path class="bbs-pulse" pathLength="100" d="M234,234 Q310,180 388,118" style="animation-delay:0.9s;"></path>
+              <path class="bbs-pulse" pathLength="100" d="M234,234 Q310,300 372,352" style="animation-delay:1.8s;"></path>
+              <path class="bbs-pulse" pathLength="100" d="M234,234 Q160,310 90,362" style="animation-delay:2.7s;"></path>
+            </svg>
+            <div class="bbs-hub" aria-hidden="true">
+              <img src="brand assets/Bristol Business Systems Logo.png" alt="" loading="eager" />
+            </div>
+            <div class="hero-3d-kicker">Your systems, connected</div>
+            <div class="hero-node-label leads">
+              <div class="node-dot" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </div>
+              <div><strong>Follow-ups</strong><span>No lead left waiting</span></div>
+            </div>
+            <div class="hero-node-label crm">
+              <div class="node-dot" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div><strong>Bookings</strong><span>Confirmed &amp; reminded automatically</span></div>
+            </div>
+            <div class="hero-node-label ops">
+              <div class="node-dot" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div><strong>Invoicing</strong><span>Sent on time, every time</span></div>
+            </div>
+            <div class="hero-node-label ai">
+              <div class="node-dot" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6"/><path d="M6 20V10"/><path d="M18 20V4"/><path d="M4 20h16"/></svg>
+              </div>
+              <div><strong>Reporting</strong><span>Monday 7am, in your inbox</span></div>
+            </div>
           </div>
-          <!-- Floating status badge -->
           <div class="dash-float" aria-hidden="true">
             <div class="dash-float-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
@@ -1370,14 +1715,42 @@
         </div>
         <div class="split-visual">
           <div class="vis-card">
-            <div class="vis-card-header">
-              <div class="vc-dot"></div><div class="vc-dot"></div><div class="vc-dot"></div>
-              <span class="vc-title">Operations Dashboard</span>
-            </div>
             <div class="vis-card-body ss-outer">
               <div class="ss-inner">
-                <img class="ss-img ss-img-a" src="brand assets/opsdashboard1.png" alt="Operations dashboard" />
-                <img class="ss-img ss-img-b" src="brand assets/opsdashboard2.png" alt="Operations analytics" />
+                <div class="bbs-board" role="img" aria-label="Animated process board: a job card moves itself from new to in progress to done">
+                  <div class="bbs-board-grid">
+                    <div class="bbs-col">
+                      <div class="bbs-col-head"><span class="bbs-col-dot" style="background: var(--accent);"></span>New</div>
+                      <div class="bbs-col-cards">
+                        <div class="bbs-ghost"></div>
+                        <div class="bbs-ghost" style="opacity: 0.6;"></div>
+                      </div>
+                    </div>
+                    <div class="bbs-col">
+                      <div class="bbs-col-head"><span class="bbs-col-dot" style="background: var(--primary-lt);"></span>In&nbsp;Progress</div>
+                      <div class="bbs-col-cards">
+                        <div class="bbs-ghost"></div>
+                      </div>
+                    </div>
+                    <div class="bbs-col">
+                      <div class="bbs-col-head"><span class="bbs-col-dot" style="background: var(--primary);"></span>Done</div>
+                      <div class="bbs-col-cards">
+                        <div class="bbs-done"><span class="bbs-done-check"><svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Estimate approved</div>
+                        <div class="bbs-done"><span class="bbs-done-check"><svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Review requested</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bbs-flow-card">
+                    <div class="bbs-flow-title">Kitchen remodel inquiry</div>
+                    <div class="bbs-flow-bar"><div class="bbs-flow-fill"></div></div>
+                    <div class="bbs-flow-chips">
+                      <span class="bbs-chip-swap bbs-chip1">Auto-captured</span>
+                      <span class="bbs-chip-swap bbs-chip2">Auto-assigned</span>
+                      <span class="bbs-chip-swap bbs-chip3">Invoice sent</span>
+                    </div>
+                    <span class="bbs-flow-check"><svg viewBox="0 0 24 24" width="9" height="9" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1388,14 +1761,36 @@
       <div class="split split-text-right">
         <div class="split-visual">
           <div class="vis-card">
-            <div class="vis-card-header">
-              <div class="vc-dot"></div><div class="vc-dot"></div><div class="vc-dot"></div>
-              <span class="vc-title">Marketing Pipeline &amp; CRM</span>
-            </div>
             <div class="vis-card-body ss-outer">
               <div class="ss-inner">
-                <img class="ss-img ss-img-a" src="brand assets/crm-dashboard1.png" alt="CRM dashboard" />
-                <img class="ss-img ss-img-b" src="brand assets/crm-dashboard2.png" alt="CRM analytics" />
+                <div class="bbs-chart" role="img" aria-label="Animated growth chart rising as follow-ups, reviews, and rebooking automations switch on">
+                  <svg viewBox="0 0 750 420" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="bbsAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="rgba(77,175,130,0.30)"></stop>
+                        <stop offset="100%" stop-color="rgba(77,175,130,0)"></stop>
+                      </linearGradient>
+                    </defs>
+                    <line class="bbs-grid-line" x1="30" y1="110" x2="720" y2="110"></line>
+                    <line class="bbs-grid-line" x1="30" y1="190" x2="720" y2="190"></line>
+                    <line class="bbs-grid-line" x1="30" y1="270" x2="720" y2="270"></line>
+                    <line class="bbs-grid-line" x1="30" y1="350" x2="720" y2="350" style="opacity: 0.9;"></line>
+                    <path class="bbs-growth-area" d="M40,340 C160,325 240,300 330,245 C420,190 490,148 570,113 C630,88 680,76 710,70 L710,350 L40,350 Z" fill="url(#bbsAreaGrad)"></path>
+                    <path class="bbs-growth-line" pathLength="1" d="M40,340 C160,325 240,300 330,245 C420,190 490,148 570,113 C630,88 680,76 710,70"></path>
+                  </svg>
+                  <span class="bbs-mile-dot bbs-pop1" style="left: 44%; top: 58.3%;"></span>
+                  <span class="bbs-mile-dot bbs-pop2" style="left: 76%; top: 26.9%;"></span>
+                  <span class="bbs-mile-dot bbs-mile-dot-end bbs-pop3" style="left: 94.7%; top: 16.7%;"></span>
+                  <div class="bbs-badge bbs-pop4">
+                    <span class="bbs-badge-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+                    <span><strong>3&times; lead flow</strong><em>Consistent, month after month</em></span>
+                  </div>
+                  <div class="bbs-chart-chips">
+                    <div class="bbs-chart-chip bbs-pop1"><span class="bbs-col-dot"></span><span>Follow-ups<em>switched on</em></span></div>
+                    <div class="bbs-chart-chip bbs-pop2"><span class="bbs-col-dot"></span><span>Reviews<em>auto-requested</em></span></div>
+                    <div class="bbs-chart-chip bbs-pop3"><span class="bbs-col-dot"></span><span>Rebookings<em>on schedule</em></span></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1695,7 +2090,7 @@
         <div class="footer-col">
           <h5>Contact</h5>
           <ul>
-            <li><a href="mailto:bristolbusinesssystems@gmail.com">bristolbusinesssystems@gmail.com</a></li>
+            <li><a href="/cdn-cgi/l/email-protection#a9cbdbc0daddc6c5cbdcdac0c7ccdadadad0daddccc4dae9cec4c8c0c587cac6c4"><span class="__cf_email__" data-cfemail="5d3f2f342e2932313f282e3433382e2e2e242e2938302e1d3a303c3431733e3230">[email&#160;protected]</span></a></li>
             <li><a href="https://crm.bristolbusinesssystems.com/book/bristol-business-systems">Book a Free Call</a></li>
             <li><a href="#problem">See the Problem We Solve</a></li>
           </ul>
@@ -1704,15 +2099,15 @@
 
       <div class="footer-bottom">
         <p>© 2026 Bristol Business Systems. All rights reserved.</p>
-        <a class="footer-email" href="mailto:bristolbusinesssystems@gmail.com">
+        <a class="footer-email" href="/cdn-cgi/l/email-protection#8eecfce7fdfae1e2ecfbfde7e0ebfdfdfdf7fdfaebe3fdcee9e3efe7e2a0ede1e3">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          bristolbusinesssystems@gmail.com
+          <span class="__cf_email__" data-cfemail="4f2d3d263c3b20232d3a3c26212a3c3c3c363c3b2a223c0f28222e2623612c2022">[email&#160;protected]</span>
         </a>
       </div>
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     (function () {
       const root = document.documentElement;
       const btn  = document.getElementById('theme-toggle');
@@ -1769,25 +2164,8 @@
         link.addEventListener('click', close);
       });
     })();
-
-    // Screenshot fade-switcher — alternates between ss-img-a and ss-img-b every 3.5s
-    (function () {
-      document.querySelectorAll('.ss-outer').forEach(function (outer) {
-        var imgA = outer.querySelector('.ss-img-a');
-        var imgB = outer.querySelector('.ss-img-b');
-        if (!imgA || !imgB) return;
-        var showingA = true;
-        // Stagger start so both cards don't switch simultaneously
-        var delay = outer.closest('.split-text-right') ? 1800 : 0;
-        setTimeout(function () {
-          setInterval(function () {
-            showingA = !showingA;
-            imgA.style.opacity = showingA ? '1' : '0';
-            imgB.style.opacity = showingA ? '0' : '1';
-          }, 3500);
-        }, delay);
-      });
-    })();
   </script>
+
+  
 </body>
 </html>
