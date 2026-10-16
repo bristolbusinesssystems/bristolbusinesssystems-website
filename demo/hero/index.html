@@ -481,7 +481,7 @@ svg text{text-rendering:geometricPrecision}
     if(!running)return;
     px+=(mx-px)*.05; py+=(my-py)*.05;
     neb.style.transform='translate('+(-px*6).toFixed(2)+'px,'+(-py*6).toFixed(2)+'px)';
-    orr.style.transform='translate('+(px*10).toFixed(2)+'px,'+(py*7).toFixed(2)+'px)';
+    orr.style.transform='translate('+(px*3).toFixed(2)+'px,'+(py*2).toFixed(2)+'px)';
     draw(now); requestAnimationFrame(frame);
   }
   if(reduce){draw(0);window.addEventListener('resize',function(){draw(0);});return;}
