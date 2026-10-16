@@ -350,9 +350,11 @@ svg text{text-rendering:geometricPrecision}
     p.x=x; p.y=y;
     var tb=focused===p?1:0, td=focused&&focused!==p?.32:1;
     p.boost+=(tb-p.boost)*.18; p.dim+=(td-p.dim)*.18;
-    p.g.setAttribute('transform','translate('+x.toFixed(2)+' '+y.toFixed(2)+') scale('+(s*(1+.35*p.boost)).toFixed(3)+')');
+    p.sc=s*(1+.35*p.boost);
+    p.g.setAttribute('transform','translate('+x.toFixed(2)+' '+y.toFixed(2)+') scale('+p.sc.toFixed(3)+')');
     p.g.style.opacity=((.6+.4*depth+(1-.6-.4*depth)*p.boost)*p.dim).toFixed(3);
-    p.halo.setAttribute('opacity',(p.boost*.9).toFixed(2));
+    var ping=p.ping?Math.max(0,1-Math.abs(now-p.ping)/700):0;
+    p.halo.setAttribute('opacity',Math.max(p.boost*.9,ping*.75).toFixed(2));
     // light comes from the shop: the shadow faces away from it
     var ang=Math.atan2(y-CY,x-CX);
     p.shade.setAttribute('transform','rotate('+(ang*180/Math.PI).toFixed(1)+')');
@@ -364,21 +366,45 @@ svg text{text-rendering:geometricPrecision}
       p.moonBack.setAttribute('cx',mx.toFixed(1));p.moonBack.setAttribute('cy',my.toFixed(1));p.moonBack.style.display=front?'none':'';}
   }
 
-  /* sparks = new customer requests spiralling in to the door */
+  /* sparks = new customer requests: fly in, loop once round a planet (the system that handles it), then into the door */
   var sparks=[], DOOR={x:320,y:311}, sp=$('sparks'), doorFlash=0, openSign=$('opensign');
-  function spawn(now){var a=Math.random()*2*Math.PI;sparks.push({a0:a,r0:300+Math.random()*30,t0:now,dur:2800+Math.random()*900,n:el('circle',{class:'spark',r:3},sp)});}
+  var T_IN=1500, T_LOOP=1500, T_HOME=1400;
+  function spawn(now){
+    var cands=PLANETS.filter(function(p){return p.side==='front'||Math.abs(p.x-CX)>150;});
+    if(!cands.length)return;
+    var p=cands[Math.floor(Math.random()*cands.length)];
+    var a=Math.atan2(p.y-CY,p.x-CX)+(Math.random()-.5)*1.2;
+    var g=el('g',{},sp);
+    sparks.push({p:p,sx:CX+Math.cos(a)*380,sy:CY+Math.sin(a)*200,phi:a+Math.PI,t0:now,tail:[],
+      trail:el('polyline',{fill:'none',stroke:'#f6e3b8','stroke-width':1.8,'stroke-linecap':'round','stroke-linejoin':'round',opacity:.5},g),
+      glow:el('circle',{r:9,fill:'url(#halo)'},g),n:el('circle',{class:'spark',r:3},g),g:g});
+  }
+  function orbitPt(sk,ang){var R=sk.p.r*1.75*(sk.p.sc||1);return {x:sk.p.x+R*Math.cos(ang),y:sk.p.y+R*.55*Math.sin(ang)};}
+  function ease(t){return t*t*(3-2*t);}
   function stepSparks(now){
     for(var i=sparks.length-1;i>=0;i--){
-      var s=sparks[i], t=(now-s.t0)/s.dur;
-      if(t>=1){s.n.remove();sparks.splice(i,1);doorFlash=now;continue;}
-      var e=t*t*(3-2*t), r=s.r0*(1-e), a=s.a0+e*2.4;
-      s.n.setAttribute('cx',(DOOR.x+r*Math.cos(a)).toFixed(1)); s.n.setAttribute('cy',(DOOR.y+r*.42*Math.sin(a)).toFixed(1));
-      s.n.setAttribute('r',(1.4+2.4*(1-e)).toFixed(2)); s.n.style.opacity=(t<.1?t*10:1-Math.max(0,(t-.85)/.15)).toFixed(2);
+      var k=sparks[i], t=now-k.t0, x, y, r=3, o=1;
+      if(t<T_IN){                                         // fly in to the planet
+        var u=ease(t/T_IN), e=orbitPt(k,k.phi);
+        x=k.sx+(e.x-k.sx)*u; y=k.sy+(e.y-k.sy)*u; o=Math.min(1,t/250); r=2+1.2*u;
+      }else if(t<T_IN+T_LOOP){                            // one loop round it
+        var u2=(t-T_IN)/T_LOOP, q=orbitPt(k,k.phi+u2*2*Math.PI);
+        x=q.x; y=q.y; r=3.2; k.p.ping=now;
+      }else if(t<T_IN+T_LOOP+T_HOME){                     // curve down into the door
+        var u3=ease((t-T_IN-T_LOOP)/T_HOME), b=orbitPt(k,k.phi);
+        var cx=(b.x+DOOR.x)/2, cy=Math.min(b.y,DOOR.y)-60;
+        x=(1-u3)*(1-u3)*b.x+2*(1-u3)*u3*cx+u3*u3*DOOR.x; y=(1-u3)*(1-u3)*b.y+2*(1-u3)*u3*cy+u3*u3*DOOR.y;
+        r=3.2-1.6*u3; o=u3>.85?1-(u3-.85)/.15:1;
+      }else{k.g.remove();sparks.splice(i,1);doorFlash=now;continue;}
+      k.tail.push(x.toFixed(1)+','+y.toFixed(1)); if(k.tail.length>14)k.tail.shift();
+      k.n.setAttribute('cx',x.toFixed(1)); k.n.setAttribute('cy',y.toFixed(1)); k.n.setAttribute('r',r.toFixed(2));
+      k.glow.setAttribute('cx',x.toFixed(1)); k.glow.setAttribute('cy',y.toFixed(1)); k.glow.setAttribute('r',(r*3.2).toFixed(1));
+      k.g.style.opacity=o.toFixed(2); k.trail.setAttribute('points',k.tail.join(' '));
     }
-    var f=Math.max(0,1-(now-doorFlash)/500);
-    $('doorlight').style.opacity=(.75+.25*f).toFixed(2); openSign.style.filter=f>.02?'drop-shadow(0 0 '+(4*f).toFixed(1)+'px #ff8a6b)':''; $('glow').setAttribute('r',(180+12*f).toFixed(1));
+    var f=Math.max(0,1-(now-doorFlash)/600);
+    $('doorlight').style.opacity=(.75+.25*f).toFixed(2); openSign.style.filter=f>.02?'drop-shadow(0 0 '+(4*f).toFixed(1)+'px #ff8a6b)':'';
+    $('glow').setAttribute('r',(180+12*f).toFixed(1));
   }
-
 
   /* loop: when a planet is in focus the whole system eases to a full stop */
   var speed=1, last=null, clock=0, nextSpark=0, running=true;
@@ -391,7 +417,7 @@ svg text{text-rendering:geometricPrecision}
     clock+=dt*speed/1000;
     PLANETS.forEach(function(p){place(p,p.phase+clock*2*Math.PI/RINGS[p.ring].period,now);});
     if(focused)placeCaption(focused);
-    if(now>nextSpark&&!focused){spawn(now);nextSpark=now+900+Math.random()*700;}
+    if(now>nextSpark&&!focused){spawn(now);nextSpark=now+1500+Math.random()*900;}
     stepSparks(now);
     requestAnimationFrame(frame);
   }
