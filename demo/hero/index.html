@@ -245,6 +245,7 @@ svg text{text-rendering:geometricPrecision}
   /* focus: freeze the system, lift the chosen planet, caption beside it */
   var focused=null, pinned=false, clearT=null, cap=$('cap'), hint=$('hint'), fig=$('orrery'), svg=$('sky');
   if(window.matchMedia('(hover: none)').matches)hint.textContent='Tap a planet to see what it does';
+  fig.addEventListener('pointermove',function(e){if(e.pointerType==='mouse')hint.textContent='Point at a planet to see what it does';},{once:true});
   function setFocus(p){clearTimeout(clearT);focused=p;$('capt').textContent=p.name;$('capd').textContent=p.d;$('capdot').style.background=p.c[1];
     RINGS.forEach(function(R,i){var on=i===p.ring;R.gb.classList.toggle('ring-on',on);R.gf.classList.toggle('ring-on',on);});
     cap.classList.add('show');hint.style.opacity=0;}
