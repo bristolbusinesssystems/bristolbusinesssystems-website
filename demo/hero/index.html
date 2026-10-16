@@ -55,6 +55,11 @@ h1 em{font-style:normal;color:var(--green)}
 .orrery{position:relative;margin:0;will-change:transform}
 .orrery svg{display:block;width:100%;height:auto;touch-action:manipulation}
 svg text{text-rendering:geometricPrecision}
+.puff{opacity:0;animation:puff 5s ease-out infinite}
+.puff.p2{animation-delay:2.5s}
+@keyframes puff{0%{opacity:0;transform:translate(0,6px) scale(.5)}25%{opacity:.6}100%{opacity:0;transform:translate(6px,-14px) scale(1.3)}}
+.puff{transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:reduce){.puff{animation:none;opacity:.25}}
 #stars,#meteor,#rings-back,#rings-front,#shop,#sparks{pointer-events:none}
 .star{fill:#f4f8ef}
 .star.warm{fill:#f1dcae}
@@ -102,7 +107,7 @@ svg text{text-rendering:geometricPrecision}
     </div>
 
     <figure class="orrery" id="orrery">
-      <svg id="sky" viewBox="-20 40 680 470" role="img" aria-label="Your business at the centre with eight systems orbiting it like planets: bookings, follow-ups, CRM, invoicing, website, reporting, team SOPs and automations. New customer requests travel in to the front door.">
+      <svg id="sky" viewBox="-20 40 680 470" role="img" aria-label="My Business at the centre with eight systems orbiting it like planets: bookings, follow-ups, CRM, invoicing, website, reporting, team SOPs and automations. New customer requests travel in to the front door.">
         <defs>
           <radialGradient id="sun" cx="50%" cy="50%" r="50%">
             <stop offset="0" stop-color="#f6dc9c" stop-opacity=".9"/>
@@ -122,6 +127,7 @@ svg text{text-rendering:geometricPrecision}
             <stop offset=".55" stop-color="#f6e3b8" stop-opacity=".35"/>
             <stop offset="1" stop-color="#f6e3b8" stop-opacity="0"/>
           </radialGradient>
+          <radialGradient id="smoke" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#e9f2ec" stop-opacity=".55"/><stop offset="1" stop-color="#e9f2ec" stop-opacity="0"/></radialGradient>
           <linearGradient id="trail" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stop-color="#fff" stop-opacity="0"/>
             <stop offset="1" stop-color="#fff" stop-opacity=".9"/>
@@ -131,20 +137,82 @@ svg text{text-rendering:geometricPrecision}
         <g id="layer-back"></g>
         <g id="shop" aria-hidden="true">
           <circle cx="320" cy="262" r="180" fill="url(#sun)" id="glow"/>
-          <g transform="translate(320 262) scale(1.32)">
-            <ellipse cx="0" cy="54" rx="78" ry="9" fill="#000" opacity=".35"/>
-            <path d="M-66 -10 L0 -62 L66 -10 Z" fill="#3c9b6f" stroke="#0b2a1c" stroke-width="2.5" stroke-linejoin="round"/>
-            <rect x="-56" y="-12" width="112" height="64" rx="3" fill="#f3ead6" stroke="#0b2a1c" stroke-width="2.5"/>
-            <rect x="-34" y="-46" width="68" height="16" rx="3" fill="#f3ead6" stroke="#0b2a1c" stroke-width="2"/>
-            <text x="0" y="-34.5" text-anchor="middle" style="font:800 8.5px var(--display);letter-spacing:.12em;fill:#0b2a1c">YOUR SHOP</text>
-            <path d="M-60 -12 h120 l-8 14 h-104 Z" fill="#3c9b6f" stroke="#0b2a1c" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M-46 -12 l-4 14 M-26 -12 l-2 14 M-6 -12 v14 M14 -12 l2 14 M34 -12 l4 14" stroke="#f3ead6" stroke-width="5" opacity=".85"/>
-            <rect x="-46" y="10" width="28" height="22" rx="2" fill="#ffcf6b" stroke="#0b2a1c" stroke-width="2"/>
-            <rect x="18" y="10" width="28" height="22" rx="2" fill="#ffcf6b" stroke="#0b2a1c" stroke-width="2"/>
-            <path d="M-32 10v22M-46 21h28M32 10v22M18 21h28" stroke="#0b2a1c" stroke-width="1.4" opacity=".6"/>
-            <rect x="-11" y="12" width="22" height="40" rx="2" fill="#0b2a1c"/>
-            <rect x="-7" y="16" width="14" height="14" rx="1" fill="#ffcf6b" id="doorlight"/>
-            <circle cx="6" cy="36" r="1.6" fill="#ffcf6b"/>
+          <g transform="translate(320 272) scale(1.12)">
+            <!-- ground -->
+            <ellipse cx="0" cy="60" rx="104" ry="11" fill="#000" opacity=".4"/>
+            <rect x="-92" y="52" width="184" height="7" rx="3" fill="#6f8577" opacity=".55"/>
+            <!-- chimney + smoke -->
+            <rect x="40" y="-112" width="14" height="24" fill="#8a5a3c" stroke="#0b2a1c" stroke-width="2"/>
+            <rect x="37" y="-116" width="20" height="5" fill="#0b2a1c"/>
+            <circle class="puff" cx="47" cy="-124" r="8" fill="url(#smoke)"/>
+            <circle class="puff p2" cx="51" cy="-134" r="10" fill="url(#smoke)"/>
+            <!-- building body: clapboard -->
+            <rect x="-70" y="-88" width="140" height="140" fill="#f1e6cd" stroke="#0b2a1c" stroke-width="2.5"/>
+            <path d="M-70 -76h140M-70 -67h140M-70 -58h140M-70 -49h140M-70 -40h140M-70 -31h140M-70 -22h140" stroke="#cdbb93" stroke-width="1"/>
+            <!-- corner boards -->
+            <rect x="-70" y="-88" width="6" height="140" fill="#2f8a5f" stroke="#0b2a1c" stroke-width="1.5"/>
+            <rect x="64" y="-88" width="6" height="140" fill="#2f8a5f" stroke="#0b2a1c" stroke-width="1.5"/>
+            <!-- cornice with brackets and dentils -->
+            <rect x="-78" y="-102" width="156" height="15" rx="2" fill="#2f8a5f" stroke="#0b2a1c" stroke-width="2.5"/>
+            <rect x="-82" y="-106" width="164" height="6" rx="2" fill="#1d6342" stroke="#0b2a1c" stroke-width="2"/>
+            <path d="M-72 -91h3v4h-3zM-60 -91h3v4h-3zM-48 -91h3v4h-3zM-36 -91h3v4h-3zM-24 -91h3v4h-3zM-12 -91h3v4h-3zM0 -91h3v4h-3zM12 -91h3v4h-3zM24 -91h3v4h-3zM36 -91h3v4h-3zM48 -91h3v4h-3zM60 -91h3v4h-3z" fill="#f1e6cd" opacity=".8"/>
+            <path d="M-74 -87l6 0 0 9z M74 -87l-6 0 0 9z" fill="#1d6342" stroke="#0b2a1c" stroke-width="1.5" stroke-linejoin="round"/>
+            <!-- upstairs: two lit windows with shutters, small centre window -->
+            <g stroke="#0b2a1c" stroke-width="2">
+              <rect x="-54" y="-74" width="13" height="34" fill="#2f8a5f"/><rect x="-23" y="-74" width="13" height="34" fill="#2f8a5f"/>
+              <rect x="-41" y="-74" width="18" height="34" fill="#ffcf6b"/>
+              <rect x="10" y="-74" width="13" height="34" fill="#2f8a5f"/><rect x="41" y="-74" width="13" height="34" fill="#2f8a5f"/>
+              <rect x="23" y="-74" width="18" height="34" fill="#ffcf6b"/>
+              <rect x="-5" y="-70" width="10" height="22" rx="5" fill="#ffcf6b"/>
+            </g>
+            <path d="M-32 -74v34M-41 -57h18M32 -74v34M23 -57h18" stroke="#0b2a1c" stroke-width="1.3" opacity=".7"/>
+            <path d="M-50 -70h5M-50 -64h5M-50 -58h5M-50 -52h5M-50 -46h5M-19 -70h5M-19 -64h5M-19 -58h5M-19 -52h5M-19 -46h5M14 -70h5M14 -64h5M14 -58h5M14 -52h5M14 -46h5M45 -70h5M45 -64h5M45 -58h5M45 -52h5M45 -46h5" stroke="#0b2a1c" stroke-width="1" opacity=".45"/>
+            <rect x="-44" y="-40" width="24" height="4" rx="1" fill="#1d6342" stroke="#0b2a1c" stroke-width="1.2"/>
+            <rect x="20" y="-40" width="24" height="4" rx="1" fill="#1d6342" stroke="#0b2a1c" stroke-width="1.2"/>
+            <!-- sign band -->
+            <rect x="-64" y="-31" width="128" height="20" rx="2" fill="#123f2b" stroke="#0b2a1c" stroke-width="2"/>
+            <rect x="-60" y="-28" width="120" height="14" rx="1.5" fill="none" stroke="#e3c98f" stroke-width="1"/>
+            <text x="0" y="-17.3" text-anchor="middle" style="font:800 10.5px var(--display);letter-spacing:.2em;fill:#f1d9a4">MY BUSINESS</text>
+            <!-- awning: striped with scalloped edge -->
+            <path d="M-68 -10h136l-6 15h-124z" fill="#f1e6cd" stroke="#0b2a1c" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M-68 -10h17l-4 15h-17z M-34 -10h17l-2 15h-17z M0 -10h17l0 15h-17z M34 -10h17l2 15h-17z" fill="#2f8a5f" transform="translate(0 0)"/>
+            <path d="M-62 5 q7 8 14 0 q7 8 14 0 q7 8 14 0 q7 8 14 0 q7 8 14 0 q7 8 14 0 q7 8 14 0 q7 8 14 0 q7 8 14 0" fill="#2f8a5f" stroke="#0b2a1c" stroke-width="2" stroke-linejoin="round"/>
+            <!-- display windows -->
+            <g stroke="#0b2a1c" stroke-width="2.2">
+              <rect x="-62" y="14" width="44" height="30" rx="1.5" fill="#ffcf6b"/>
+              <rect x="18" y="14" width="44" height="30" rx="1.5" fill="#ffcf6b"/>
+            </g>
+            <path d="M-40 14v30M40 14v30" stroke="#0b2a1c" stroke-width="1.4" opacity=".7"/>
+            <!-- shop contents: shelves and goods -->
+            <path d="M-60 27h40M-60 37h40" stroke="#8a5a3c" stroke-width="1.6"/>
+            <path d="M-57 27v-5h4v5M-51 27v-7h5v7M-35 27v-4h6v4M-27 27v-6h4v6M-56 37v-5h7v5M-45 37v-4h4v4M-36 37v-6h5v6M-28 37v-4h5v4" fill="#3c9b6f" stroke="#0b2a1c" stroke-width=".9"/>
+            <path d="M20 37h40" stroke="#8a5a3c" stroke-width="1.6"/>
+            <path d="M23 37v-6h6v6M33 37v-4h5v4" fill="#c99b4f" stroke="#0b2a1c" stroke-width=".9"/>
+            <!-- OPEN sign -->
+            <g id="opensign">
+              <rect x="42" y="19" width="17" height="10" rx="2" fill="#0b2a1c"/>
+              <text x="50.5" y="26.6" text-anchor="middle" style="font:800 5.6px var(--display);letter-spacing:.06em;fill:#ff8a6b">OPEN</text>
+            </g>
+            <!-- bulkheads -->
+            <rect x="-62" y="44" width="44" height="8" fill="#2f8a5f" stroke="#0b2a1c" stroke-width="1.8"/>
+            <rect x="18" y="44" width="44" height="8" fill="#2f8a5f" stroke="#0b2a1c" stroke-width="1.8"/>
+            <!-- recessed door -->
+            <rect x="-15" y="11" width="30" height="41" fill="#0b2a1c"/>
+            <rect x="-11" y="14" width="22" height="38" rx="1.5" fill="#1d6342" stroke="#0b2a1c" stroke-width="1.6"/>
+            <rect x="-8" y="17" width="16" height="17" rx="1" fill="#ffcf6b" id="doorlight"/>
+            <path d="M0 17v17" stroke="#0b2a1c" stroke-width="1" opacity=".6"/>
+            <rect x="-8" y="38" width="16" height="10" rx="1" fill="none" stroke="#0b2a1c" stroke-width="1"/>
+            <circle cx="7" cy="36" r="1.5" fill="#e3c98f"/>
+            <!-- planters -->
+            <rect x="-28" y="46" width="11" height="7" rx="1" fill="#8a5a3c" stroke="#0b2a1c" stroke-width="1.4"/>
+            <rect x="17" y="46" width="11" height="7" rx="1" fill="#8a5a3c" stroke="#0b2a1c" stroke-width="1.4"/>
+            <path d="M-26 46a3 3 0 0 1 4-4a3 3 0 0 1 4 4z M19 46a3 3 0 0 1 4-4a3 3 0 0 1 4 4z" fill="#4DAF82" stroke="#0b2a1c" stroke-width="1"/>
+            <!-- street lamp -->
+            <circle cx="84" cy="-6" r="14" fill="url(#sun)" opacity=".8"/>
+            <path d="M84 52V-2" stroke="#0b2a1c" stroke-width="2.4"/>
+            <path d="M79 -2h10l-2 -8h-6z" fill="#ffcf6b" stroke="#0b2a1c" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M80 -10h8l-4 -4z" fill="#0b2a1c"/>
+            <rect x="80" y="49" width="8" height="4" rx="1" fill="#0b2a1c"/>
           </g>
         </g>
         <g id="rings-front"></g>
@@ -297,7 +365,7 @@ svg text{text-rendering:geometricPrecision}
   }
 
   /* sparks = new customer requests spiralling in to the door */
-  var sparks=[], DOOR={x:320,y:306}, sp=$('sparks'), doorFlash=0;
+  var sparks=[], DOOR={x:320,y:311}, sp=$('sparks'), doorFlash=0, openSign=$('opensign');
   function spawn(now){var a=Math.random()*2*Math.PI;sparks.push({a0:a,r0:300+Math.random()*30,t0:now,dur:2800+Math.random()*900,n:el('circle',{class:'spark',r:3},sp)});}
   function stepSparks(now){
     for(var i=sparks.length-1;i>=0;i--){
@@ -308,7 +376,7 @@ svg text{text-rendering:geometricPrecision}
       s.n.setAttribute('r',(1.4+2.4*(1-e)).toFixed(2)); s.n.style.opacity=(t<.1?t*10:1-Math.max(0,(t-.85)/.15)).toFixed(2);
     }
     var f=Math.max(0,1-(now-doorFlash)/500);
-    $('doorlight').style.opacity=(.75+.25*f).toFixed(2); $('glow').setAttribute('r',(180+12*f).toFixed(1));
+    $('doorlight').style.opacity=(.75+.25*f).toFixed(2); openSign.style.filter=f>.02?'drop-shadow(0 0 '+(4*f).toFixed(1)+'px #ff8a6b)':''; $('glow').setAttribute('r',(180+12*f).toFixed(1));
   }
 
 
