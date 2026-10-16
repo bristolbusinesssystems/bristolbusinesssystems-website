@@ -10,69 +10,72 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ground:#f4f7f5; --ground-2:#e9f0ec; --ink:#0f2a1e; --muted:#5f7268;
-  --green:#1E6340; --green-hi:#268a58; --green-lt:#4DAF82;
-  --brass:#b8955a; --brass-soft:rgba(184,149,90,.38); --glow:#f1d9a4;
+  --ground:#f4f7f5; --ink:#0f2a1e; --muted:#5f7268; --green:#1E6340; --green-lt:#4DAF82;
   --card:#ffffff; --card-line:#dfe8e2;
-  --planet-a:#2f7a54; --planet-b:#174d33; --planet-ink:#ffffff;
-  --shop-wall:#fffaf0; --shop-roof:#1E6340; --shop-trim:#0f3b27; --window:#ffd98a;
+  /* the night-sky panel looks the same in both themes */
+  --sky-1:#0d2a1f; --sky-2:#06140f; --sky-3:#030a07; --sky-line:rgba(176,219,185,.14);
+  --sky-ink:#e9f2ec; --sky-muted:#9fb5a6; --brass:#D0B686; --brass-dim:rgba(208,182,134,.28);
   --display:'Montserrat',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --ground:#06110e; --ground-2:#0b1d16; --ink:#eef5f0; --muted:#97ad9d;
-  --brass:#D0B686; --brass-soft:rgba(208,182,134,.32); --glow:#d6b46a;
-  --card:#0f241b; --card-line:rgba(176,219,185,.18);
-  --planet-a:#4DAF82; --planet-b:#1E6340; --planet-ink:#06110e;
-  --shop-wall:#f3ead6; --shop-roof:#4DAF82; --shop-trim:#0b2a1c; --window:#ffcf6b;
-  color-scheme:dark;}}
-:root[data-theme="dark"]{
-  --ground:#06110e; --ground-2:#0b1d16; --ink:#eef5f0; --muted:#97ad9d;
-  --brass:#D0B686; --brass-soft:rgba(208,182,134,.32); --glow:#d6b46a;
-  --card:#0f241b; --card-line:rgba(176,219,185,.18);
-  --planet-a:#4DAF82; --planet-b:#1E6340; --planet-ink:#06110e;
-  --shop-wall:#f3ead6; --shop-roof:#4DAF82; --shop-trim:#0b2a1c; --window:#ffcf6b;
-  color-scheme:dark;}
+  --ground:#06110e; --ink:#eef5f0; --muted:#97ad9d; --card:#0f241b; --card-line:rgba(176,219,185,.18); color-scheme:dark;}}
+:root[data-theme="dark"]{--ground:#06110e; --ink:#eef5f0; --muted:#97ad9d; --card:#0f241b; --card-line:rgba(176,219,185,.18); color-scheme:dark;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--ground);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
-.wrap{max-width:1200px;margin:0 auto;padding-inline:20px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px}
 :focus-visible{outline:3px solid var(--brass);outline-offset:3px}
 
 .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:18px;font-size:.9rem;color:var(--muted)}
 .bar b{font-family:var(--display);color:var(--ink)}
 .toggle{background:var(--card);border:1px solid var(--card-line);color:var(--ink);border-radius:999px;padding:8px 14px;font:500 .85rem var(--body);cursor:pointer}
 
-.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:32px;align-items:center;padding-block:clamp(24px,5vw,64px) clamp(48px,7vw,96px)}
-@media (max-width:920px){.hero{grid-template-columns:1fr}}
+.hero{display:grid;grid-template-columns:.95fr 1.15fr;gap:40px;align-items:center;padding-block:clamp(20px,4vw,56px) clamp(48px,7vw,96px)}
+@media (max-width:960px){.hero{grid-template-columns:1fr}}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
 .badges span{border:1px solid var(--card-line);background:var(--card);border-radius:999px;padding:6px 14px;font:600 .8rem var(--body)}
-h1{font:900 clamp(2.5rem,5.6vw,4.4rem)/1.02 var(--display);letter-spacing:-.025em;margin:0 0 22px}
+h1{font:900 clamp(2.4rem,4.6vw,3.7rem)/1.02 var(--display);letter-spacing:-.025em;margin:0 0 22px}
 h1 em{font-style:normal;color:var(--green)}
 :root[data-theme="dark"] h1 em{color:var(--green-lt)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h1 em{color:var(--green-lt)}}
 .sub{color:var(--muted);font-size:1.12rem;max-width:520px;margin:0 0 28px}
 .btn{display:inline-flex;align-items:center;font:700 1rem/1 var(--display);padding:17px 26px;border-radius:999px;text-decoration:none;background:var(--green);color:#fff}
 
-/* orrery */
-.orrery{position:relative;width:100%;max-width:640px;margin-inline:auto}
-.orrery svg{display:block;width:100%;height:auto;overflow:visible}
-.ring-back{stroke:var(--brass-soft);fill:none;stroke-width:1.2}
-.ring-front{stroke:var(--brass);fill:none;stroke-width:1.4}
-.ticks{stroke:var(--brass);stroke-width:1;fill:none;opacity:.55}
-.planet{cursor:pointer}
-.planet .body{transition:filter .2s}
-.planet:hover .body,.planet:focus .body,.planet.on .body{filter:brightness(1.15)}
-.planet:focus{outline:none}
-.planet:focus-visible .halo{stroke:var(--brass);stroke-width:3}
-.planet text{font:500 12.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;fill:var(--ink)}
-.planet .icon{stroke:var(--planet-ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.spark{fill:var(--brass)}
-.caption{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);min-width:240px;max-width:90%;background:var(--card);border:1px solid var(--card-line);border-radius:14px;padding:12px 16px;box-shadow:0 10px 30px rgba(15,42,30,.12);text-align:center;transition:opacity .2s}
-.caption b{display:block;font:800 .95rem var(--display)}
-.caption span{color:var(--muted);font-size:.9rem}
-.caption[hidden]{display:none}
-.hint{text-align:center;font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+/* night-sky panel */
+.orrery{position:relative;margin:0;border-radius:28px;overflow:hidden;isolation:isolate;
+  background:radial-gradient(120% 90% at 50% 45%,var(--sky-1) 0%,var(--sky-2) 55%,var(--sky-3) 100%);
+  border:1px solid var(--sky-line);box-shadow:0 30px 70px rgba(4,16,11,.35)}
+.orrery::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(40% 30% at 22% 18%,rgba(77,175,130,.16),transparent 70%),radial-gradient(35% 28% at 82% 80%,rgba(208,182,134,.12),transparent 70%)}
+.orrery svg{display:block;width:100%;height:auto;touch-action:manipulation}
+svg text{text-rendering:geometricPrecision}
+#stars,#meteor,#rings-back,#rings-front,#shop,#sparks{pointer-events:none}
+.star{fill:#f4f8ef}
+.star.warm{fill:#f1dcae}
+.twinkle{animation:tw var(--d,4s) ease-in-out infinite;animation-delay:var(--o,0s)}
+@keyframes tw{0%,100%{opacity:1}50%{opacity:.18}}
+.ring-back{stroke:var(--brass-dim);fill:none;stroke-width:1.2;transition:stroke .3s}
+.ring-front{stroke:var(--brass);fill:none;stroke-width:1.4;opacity:.85;transition:stroke .3s,opacity .3s}
+.ticks{stroke:var(--brass);stroke-width:1;fill:none;opacity:.45}
+.ring-on .ring-back{stroke:rgba(241,220,174,.75)}
+.ring-on .ring-front{stroke:#f6e3b8;opacity:1}
+.planet{cursor:pointer;outline:none}
+.planet .label{font:500 12.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;fill:var(--sky-ink);paint-order:stroke;stroke:rgba(3,10,7,.85);stroke-width:3px}
+.planet .icon{stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;opacity:.92}
+.planet .focusring{fill:none;stroke:none}
+.planet:focus-visible .focusring{stroke:var(--brass);stroke-width:2.5;stroke-dasharray:4 4}
+.spark{fill:#f6e3b8}
+.caption{position:absolute;z-index:2;pointer-events:none;min-width:200px;max-width:260px;
+  background:rgba(9,26,19,.92);backdrop-filter:blur(6px);border:1px solid rgba(208,182,134,.45);border-radius:14px;
+  padding:12px 14px 12px 16px;color:var(--sky-ink);box-shadow:0 12px 30px rgba(0,0,0,.4);
+  opacity:0;transform:translateY(4px);transition:opacity .2s,transform .2s}
+.caption.show{opacity:1;transform:none}
+.caption b{display:flex;align-items:center;gap:8px;font:800 1rem var(--display)}
+.caption b i{width:10px;height:10px;border-radius:50%;flex:none}
+.caption span{display:block;color:var(--sky-muted);font-size:.9rem;margin-top:2px}
+.hint{position:absolute;left:0;right:0;bottom:14px;margin:0;text-align:center;font:500 .7rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sky-muted);pointer-events:none;transition:opacity .3s}
 .note{border-top:1px solid var(--card-line);padding-block:20px 40px;color:var(--muted);font-size:.88rem}
+@media (prefers-reduced-motion:reduce){.twinkle{animation:none}}
 </style>
 </head>
 <body>
@@ -87,47 +90,60 @@ h1 em{font-style:normal;color:var(--green)}
       <a class="btn" href="https://crm.bristolbusinesssystems.com/book/bristol-business-systems">Book a Free Strategy Call</a>
     </div>
 
-    <figure class="orrery" style="margin:0">
-      <svg id="sky" viewBox="-12 64 664 416" role="img" aria-labelledby="skyt">
-        <title id="skyt">Your business at the centre with eight systems orbiting it: bookings, follow-ups, CRM, invoicing, website, reporting, team SOPs and automations. New customer requests travel in to the front door.</title>
+    <figure class="orrery" id="orrery">
+      <svg id="sky" viewBox="-20 40 680 470" role="img" aria-labelledby="skyt">
+        <title id="skyt">Your business at the centre with eight systems orbiting it like planets: bookings, follow-ups, CRM, invoicing, website, reporting, team SOPs and automations. New customer requests travel in to the front door.</title>
         <defs>
           <radialGradient id="sun" cx="50%" cy="50%" r="50%">
-            <stop offset="0" stop-color="var(--glow)" stop-opacity=".95"/>
-            <stop offset=".45" stop-color="var(--glow)" stop-opacity=".35"/>
-            <stop offset="1" stop-color="var(--glow)" stop-opacity="0"/>
+            <stop offset="0" stop-color="#f6dc9c" stop-opacity=".9"/>
+            <stop offset=".35" stop-color="#e3bd6c" stop-opacity=".32"/>
+            <stop offset="1" stop-color="#e3bd6c" stop-opacity="0"/>
           </radialGradient>
-          <radialGradient id="pl" cx="35%" cy="30%" r="75%">
-            <stop offset="0" stop-color="var(--planet-a)"/>
-            <stop offset="1" stop-color="var(--planet-b)"/>
+          <linearGradient id="shade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#000" stop-opacity="0"/>
+            <stop offset=".48" stop-color="#000" stop-opacity="0"/>
+            <stop offset="1" stop-color="#020805" stop-opacity=".72"/>
+          </linearGradient>
+          <radialGradient id="spec" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#fff" stop-opacity=".55"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
           </radialGradient>
+          <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+            <stop offset=".55" stop-color="#f6e3b8" stop-opacity=".35"/>
+            <stop offset="1" stop-color="#f6e3b8" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="trail" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".9"/>
+          </linearGradient>
         </defs>
+        <g id="stars"></g>
+        <line id="meteor" x1="0" y1="0" x2="0" y2="0" stroke="url(#trail)" stroke-width="1.6" stroke-linecap="round" opacity="0"/>
         <g id="rings-back"></g>
         <g id="layer-back"></g>
         <g id="shop" aria-hidden="true">
-          <circle cx="320" cy="262" r="175" fill="url(#sun)" id="glow"/>
-          <!-- shopfront -->
+          <circle cx="320" cy="262" r="180" fill="url(#sun)" id="glow"/>
           <g transform="translate(320 262) scale(1.32)">
-            <ellipse cx="0" cy="54" rx="78" ry="9" fill="var(--shop-trim)" opacity=".18"/>
-            <path d="M-66 -10 L0 -62 L66 -10 Z" fill="var(--shop-roof)" stroke="var(--shop-trim)" stroke-width="2.5" stroke-linejoin="round"/>
-            <rect x="-56" y="-12" width="112" height="64" rx="3" fill="var(--shop-wall)" stroke="var(--shop-trim)" stroke-width="2.5"/>
-            <rect x="-34" y="-46" width="68" height="16" rx="3" fill="var(--shop-wall)" stroke="var(--shop-trim)" stroke-width="2"/>
-            <text x="0" y="-34.5" text-anchor="middle" style="font:800 8.5px var(--display);letter-spacing:.12em;fill:var(--shop-trim)">YOUR SHOP</text>
-            <!-- awning -->
-            <path d="M-60 -12 h120 l-8 14 h-104 Z" fill="var(--shop-roof)" stroke="var(--shop-trim)" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M-46 -12 l-4 14 M-26 -12 l-2 14 M-6 -12 v14 M14 -12 l2 14 M34 -12 l4 14" stroke="var(--shop-wall)" stroke-width="5" opacity=".8"/>
-            <!-- windows + door -->
-            <rect x="-46" y="10" width="28" height="22" rx="2" fill="var(--window)" stroke="var(--shop-trim)" stroke-width="2" id="w1"/>
-            <rect x="18" y="10" width="28" height="22" rx="2" fill="var(--window)" stroke="var(--shop-trim)" stroke-width="2" id="w2"/>
-            <rect x="-11" y="12" width="22" height="40" rx="2" fill="var(--shop-trim)" id="door"/>
-            <rect x="-7" y="16" width="14" height="14" rx="1" fill="var(--window)" id="doorlight"/>
-            <circle cx="6" cy="36" r="1.6" fill="var(--window)"/>
+            <ellipse cx="0" cy="54" rx="78" ry="9" fill="#000" opacity=".35"/>
+            <path d="M-66 -10 L0 -62 L66 -10 Z" fill="#3c9b6f" stroke="#0b2a1c" stroke-width="2.5" stroke-linejoin="round"/>
+            <rect x="-56" y="-12" width="112" height="64" rx="3" fill="#f3ead6" stroke="#0b2a1c" stroke-width="2.5"/>
+            <rect x="-34" y="-46" width="68" height="16" rx="3" fill="#f3ead6" stroke="#0b2a1c" stroke-width="2"/>
+            <text x="0" y="-34.5" text-anchor="middle" style="font:800 8.5px var(--display);letter-spacing:.12em;fill:#0b2a1c">YOUR SHOP</text>
+            <path d="M-60 -12 h120 l-8 14 h-104 Z" fill="#3c9b6f" stroke="#0b2a1c" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M-46 -12 l-4 14 M-26 -12 l-2 14 M-6 -12 v14 M14 -12 l2 14 M34 -12 l4 14" stroke="#f3ead6" stroke-width="5" opacity=".85"/>
+            <rect x="-46" y="10" width="28" height="22" rx="2" fill="#ffcf6b" stroke="#0b2a1c" stroke-width="2"/>
+            <rect x="18" y="10" width="28" height="22" rx="2" fill="#ffcf6b" stroke="#0b2a1c" stroke-width="2"/>
+            <path d="M-32 10v22M-46 21h28M32 10v22M18 21h28" stroke="#0b2a1c" stroke-width="1.4" opacity=".6"/>
+            <rect x="-11" y="12" width="22" height="40" rx="2" fill="#0b2a1c"/>
+            <rect x="-7" y="16" width="14" height="14" rx="1" fill="#ffcf6b" id="doorlight"/>
+            <circle cx="6" cy="36" r="1.6" fill="#ffcf6b"/>
           </g>
         </g>
         <g id="rings-front"></g>
         <g id="layer-front"></g>
         <g id="sparks"></g>
       </svg>
-      <div class="caption" id="cap" hidden aria-live="polite"><b id="capt"></b><span id="capd"></span></div>
+      <div class="caption" id="cap" role="status"><b><i id="capdot"></i><span id="capt"></span></b><span id="capd"></span></div>
       <p class="hint" id="hint">Point at a planet to see what it does</p>
     </figure>
   </section>
@@ -137,121 +153,195 @@ h1 em{font-style:normal;color:var(--green)}
 
 <script>
 (function(){
-  var NS='http://www.w3.org/2000/svg', CX=320, CY=262;
+  var NS='http://www.w3.org/2000/svg', CX=320, CY=262, VB={x:-20,y:40,w:680,h:470};
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function el(tag,attrs,parent){var n=document.createElementNS(NS,tag);for(var k in attrs)n.setAttribute(k,attrs[k]);if(parent)parent.appendChild(n);return n;}
+  var $=function(id){return document.getElementById(id);};
 
-  // theme toggle
-  var root=document.documentElement, tb=document.getElementById('theme');
+  /* theme toggle (page only; the sky panel is always night) */
+  var root=document.documentElement, tb=$('theme');
   function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;}
-  function label(){tb.textContent=isDark()?'Switch to light':'Switch to dark';}
-  tb.addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');label();});label();
+  function lab(){tb.textContent=isDark()?'Switch to light':'Switch to dark';}
+  tb.addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');lab();});lab();
 
-  // three engraved rings: semi-axes, tilt (deg), seconds per orbit
-  var RINGS=[{a:168,b:68,tilt:-6,period:26},{a:234,b:96,tilt:5,period:40},{a:298,b:122,tilt:-3,period:58}];
+  /* stars: seeded so the sky looks the same on every load */
+  var seed=7; function rnd(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646;}
+  var sg=$('stars');
+  for(var i=0;i<170;i++){
+    var x=VB.x+rnd()*VB.w, y=VB.y+rnd()*VB.h, big=rnd()<.1;
+    var dx=x-CX, dy=(y-CY)*1.6; if(Math.hypot(dx,dy)<120)continue;      // keep the sun's glow clean
+    var s=el('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:(big?1.3+rnd()*.7:.35+rnd()*.75).toFixed(2),class:'star'+(rnd()<.18?' warm':''),'fill-opacity':(.35+rnd()*.65).toFixed(2)},sg);
+    if(rnd()<.45){s.classList.add('twinkle');s.style.setProperty('--d',(2.5+rnd()*4).toFixed(1)+'s');s.style.setProperty('--o',(-rnd()*6).toFixed(1)+'s');}
+    if(big){el('path',{d:'M'+(x-3.5).toFixed(1)+' '+y.toFixed(1)+'h7M'+x.toFixed(1)+' '+(y-3.5).toFixed(1)+'v7',stroke:'#f4f8ef','stroke-width':.6,opacity:.55},sg);}
+  }
+
+  /* orbits */
+  var RINGS=[{a:168,b:68,tilt:-6,period:30},{a:236,b:96,tilt:5,period:46},{a:300,b:122,tilt:-3,period:66}];
+  var rb=$('rings-back'), rf=$('rings-front');
+  RINGS.forEach(function(R){
+    var tf='rotate('+R.tilt+' '+CX+' '+CY+')';
+    R.gb=el('g',{transform:tf},rb); R.gf=el('g',{transform:tf},rf);
+    el('path',{class:'ring-back',d:'M'+(CX-R.a)+' '+CY+' A'+R.a+' '+R.b+' 0 0 1 '+(CX+R.a)+' '+CY},R.gb);
+    el('path',{class:'ring-front',d:'M'+(CX+R.a)+' '+CY+' A'+R.a+' '+R.b+' 0 0 1 '+(CX-R.a)+' '+CY},R.gf);
+    var t='';for(var i=0;i<96;i++){var th=i/96*2*Math.PI;if(Math.sin(th)<0)continue;var x1=CX+R.a*Math.cos(th),y1=CY+R.b*Math.sin(th),k=i%8?3:7;
+      var nx=Math.cos(th)/R.a,ny=Math.sin(th)/R.b,nl=Math.hypot(nx,ny);t+='M'+x1.toFixed(1)+' '+y1.toFixed(1)+'l'+(nx/nl*k).toFixed(1)+' '+(ny/nl*k).toFixed(1);}
+    el('path',{class:'ticks',d:t},R.gf);
+  });
+
+  /* planets */
   var ICON={
     bookings:'M-7-6h14v13h-14z M-7-2h14 M-3-9v4 M3-9v4',
     followups:'M-8-6h16v10h-9l-4 4v-4h-3z',
     crm:'M-3-1a3 3 0 1 0 0.01 0 M-9 8c1-4 4-6 6-6s5 2 6 6 M4-4h5 M4 0h5',
     invoicing:'M-6-9h12v18l-3-2-3 2-3-2-3 2z M-3-4h6 M-3 0h6 M-3 4h3',
-    website:'M-9-7h18v14h-18z M-9-3h18 M-6-5h0.01 M-3-5h0.01',
+    website:'M-9-7h18v14h-18z M-9-3h18',
     reporting:'M-8 8h16 M-5 8v-6 M0 8v-11 M5 8v-8',
     sops:'M-6-8h12v16h-12z M-3-4l1.5 1.5 3-3 M-3 3l1.5 1.5 3-3',
     automations:'M2-9l-8 11h6l-2 7 8-11h-6z'
   };
   var PLANETS=[
-    {k:'bookings',name:'Bookings',d:'Confirmed and reminded automatically.',ring:0,phase:0.2,r:23},
-    {k:'followups',name:'Follow-ups',d:'No lead left waiting.',ring:0,phase:3.4,r:21},
-    {k:'crm',name:'CRM',d:'Every customer and deal in one place.',ring:1,phase:1.1,r:24},
-    {k:'invoicing',name:'Invoicing',d:'Sent on time, every time.',ring:1,phase:3.2,r:20},
-    {k:'website',name:'Website',d:'Turns visitors into requests.',ring:1,phase:5.2,r:22},
-    {k:'reporting',name:'Reporting',d:'Monday 7am, in your inbox.',ring:2,phase:0.6,r:21},
-    {k:'sops',name:'Team SOPs',d:'Everyone does it the same way.',ring:2,phase:2.7,r:19},
-    {k:'automations',name:'Automations',d:'The busywork runs itself.',ring:2,phase:4.6,r:20}
+    {k:'bookings',name:'Bookings',d:'Confirmed and reminded automatically.',ring:0,phase:0.3,r:23,c:['#b6f0d2','#3a9a6b','#0f4a2e'],surf:'bands'},
+    {k:'followups',name:'Follow-ups',d:'No lead left waiting.',ring:0,phase:3.5,r:21,c:['#bdeee8','#2f8f88','#0d3f3b'],surf:'craters'},
+    {k:'crm',name:'CRM',d:'Every customer and deal in one place.',ring:1,phase:1.0,r:27,c:['#c9f0d6','#2a7d55','#0c3a24'],surf:'bands',rings:'#e3c98f'},
+    {k:'invoicing',name:'Invoicing',d:'Sent on time, every time.',ring:1,phase:3.1,r:24,c:['#fdeec7','#c99b4f','#5e3f14'],surf:'bands'},
+    {k:'website',name:'Website',d:'Turns visitors into requests.',ring:1,phase:5.2,r:23,c:['#d2f5ec','#3fae95','#0f4d43'],surf:'storm',atmo:1},
+    {k:'reporting',name:'Reporting',d:'Monday 7am, in your inbox.',ring:2,phase:0.7,r:23,c:['#e2f3d3','#6b9c4b','#24401a'],surf:'craters',moon:1},
+    {k:'sops',name:'Team SOPs',d:'Everyone does it the same way.',ring:2,phase:2.8,r:21,c:['#eef4ea','#8fae99','#3a5646'],surf:'craters'},
+    {k:'automations',name:'Automations',d:'The busywork runs itself.',ring:2,phase:4.7,r:22,c:['#d3fbe2','#2fbf72','#0b4d2a'],surf:'bands',rings:'#7fe0b4'}
   ];
+  var defs=document.querySelector('#sky defs'), lb=$('layer-back'), lf=$('layer-front');
+  function ringArc(r,back){var rx=r*1.85,ry=r*.5;return back?'M'+(-rx)+' 0 A'+rx+' '+ry+' 0 0 1 '+rx+' 0':'M'+rx+' 0 A'+rx+' '+ry+' 0 0 1 '+(-rx)+' 0';}
 
-  var rb=document.getElementById('rings-back'), rf=document.getElementById('rings-front');
-  var lb=document.getElementById('layer-back'), lf=document.getElementById('layer-front'), sp=document.getElementById('sparks');
-
-  // rings: back half (top) behind the shop, front half (bottom) in front
-  RINGS.forEach(function(R){
-    var g1=el('g',{transform:'rotate('+R.tilt+' '+CX+' '+CY+')'},rb), g2=el('g',{transform:'rotate('+R.tilt+' '+CX+' '+CY+')'},rf);
-    el('path',{class:'ring-back',d:'M'+(CX-R.a)+' '+CY+' A'+R.a+' '+R.b+' 0 0 1 '+(CX+R.a)+' '+CY},g1);
-    el('path',{class:'ring-front',d:'M'+(CX+R.a)+' '+CY+' A'+R.a+' '+R.b+' 0 0 1 '+(CX-R.a)+' '+CY},g2);
-    var t='';for(var i=0;i<72;i++){var th=i/72*2*Math.PI;if(Math.sin(th)<0)continue;var x1=CX+R.a*Math.cos(th),y1=CY+R.b*Math.sin(th),k=i%6?3:7;
-      var nx=Math.cos(th)/R.a,ny=Math.sin(th)/R.b,nl=Math.hypot(nx,ny);t+='M'+x1.toFixed(1)+' '+y1.toFixed(1)+'l'+(nx/nl*k).toFixed(1)+' '+(ny/nl*k).toFixed(1);}
-    el('path',{class:'ticks',d:t},g2);
-  });
-
-  // planets
-  var cap=document.getElementById('cap'), capt=document.getElementById('capt'), capd=document.getElementById('capd'), hint=document.getElementById('hint');
-  var focused=null;
   PLANETS.forEach(function(p){
+    var gid='g-'+p.k, cid='c-'+p.k, r=p.r;
+    var g0=el('radialGradient',{id:gid,cx:'38%',cy:'34%',r:'72%'},defs);
+    el('stop',{offset:'0','stop-color':p.c[0]},g0); el('stop',{offset:'.55','stop-color':p.c[1]},g0); el('stop',{offset:'1','stop-color':p.c[2]},g0);
+    var cp=el('clipPath',{id:cid},defs); el('circle',{r:r},cp);
+
     var g=el('g',{class:'planet',tabindex:'0',role:'button','aria-label':p.name+': '+p.d});
-    el('circle',{class:'halo',r:p.r+5,fill:'none',stroke:'none'},g);
-    el('circle',{class:'body',r:p.r,fill:'url(#pl)'},g);
-    var ic=el('path',{class:'icon',d:ICON[p.k]},g); ic.setAttribute('transform','scale('+(p.r/20).toFixed(2)+')');
-    var tx=el('text',{y:p.r+18,'text-anchor':'middle'},g); tx.textContent=p.name; p.label=tx; tx.style.transition='opacity .25s';
-    p.g=g; p.side=null;
-    function on(){focused=p;PLANETS.forEach(function(q){q.g.classList.toggle('on',q===p);});capt.textContent=p.name;capd.textContent=p.d;cap.hidden=false;hint.hidden=true;}
-    function off(){if(focused===p){focused=null;p.g.classList.remove('on');cap.hidden=true;hint.hidden=false;}}
-    g.addEventListener('mouseenter',on); g.addEventListener('focus',on);
-    g.addEventListener('mouseleave',off); g.addEventListener('blur',off);
-    g.addEventListener('click',function(){focused===p?off():on();});
+    var inner=el('g',{},g);
+    p.halo=el('circle',{r:r*2.1,fill:'url(#halo)',opacity:0},inner);
+    if(p.rings) el('path',{d:ringArc(r,true),fill:'none',stroke:p.rings,'stroke-width':2.6,opacity:.5,transform:'rotate(-16)'},inner);
+    if(p.moon){p.moonBack=el('circle',{r:4.2,fill:'#cfd8c6'},inner);}
+    var planet=el('g',{'clip-path':'url(#'+cid+')'},inner);
+    el('circle',{r:r,fill:'url(#'+gid+')'},planet);
+    var surf=el('g',{transform:'rotate(-14)'},planet);
+    if(p.surf==='bands'){[-.55,-.18,.2,.52].forEach(function(y,i){el('ellipse',{cx:0,cy:(y*r).toFixed(1),rx:r*1.3,ry:(r*(.07+.04*(i%2))).toFixed(1),fill:i%2?'#000':'#fff',opacity:i%2?.16:.14},surf);});}
+    if(p.surf==='craters'){[[-.35,-.3,.22],[.3,.15,.16],[-.1,.45,.13],[.45,-.4,.1]].forEach(function(c){el('circle',{cx:(c[0]*r).toFixed(1),cy:(c[1]*r).toFixed(1),r:(c[2]*r).toFixed(1),fill:'#000',opacity:.18},surf);el('circle',{cx:(c[0]*r-.8).toFixed(1),cy:(c[1]*r-.8).toFixed(1),r:(c[2]*r).toFixed(1),fill:'none',stroke:'#fff','stroke-width':.8,opacity:.25},surf);});}
+    if(p.surf==='storm'){el('ellipse',{cx:r*.25,cy:r*.2,rx:r*.32,ry:r*.16,fill:'#fff',opacity:.22},surf);el('path',{d:'M'+(-r)+' '+(-r*.25)+' q'+r*.6+' '+(-r*.25)+' '+r*1.1+' 0 t'+r*1.1+' 0',fill:'none',stroke:'#fff','stroke-width':2,opacity:.16},surf);}
+    p.shade=el('circle',{r:r,fill:'url(#shade)'},planet);
+    p.spec=el('circle',{r:r*.55,fill:'url(#spec)'},planet);
+    el('circle',{r:r+(p.atmo?2.2:1),fill:'none',stroke:p.c[0],'stroke-width':p.atmo?3:1.2,opacity:p.atmo?.45:.3},inner);
+    var ic=el('path',{class:'icon',d:ICON[p.k]},inner); ic.setAttribute('transform','scale('+(r/24).toFixed(2)+')');
+    if(p.rings) el('path',{d:ringArc(r,false),fill:'none',stroke:p.rings,'stroke-width':2.6,opacity:.9,transform:'rotate(-16)'},inner);
+    if(p.moon){p.moonFront=el('circle',{r:4.2,fill:'#e6ecdf'},inner);}
+    el('circle',{class:'focusring',r:r+7},inner);
+    el('circle',{r:r+16,fill:'transparent'},g);          // generous, still hit area
+    p.label=el('text',{class:'label',y:r+20,'text-anchor':'middle'},g); p.label.textContent=p.name;
+    p.g=g; p.side=null; p.boost=0; p.dim=1;
+    bind(p);
   });
 
-  function place(p,theta){
+  /* focus: freeze the system, lift the chosen planet, caption beside it */
+  var focused=null, pinned=false, clearT=null, cap=$('cap'), hint=$('hint'), fig=$('orrery'), svg=$('sky');
+  function setFocus(p){clearTimeout(clearT);focused=p;$('capt').textContent=p.name;$('capd').textContent=p.d;$('capdot').style.background=p.c[1];
+    RINGS.forEach(function(R,i){var on=i===p.ring;R.gb.classList.toggle('ring-on',on);R.gf.classList.toggle('ring-on',on);});
+    cap.classList.add('show');hint.style.opacity=0;}
+  function clearFocus(){focused=null;pinned=false;cap.classList.remove('show');hint.style.opacity=1;
+    RINGS.forEach(function(R){R.gb.classList.remove('ring-on');R.gf.classList.remove('ring-on');});}
+  function bind(p){
+    p.g.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')setFocus(p);});
+    p.g.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'&&!pinned){clearTimeout(clearT);clearT=setTimeout(clearFocus,350);}});
+    p.g.addEventListener('focus',function(){setFocus(p);});
+    p.g.addEventListener('blur',function(){if(!pinned)clearFocus();});
+    p.g.addEventListener('click',function(e){e.stopPropagation();if(focused===p&&pinned){clearFocus();}else{setFocus(p);pinned=true;}});
+    p.g.addEventListener('keydown',function(e){if(e.key==='Escape'){clearFocus();p.g.blur();}});
+  }
+  fig.addEventListener('click',function(){if(pinned)clearFocus();});
+
+  function placeCaption(p){
+    var m=svg.getScreenCTM(), fr=fig.getBoundingClientRect(); if(!m)return;
+    var pt=svg.createSVGPoint(); pt.x=p.x; pt.y=p.y; var s=pt.matrixTransform(m);
+    var x=s.x-fr.left, y=s.y-fr.top, w=cap.offsetWidth, h=cap.offsetHeight, gap=p.r*m.a*1.5+14;
+    var left=x+gap+w<fr.width-12?x+gap:x-gap-w;
+    var top=Math.min(Math.max(12,y-h/2),fr.height-h-12);
+    left=Math.min(Math.max(12,left),fr.width-w-12);
+    cap.style.left=left.toFixed(0)+'px'; cap.style.top=top.toFixed(0)+'px';
+  }
+
+  function place(p,theta,now){
     var R=RINGS[p.ring], tr=R.tilt*Math.PI/180;
     var ex=R.a*Math.cos(theta), ey=R.b*Math.sin(theta);
     var x=CX+ex*Math.cos(tr)-ey*Math.sin(tr), y=CY+ex*Math.sin(tr)+ey*Math.cos(tr);
-    var depth=(Math.sin(theta)+1)/2;            // 0 = far (top), 1 = near (bottom)
-    var s=0.78+0.3*depth;
+    var depth=(Math.sin(theta)+1)/2, s=.76+.32*depth;
     var side=Math.sin(theta)<0?'back':'front';
+    if(focused===p)side='front';                         // a chosen planet always sits in front
     if(side!==p.side){(side==='back'?lb:lf).appendChild(p.g);p.side=side;}
-    p.g.setAttribute('transform','translate('+x.toFixed(1)+' '+y.toFixed(1)+') scale('+s.toFixed(3)+')');
-    p.g.style.opacity=(0.62+0.38*depth).toFixed(2);
-    var hidden=side==='back'&&Math.abs(x-CX)<125&&y<CY+70;
-    p.label.style.opacity=hidden?0:1;
+    p.x=x; p.y=y;
+    var tb=focused===p?1:0, td=focused&&focused!==p?.32:1;
+    p.boost+=(tb-p.boost)*.18; p.dim+=(td-p.dim)*.18;
+    p.g.setAttribute('transform','translate('+x.toFixed(2)+' '+y.toFixed(2)+') scale('+(s*(1+.35*p.boost)).toFixed(3)+')');
+    p.g.style.opacity=((.6+.4*depth+(1-.6-.4*depth)*p.boost)*p.dim).toFixed(3);
+    p.halo.setAttribute('opacity',(p.boost*.9).toFixed(2));
+    // light comes from the shop: the shadow faces away from it
+    var ang=Math.atan2(y-CY,x-CX);
+    p.shade.setAttribute('transform','rotate('+(ang*180/Math.PI).toFixed(1)+')');
+    var sr=p.r*.42; p.spec.setAttribute('cx',(-Math.cos(ang)*sr).toFixed(1)); p.spec.setAttribute('cy',(-Math.sin(ang)*sr).toFixed(1));
+    var hide=side==='back'&&Math.abs(x-CX)<125&&y<CY+70;
+    p.label.style.opacity=hide?0:1;
+    if(p.moon){var ma=now/1400, mx=Math.cos(ma)*p.r*1.6, my=Math.sin(ma)*p.r*.45, front=Math.sin(ma)>0;
+      p.moonFront.setAttribute('cx',mx.toFixed(1));p.moonFront.setAttribute('cy',my.toFixed(1));p.moonFront.style.display=front?'':'none';
+      p.moonBack.setAttribute('cx',mx.toFixed(1));p.moonBack.setAttribute('cy',my.toFixed(1));p.moonBack.style.display=front?'none':'';}
   }
 
-  // sparks = new customer requests spiralling in to the door
-  var sparks=[], DOOR={x:320,y:306};
-  function spawn(now){
-    var a=Math.random()*2*Math.PI, r0=300+Math.random()*20;
-    sparks.push({a0:a,r0:r0,t0:now,dur:2600+Math.random()*900,n:el('circle',{class:'spark',r:3.2},sp)});
-  }
-  var doorFlash=0;
+  /* sparks = new customer requests spiralling in to the door */
+  var sparks=[], DOOR={x:320,y:306}, sp=$('sparks'), doorFlash=0;
+  function spawn(now){var a=Math.random()*2*Math.PI;sparks.push({a0:a,r0:300+Math.random()*30,t0:now,dur:2800+Math.random()*900,n:el('circle',{class:'spark',r:3},sp)});}
   function stepSparks(now){
     for(var i=sparks.length-1;i>=0;i--){
       var s=sparks[i], t=(now-s.t0)/s.dur;
       if(t>=1){s.n.remove();sparks.splice(i,1);doorFlash=now;continue;}
       var e=t*t*(3-2*t), r=s.r0*(1-e), a=s.a0+e*2.4;
-      var x=DOOR.x+(r*Math.cos(a)), y=DOOR.y+(r*0.42*Math.sin(a));
-      s.n.setAttribute('cx',x.toFixed(1)); s.n.setAttribute('cy',y.toFixed(1));
-      s.n.setAttribute('r',(1.6+2.4*(1-e)).toFixed(2)); s.n.style.opacity=(t<0.1?t*10:1-Math.max(0,(t-0.85)/0.15)).toFixed(2);
+      s.n.setAttribute('cx',(DOOR.x+r*Math.cos(a)).toFixed(1)); s.n.setAttribute('cy',(DOOR.y+r*.42*Math.sin(a)).toFixed(1));
+      s.n.setAttribute('r',(1.4+2.4*(1-e)).toFixed(2)); s.n.style.opacity=(t<.1?t*10:1-Math.max(0,(t-.85)/.15)).toFixed(2);
     }
     var f=Math.max(0,1-(now-doorFlash)/500);
-    document.getElementById('doorlight').style.opacity=(0.75+0.25*f).toFixed(2);
-    document.getElementById('glow').setAttribute('r',(175+12*f).toFixed(1));
+    $('doorlight').style.opacity=(.75+.25*f).toFixed(2); $('glow').setAttribute('r',(180+12*f).toFixed(1));
   }
 
-  // animation loop: orbits slow right down while a planet is in focus
+  /* a shooting star now and then */
+  var met=$('meteor'), metNext=performance.now()+2500, metS=null;
+  function stepMeteor(now){
+    if(!metS&&now>metNext){metS={x:VB.x+Math.random()*VB.w*.6,y:VB.y+10+Math.random()*90,t0:now};}
+    if(!metS)return;
+    var t=(now-metS.t0)/900; if(t>=1){met.setAttribute('opacity',0);metS=null;metNext=now+5000+Math.random()*6000;return;}
+    var hx=metS.x+t*260, hy=metS.y+t*110, L=70*Math.sin(Math.PI*t);
+    met.setAttribute('x1',(hx-L*.92).toFixed(1));met.setAttribute('y1',(hy-L*.39).toFixed(1));met.setAttribute('x2',hx.toFixed(1));met.setAttribute('y2',hy.toFixed(1));
+    met.setAttribute('opacity',Math.sin(Math.PI*t).toFixed(2));
+  }
+
+  /* loop: when a planet is in focus the whole system eases to a full stop */
   var speed=1, last=null, clock=0, nextSpark=0, running=true;
   function frame(now){
     if(!running){last=null;return;}
     if(last===null)last=now;
     var dt=Math.min(64,now-last); last=now;
-    speed+=((focused?0.08:1)-speed)*0.08;
+    speed+=((focused?0:1)-speed)*(focused?.2:.05);
+    if(focused&&speed<.002)speed=0;
     clock+=dt*speed/1000;
-    PLANETS.forEach(function(p){place(p,p.phase+clock*2*Math.PI/RINGS[p.ring].period);});
+    PLANETS.forEach(function(p){place(p,p.phase+clock*2*Math.PI/RINGS[p.ring].period,now);});
+    if(focused)placeCaption(focused);
     if(now>nextSpark&&!focused){spawn(now);nextSpark=now+900+Math.random()*700;}
-    stepSparks(now);
+    stepSparks(now); stepMeteor(now);
     requestAnimationFrame(frame);
   }
-  if(reduce){PLANETS.forEach(function(p){place(p,p.phase);});return;}
-  var svg=document.getElementById('sky');
+  if(reduce){
+    var refresh=function(){PLANETS.forEach(function(p){p.boost=focused===p?1:0;p.dim=focused&&focused!==p?.32:1;place(p,p.phase,0);});if(focused)placeCaption(focused);};
+    ['pointerover','pointerout','focusin','focusout','click'].forEach(function(ev){fig.addEventListener(ev,function(){setTimeout(refresh,0);setTimeout(refresh,400);});});
+    refresh(); return;
+  }
   if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!running){running=true;requestAnimationFrame(frame);}running=v;}).observe(svg);
+    new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!running){running=true;requestAnimationFrame(frame);}running=v;}).observe(fig);
   }
   document.addEventListener('visibilitychange',function(){if(document.hidden)running=false;else if(!running){running=true;requestAnimationFrame(frame);}});
   requestAnimationFrame(frame);
