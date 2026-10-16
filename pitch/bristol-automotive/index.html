@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>A website for Bristol Automotive · Bristol Business Systems</title>
+<meta name="description" content="Your new website is already built. See it, pick a plan, and see what it's worth.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06110e; --bg-soft:#091711; --bg-alt:#0d221a; --surface:#112e1f;
+  --line:rgba(176,219,185,.14); --line-hi:rgba(176,219,185,.28);
+  --text:#eef5f0; --muted:#9db59a;
+  --green:#4DAF82; --green-hi:#6cc89c; --green-deep:#1E6340;
+  --gold:#D0B686; --red:#c4372b;
+  --r-sm:10px; --r-md:16px; --r-lg:22px;
+  --display:'Montserrat',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--green-hi)}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);line-height:1.12;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,5.4vw,3.9rem);font-weight:900}
+h2{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800}
+h3{font-size:1.15rem;font-weight:700}
+.eyebrow{font:600 .78rem/1 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.lede{font-size:1.15rem;color:var(--muted);max-width:640px}
+section{padding-block:clamp(64px,9vw,112px);border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 1rem/1 var(--display);padding:16px 24px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--green);color:#05140d}
+.btn-primary:hover{background:var(--green-hi)}
+.btn-ghost{border-color:var(--line-hi);color:var(--text)}
+.btn-ghost:hover{border-color:var(--green)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(6,17,14,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;font:800 .95rem var(--display);color:var(--text);text-decoration:none}
+.brand img{height:34px;width:auto;filter:invert(1);mix-blend-mode:screen}
+.top nav{display:flex;gap:22px}
+.top nav a{color:var(--muted);text-decoration:none;font-weight:500;font-size:.95rem}
+.top nav a:hover{color:var(--text)}
+@media (max-width:860px){.top nav{display:none}}
+@media (max-width:420px){.brand span{display:none}}
+
+/* hero */
+.hero{border-top:0;padding-top:clamp(48px,7vw,88px);background:radial-gradient(900px 500px at 85% 10%,rgba(77,175,130,.16),transparent 60%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.for{display:inline-flex;align-items:center;gap:10px;background:var(--bg-alt);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;font-size:.9rem;color:var(--muted);margin-bottom:22px}
+.for b{background:var(--gold);color:#1a1408;border-radius:999px;padding:4px 10px;font:700 .75rem var(--display)}
+.devices{position:relative;padding-bottom:40px}
+.laptop{border-radius:14px;overflow:hidden;border:1px solid var(--line-hi);box-shadow:0 30px 80px rgba(0,0,0,.5);background:#000}
+.laptop .bar{height:26px;background:#1b2a23;display:flex;gap:6px;align-items:center;padding-left:12px}
+.laptop .bar i{width:9px;height:9px;border-radius:50%;background:#3d5248}
+.phone{position:absolute;right:-8px;bottom:0;width:30%;border-radius:22px;overflow:hidden;border:4px solid #1b2a23;box-shadow:0 20px 50px rgba(0,0,0,.6)}
+@media (max-width:520px){.phone{display:none}.devices{padding-bottom:0}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:40px}
+.stat{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px}
+.stat .num{font:900 2.6rem/1 var(--display);color:var(--gold);margin-bottom:10px}
+.stat p{margin:0;color:var(--muted)}
+.stat p strong{color:var(--text)}
+
+/* tour */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:32px 0 20px}
+.tab{background:var(--bg-soft);border:1px solid var(--line);color:var(--muted);font:600 .95rem var(--body);padding:10px 18px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--green);color:#05140d;border-color:var(--green)}
+.viewtoggle{margin-left:auto;display:flex;gap:4px;background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:4px}
+.viewtoggle button{background:none;border:0;color:var(--muted);font:600 .85rem var(--body);padding:7px 14px;border-radius:999px;cursor:pointer}
+.viewtoggle button[aria-pressed="true"]{background:var(--surface);color:var(--text)}
+.tour{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start}
+@media (max-width:900px){.tour{grid-template-columns:1fr}}
+.shot{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line-hi);background:#000;max-height:620px;overflow-y:auto}
+.shot.mobile{max-width:340px;margin-inline:auto;border-radius:26px;border:5px solid #1b2a23}
+.tour ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.tour li{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;color:var(--muted)}
+.tour li strong{display:block;color:var(--text);font-family:var(--display);margin-bottom:2px}
+.live{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
+
+/* builder */
+.builder{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;margin-top:40px;align-items:start}
+@media (max-width:900px){.builder{grid-template-columns:1fr}}
+.plans{display:grid;gap:14px}
+.plan{display:block;position:relative;background:var(--bg-soft);border:2px solid var(--line);border-radius:var(--r-lg);padding:22px 22px 22px 60px;cursor:pointer;transition:border-color .15s,background .15s}
+.plan:hover{border-color:var(--line-hi)}
+.plan input{position:absolute;opacity:0}
+.plan .dot{position:absolute;left:22px;top:24px;width:22px;height:22px;border-radius:50%;border:2px solid var(--line-hi)}
+.plan:has(input:checked){border-color:var(--green);background:var(--bg-alt)}
+.plan:has(input:checked) .dot{border-color:var(--green);background:radial-gradient(circle,var(--green) 45%,transparent 50%)}
+.plan:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:3px}
+.plan .head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.plan .price{font:800 1.3rem var(--display);color:var(--gold);white-space:nowrap}
+.plan .price small{font:500 .85rem var(--body);color:var(--muted)}
+.plan p{margin:.4em 0 0;color:var(--muted);font-size:.96rem}
+.tag{font:700 .68rem var(--display);letter-spacing:.08em;text-transform:uppercase;background:rgba(208,182,134,.15);color:var(--gold);padding:4px 8px;border-radius:6px;margin-left:6px;vertical-align:middle}
+.addon{background:var(--bg-soft);border:2px dashed var(--line-hi);border-radius:var(--r-lg);padding:22px}
+.addon.on{border-style:solid;border-color:var(--green);background:var(--bg-alt)}
+.switch{display:flex;align-items:center;gap:14px;cursor:pointer}
+.switch input{position:absolute;opacity:0}
+.switch .track{flex:none;width:52px;height:30px;border-radius:999px;background:#2a3d33;position:relative;transition:background .15s}
+.switch .track::after{content:"";position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:#cfdcd4;transition:transform .15s}
+.switch input:checked+.track{background:var(--green)}
+.switch input:checked+.track::after{transform:translateX(22px)}
+.switch input:focus-visible+.track{outline:3px solid var(--gold);outline-offset:3px}
+.texts{margin-top:18px}
+.texts[hidden]{display:none}
+label.range{display:block;font-weight:600;margin-bottom:6px}
+input[type=range]{width:100%;accent-color:var(--green);height:28px}
+.rangeval{font:800 1.1rem var(--display);color:var(--gold)}
+.hint{font-size:.88rem;color:var(--muted);margin:.3em 0 0}
+.summary{position:sticky;top:88px;background:linear-gradient(160deg,var(--surface),var(--bg-alt));border:1px solid var(--line-hi);border-radius:var(--r-lg);padding:28px}
+.summary .total{font:900 3.2rem/1 var(--display);color:var(--text);margin:6px 0 4px}
+.summary .total small{font:500 1rem var(--body);color:var(--muted)}
+.summary ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:9px}
+.summary li{padding-left:28px;position:relative;color:var(--muted);font-size:.95rem}
+.summary li::before{content:"";position:absolute;left:4px;top:.45em;width:12px;height:7px;border-left:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:rotate(-45deg)}
+.summary li strong{color:var(--text);font-weight:600}
+.lines{border-top:1px solid var(--line);margin-top:18px;padding-top:14px;display:grid;gap:6px;font-size:.92rem;color:var(--muted)}
+.lines div{display:flex;justify-content:space-between;gap:10px}
+
+/* calc */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px;align-items:start}
+@media (max-width:900px){.calc{grid-template-columns:1fr}}
+.inputs{display:grid;gap:26px;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px}
+.inputs .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.result{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px}
+.big{font:900 clamp(2.6rem,6vw,3.6rem)/1 var(--display);color:var(--green)}
+.bars{display:grid;gap:14px;margin:26px 0}
+.barrow .lab{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);margin-bottom:6px}
+.barrow .lab b{color:var(--text)}
+.bar{height:16px;border-radius:999px;background:#1b2a23;overflow:hidden}
+.bar span{display:block;height:100%;border-radius:999px;transition:width .35s}
+.bar .rev{background:var(--green)}
+.bar .cost{background:var(--gold)}
+.callout{background:rgba(77,175,130,.1);border:1px solid rgba(77,175,130,.3);border-radius:var(--r-md);padding:16px 18px;color:var(--text)}
+.fine{font-size:.82rem;color:var(--muted);margin-top:14px}
+
+/* timeline */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:44px;counter-reset:s;position:relative}
+.steps::before{content:"";position:absolute;top:21px;left:12%;right:12%;height:2px;background:var(--line-hi)}
+.step{text-align:center;padding:0 12px;position:relative}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;margin:0 auto 16px;border-radius:50%;background:var(--bg);border:2px solid var(--green);color:var(--green);font:800 1.05rem var(--display);position:relative}
+.step b{display:block;font-family:var(--display);color:var(--gold);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.step p{margin:0;color:var(--muted);font-size:.95rem}
+@media (max-width:760px){.steps{grid-template-columns:1fr;gap:24px}.steps::before{left:21px;right:auto;top:10px;bottom:10px;width:2px;height:auto}.step{text-align:left;padding:0 0 0 64px;min-height:44px}.step::before{position:absolute;left:0;top:0;margin:0}}
+
+/* faq */
+.faq{margin-top:36px;display:grid;gap:12px;max-width:820px}
+details{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-md);padding:4px 20px}
+details[open]{border-color:var(--line-hi)}
+summary{cursor:pointer;list-style:none;font:700 1.05rem var(--display);padding:16px 30px 16px 0;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:12px;font-size:1.5rem;color:var(--green)}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 18px;color:var(--muted)}
+
+/* why + close */
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:36px}
+.why div{border-left:3px solid var(--gold);padding:4px 0 4px 18px}
+.why p{color:var(--muted);margin:0}
+.close{text-align:center;background:radial-gradient(700px 360px at 50% 0%,rgba(77,175,130,.18),transparent 70%)}
+.close .lede{margin-inline:auto}
+.close .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+.choice{display:inline-block;margin-top:22px;background:var(--bg-alt);border:1px solid var(--line-hi);border-radius:999px;padding:10px 20px;color:var(--muted)}
+.choice b{color:var(--gold)}
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/brand%20assets/Bristol%20Business%20Systems%20Logo.png" alt=""><span>Bristol Business Systems</span></a>
+    <nav aria-label="Sections">
+      <a href="#tour">The site</a>
+      <a href="#plans">Plans</a>
+      <a href="#worth">What it's worth</a>
+      <a href="#next">Next steps</a>
+    </nav>
+    <a class="btn btn-primary" href="tel:+18023773369" style="padding:11px 18px;font-size:.9rem">Call Shawn</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="for"><b>Prepared for</b> Bristol Automotive · 13 South St, Bristol VT</span>
+      <h1>Your website is <em>already built.</em></h1>
+      <p class="lede">You'd be the only repair shop in Bristol with a real website. It answers the "are you open?" questions for you, takes repair requests while you're under a car, and can book and remind customers on its own.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://seashell-dog-230030.hostingersite.com/" target="_blank" rel="noopener">Open your live site →</a>
+        <a class="btn btn-ghost" href="#plans">See plans from $49/mo</a>
+      </div>
+    </div>
+    <div class="devices" aria-hidden="true">
+      <div class="laptop"><div class="bar"><i></i><i></i><i></i></div><img src="img/desk-home.jpg" alt="" width="1800" height="1125"></div>
+      <div class="phone"><img src="img/mob-home.jpg" alt="" width="780" height="1688"></div>
+    </div>
+  </div>
+</section>
+
+<section id="why-now">
+  <div class="wrap">
+    <span class="eyebrow">Why now</span>
+    <h2>Your customers already love you. Online, they can't find you.</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">0 of 6</div><p><strong>repair shops in Bristol</strong> have a working website of their own. You'd be first.</p></div>
+      <div class="stat"><div class="num">4.8★</div><p><strong>from about 49 Google reviews</strong>, praising fast work, fair prices, and Pat by name. Today there's nowhere to send those people.</p></div>
+      <div class="stat"><div class="num">3</div><p><strong>different Saturday hours</strong> listed across the web. A website gives one official answer Google can trust.</p></div>
+      <div class="stat"><div class="num">24/7</div><p><strong>answers the phone questions.</strong> "Are you open? Where are you? Do you do inspections?" No more stopping work in the bay.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tour">
+  <div class="wrap">
+    <span class="eyebrow">Take the tour</span>
+    <h2>Four pages, built for every driver in town.</h2>
+    <p class="lede">Big readable text, big buttons, and it loads fast on a weak country signal. Pick a page to look around.</p>
+    <div class="tabs" role="tablist" aria-label="Pages">
+      <button class="tab" role="tab" aria-selected="true" data-page="home">Home</button>
+      <button class="tab" role="tab" aria-selected="false" data-page="services">Services</button>
+      <button class="tab" role="tab" aria-selected="false" data-page="contact">Contact</button>
+      <div class="viewtoggle" role="group" aria-label="Screen size">
+        <button aria-pressed="true" data-view="desk">Computer</button>
+        <button aria-pressed="false" data-view="mob">Phone</button>
+      </div>
+    </div>
+    <div class="tour">
+      <div id="shot" class="shot"><img id="shotimg" src="img/desk-home.jpg" alt="Bristol Automotive home page on a computer"></div>
+      <div>
+        <ul id="notes"></ul>
+        <div class="live">
+          <a id="livelink" class="btn btn-ghost" href="https://seashell-dog-230030.hostingersite.com/" target="_blank" rel="noopener">Try this page live →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plans">
+  <div class="wrap">
+    <span class="eyebrow">Build your plan</span>
+    <h2>One monthly price. No big upfront bill.</h2>
+    <p class="lede">Pick what fits now. You can add booking or texts any time.</p>
+    <div class="builder">
+      <div class="plans">
+        <label class="plan">
+          <input type="radio" name="plan" value="A" checked>
+          <span class="dot"></span>
+          <div class="head"><h3>A · Website <span class="tag">Start here</span></h3><span class="price">$49<small>/mo</small></span></div>
+          <p>The four-page site with the take-apart car, a repair request form sent to your email, plus domain, hosting, security, backups, updates, and small changes.</p>
+        </label>
+        <label class="plan">
+          <input type="radio" name="plan" value="B">
+          <span class="dot"></span>
+          <div class="head"><h3>B · Website + booking</h3><span class="price">$89<small>/mo total</small></span></div>
+          <p>Everything in A. Requests turn into bookings: customers pick from times you actually have free, and your calendar fills itself in. Includes a customer list with each car's history.</p>
+        </label>
+        <div class="addon" id="addon">
+          <label class="switch">
+            <input type="checkbox" id="sms">
+            <span class="track"></span>
+            <span><h3 style="margin:0">C · Text messages <span class="tag">Add-on</span></h3><span class="hint" style="margin:0">+$19/mo, includes 300 texts. An instant "we got it" text and a reminder the day before.</span></span>
+          </label>
+          <div class="texts" id="textsbox" hidden>
+            <div class="row" style="display:flex;justify-content:space-between;align-items:baseline">
+              <label class="range" for="texts">Texts per month</label><span class="rangeval" id="textsval">200</span>
+            </div>
+            <input type="range" id="texts" min="50" max="800" step="10" value="200">
+            <p class="hint">Each customer usually gets 2 texts. Over 300 in a month is 5¢ each.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="summary" aria-live="polite">
+        <span class="eyebrow" style="margin-bottom:4px">Your plan</span>
+        <div class="total" id="total">$49<small>/mo</small></div>
+        <div class="hint" id="planname">Website</div>
+        <ul id="incl"></ul>
+        <div class="lines" id="lines"></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="worth">
+  <div class="wrap">
+    <span class="eyebrow">What it's worth</span>
+    <h2>How many jobs does it take to pay for itself?</h2>
+    <p class="lede">People search at 10 p.m. and won't call until morning, or they call someone else. Move the sliders to match your shop.</p>
+    <div class="calc">
+      <div class="inputs">
+        <div>
+          <div class="row"><label class="range" for="leads">New people who find you online, per week</label><span class="rangeval" id="leadsval">3</span></div>
+          <input type="range" id="leads" min="1" max="20" step="1" value="3">
+          <p class="hint">People who land on your site and send a request or call.</p>
+        </div>
+        <div>
+          <div class="row"><label class="range" for="conv">How many of them become a job</label><span class="rangeval" id="convval">25%</span></div>
+          <input type="range" id="conv" min="5" max="80" step="5" value="25">
+        </div>
+        <div>
+          <div class="row"><label class="range" for="ticket">Average repair bill</label><span class="rangeval" id="ticketval">$450</span></div>
+          <input type="range" id="ticket" min="100" max="1500" step="25" value="450">
+          <p class="hint">A typical US repair-shop bill is roughly $400–500. Use your own number.</p>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <span class="eyebrow">Extra work per month</span>
+        <div class="big" id="rev">$1,463</div>
+        <p class="hint" id="jobs">about 3 extra jobs a month</p>
+        <div class="bars">
+          <div class="barrow"><div class="lab"><span>Extra repair revenue</span><b id="revb">$1,463</b></div><div class="bar"><span class="rev" id="revbar"></span></div></div>
+          <div class="barrow"><div class="lab"><span>Your plan</span><b id="costb">$49</b></div><div class="bar"><span class="cost" id="costbar"></span></div></div>
+        </div>
+        <div class="callout" id="payback">One repair job covers the website for 9 months.</div>
+        <p class="fine">An illustration from the numbers you choose, not a promise. Your plan cost follows the plan you picked above.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="when">
+  <div class="wrap">
+    <span class="eyebrow">How fast</span>
+    <h2>Live in about a week.</h2>
+    <div class="steps">
+      <div class="step"><b>Today</b><p>Pick a plan and answer a few quick questions: where requests go, your legal name, the domain.</p></div>
+      <div class="step"><b>+2–3 days</b><p>Your answers dropped in, logo signed off, request emails set up.</p></div>
+      <div class="step"><b>+1 week</b><p>Live on your own domain. Google listing pointed at it.</p></div>
+      <div class="step"><b>With B or C</b><p>Text registration starts right away. Booking live in about 2–3 weeks.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Fair questions</span>
+    <h2>What owners usually ask.</h2>
+    <div class="faq">
+      <details><summary>Most of my customers just call.</summary><p>Good. Call is the biggest button on every page. The site handles the people who search at night and would otherwise call someone else in the morning.</p></details>
+      <details><summary>I don't have time to keep a website up.</summary><p>You don't touch it. Updates, backups and changes are included. Text Shawn a new photo or new hours and it's done.</p></details>
+      <details><summary>Will booking put me in slots I can't do?</summary><p>No. With plan B you choose the job first, and it only offers times that are free in your calendar. Anyone can still just call.</p></details>
+      <details><summary>Facebook works fine for us.</summary><p>Keep it. The website is the one place that is always right and that Google trusts, and it links to your Facebook page.</p></details>
+      <details><summary>Do I have to sign something long?</summary><p>It's month to month. Shawn will go through the terms with you.</p></details>
+      <details><summary>Who owns the site?</summary><p>You own your domain and your content. One monthly fee, no lock-in surprises.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="next" class="close">
+  <div class="wrap">
+    <span class="eyebrow">Next step</span>
+    <h2>Let's get it live.</h2>
+    <p class="lede">We're right here in Bristol. The person who built it picks up the phone.</p>
+    <div class="choice" id="choice">You picked: <b>Website · $49/mo</b></div>
+    <div class="cta">
+      <a class="btn btn-primary" href="tel:+18023773369">Call Shawn · (802) 377-3369</a>
+      <a class="btn btn-ghost" href="https://crm.bristolbusinesssystems.com/book/bristol-business-systems" target="_blank" rel="noopener">Book a time to talk</a>
+    </div>
+    <p class="fine">Or email contact@bristolbusinesssystems.com</p>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Bristol Business Systems · Bristol, Vermont</span><span>Prepared for Bristol Automotive</span></div></footer>
+
+<script>
+(function(){
+  var SITE='https://seashell-dog-230030.hostingersite.com';
+  var PAGES={
+    home:{path:'/',label:'home page',notes:[
+      ['The car that takes itself apart','Move the slider, or scroll on a phone. Each part is labelled and jumps to that service.'],
+      ['Call first','A big Call button and today’s hours, right at the top.'],
+      ['Your reviews, front and centre','The people who read your 4.8★ reviews finally have somewhere to land.']]},
+    services:{path:'/services/',label:'services page',notes:[
+      ['Everything you fix, in plain words','Brakes, tires, exhaust, suspension, electrical, engine, transmission, rust, oil changes, and Vermont inspection.'],
+      ['One tap to a request','Each service opens a repair request that’s already filled in.'],
+      ['Found on Google','Proper titles and local-business details so searches for repairs in Bristol find you.']]},
+    contact:{path:'/contact/',label:'contact page',notes:[
+      ['Call, then directions','Phone first, then your address with a directions button and today’s hours.'],
+      ['A 5-question request form','Year, make, model, and what it’s doing, in plain words. Sent straight to your email.'],
+      ['No “click the traffic lights”','Spam is blocked without puzzles, so older customers aren’t stuck.']]}
+  };
+  var page='home', view='desk';
+  var img=document.getElementById('shotimg'), shot=document.getElementById('shot'), notes=document.getElementById('notes'), live=document.getElementById('livelink');
+  function renderTour(){
+    var p=PAGES[page];
+    img.src='img/'+view+'-'+page+'.jpg';
+    img.alt='Bristol Automotive '+p.label+(view==='mob'?' on a phone':' on a computer');
+    shot.classList.toggle('mobile',view==='mob'); shot.scrollTop=0;
+    notes.innerHTML=p.notes.map(function(n){return '<li><strong>'+n[0]+'</strong>'+n[1]+'</li>';}).join('');
+    live.href=SITE+p.path;
+  }
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected',x===t);});
+    page=t.dataset.page; renderTour();
+  });});
+  document.querySelectorAll('.viewtoggle button').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('.viewtoggle button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    view=b.dataset.view; renderTour();
+  });});
+  renderTour();
+
+  var $=function(id){return document.getElementById(id);};
+  var money=function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+  var money2=function(n){return '$'+n.toFixed(2).replace(/\.00$/,'');};
+  var INCL={
+    A:['<strong>Four-page website</strong> with the take-apart car','Repair requests sent to your email','Domain, hosting, security, backups','Updates and small changes included'],
+    B:['<strong>Everything in A</strong>','Customers book real open times','Your calendar fills itself in','"Got your request" and booked emails','Customer list with each car’s history']
+  };
+  var monthly=49;
+  function renderPlan(){
+    var plan=document.querySelector('input[name=plan]:checked').value;
+    var sms=$('sms').checked, texts=+$('texts').value;
+    var base=plan==='A'?49:89, add=0, over=0;
+    $('addon').classList.toggle('on',sms); $('textsbox').hidden=!sms;
+    $('textsval').textContent=texts;
+    if(sms){add=19; over=Math.max(0,texts-300)*0.05;}
+    monthly=base+add+over;
+    $('total').innerHTML=money2(monthly)+'<small>/mo</small>';
+    var name=(plan==='A'?'Website':'Website + booking')+(sms?' + texts':'');
+    $('planname').textContent=name;
+    var items=INCL[plan].slice();
+    if(sms) items.push('<strong>Texts:</strong> instant reply + day-before reminder ('+Math.round(texts/2)+' customers/mo)');
+    $('incl').innerHTML=items.map(function(i){return '<li>'+i+'</li>';}).join('');
+    var lines='<div><span>'+(plan==='A'?'A · Website':'B · Website + booking')+'</span><span>$'+base+'</span></div>';
+    if(sms){lines+='<div><span>C · Texts (300 included)</span><span>$19</span></div>';
+      if(over>0) lines+='<div><span>'+(texts-300)+' extra texts × 5¢</span><span>'+money2(over)+'</span></div>';}
+    $('lines').innerHTML=lines;
+    $('choice').innerHTML='You picked: <b>'+name+' · '+money2(monthly)+'/mo</b>';
+    renderCalc();
+  }
+  function renderCalc(){
+    var leads=+$('leads').value, conv=+$('conv').value/100, ticket=+$('ticket').value;
+    $('leadsval').textContent=leads; $('convval').textContent=Math.round(conv*100)+'%'; $('ticketval').textContent=money(ticket);
+    var jobs=leads*52/12*conv, rev=jobs*ticket;
+    $('rev').textContent=money(rev); $('revb').textContent=money(rev); $('costb').textContent=money2(monthly);
+    $('jobs').textContent='about '+(jobs<1?jobs.toFixed(1):Math.round(jobs))+' extra job'+(Math.round(jobs)===1?'':'s')+' a month';
+    var max=Math.max(rev,monthly);
+    $('revbar').style.width=(rev/max*100)+'%'; $('costbar').style.width=Math.max(1.5,monthly/max*100)+'%';
+    var months=ticket/monthly;
+    $('payback').textContent= months>=1
+      ? 'One '+money(ticket)+' repair job covers this plan for '+Math.floor(months)+' month'+(Math.floor(months)===1?'':'s')+'.'
+      : 'It takes '+Math.ceil(monthly/ticket)+' jobs a month to cover this plan.';
+  }
+  document.querySelectorAll('input[name=plan]').forEach(function(r){r.addEventListener('change',renderPlan);});
+  ['sms','texts'].forEach(function(id){$(id).addEventListener('input',renderPlan);});
+  ['leads','conv','ticket'].forEach(function(id){$(id).addEventListener('input',renderCalc);});
+  renderPlan();
+})();
+</script>
+</body>
+</html>
