@@ -66,7 +66,7 @@ section{padding-block:clamp(64px,9vw,112px);border-top:1px solid var(--line)}
 .laptop .bar{height:26px;background:#1b2a23;display:flex;gap:6px;align-items:center;padding-left:12px}
 .laptop .bar i{width:9px;height:9px;border-radius:50%;background:#3d5248}
 .phone{position:absolute;right:-8px;bottom:0;width:30%;border-radius:22px;overflow:hidden;border:4px solid #1b2a23;box-shadow:0 20px 50px rgba(0,0,0,.6)}
-@media (max-width:520px){.phone{display:none}.devices{padding-bottom:0}}
+@media (max-width:620px){.laptop{display:none}.devices{padding-bottom:0}.phone{position:static;width:62%;max-width:260px;margin:8px auto 0}}
 
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:40px}
@@ -102,6 +102,7 @@ section{padding-block:clamp(64px,9vw,112px);border-top:1px solid var(--line)}
 .plan:has(input:checked){border-color:var(--green);background:var(--bg-alt)}
 .plan:has(input:checked) .dot{border-color:var(--green);background:radial-gradient(circle,var(--green) 45%,transparent 50%)}
 .plan:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:3px}
+.plan .head h3{margin:0}
 .plan .head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
 .plan .price{font:800 1.3rem var(--display);color:var(--gold);white-space:nowrap}
 .plan .price small{font:500 .85rem var(--body);color:var(--muted)}
@@ -209,8 +210,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       </div>
     </div>
     <div class="devices" aria-hidden="true">
-      <div class="laptop"><div class="bar"><i></i><i></i><i></i></div><img src="img/desk-home.jpg" alt="" width="1800" height="1125"></div>
-      <div class="phone"><img src="img/mob-home.jpg" alt="" width="780" height="1688"></div>
+      <div class="laptop"><div class="bar"><i></i><i></i><i></i></div><img src="/pitch/bristol-automotive/img/desk-home.jpg" alt="" width="1800" height="1125"></div>
+      <div class="phone"><img src="/pitch/bristol-automotive/img/mob-home.jpg" alt="" width="780" height="1688"></div>
     </div>
   </div>
 </section>
@@ -243,7 +244,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       </div>
     </div>
     <div class="tour">
-      <div id="shot" class="shot"><img id="shotimg" src="img/desk-home.jpg" alt="Bristol Automotive home page on a computer"></div>
+      <div id="shot" class="shot"><img id="shotimg" src="/pitch/bristol-automotive/img/desk-home.jpg" alt="Bristol Automotive home page on a computer"></div>
       <div>
         <ul id="notes"></ul>
         <div class="live">
@@ -398,11 +399,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       ['A 5-question request form','Year, make, model, and what it’s doing, in plain words. Sent straight to your email.'],
       ['No “click the traffic lights”','Spam is blocked without puzzles, so older customers aren’t stuck.']]}
   };
-  var page='home', view='desk';
+  var page='home', view=window.matchMedia('(max-width:620px)').matches?'mob':'desk';
+  document.querySelectorAll('.viewtoggle button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.view===view);});
   var img=document.getElementById('shotimg'), shot=document.getElementById('shot'), notes=document.getElementById('notes'), live=document.getElementById('livelink');
   function renderTour(){
     var p=PAGES[page];
-    img.src='img/'+view+'-'+page+'.jpg';
+    img.src='/pitch/bristol-automotive/img/'+view+'-'+page+'.jpg';
     img.alt='Bristol Automotive '+p.label+(view==='mob'?' on a phone':' on a computer');
     shot.classList.toggle('mobile',view==='mob'); shot.scrollTop=0;
     notes.innerHTML=p.notes.map(function(n){return '<li><strong>'+n[0]+'</strong>'+n[1]+'</li>';}).join('');
