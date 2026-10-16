@@ -42,11 +42,17 @@ h1 em{font-style:normal;color:var(--green)}
 .btn{display:inline-flex;align-items:center;font:700 1rem/1 var(--display);padding:17px 26px;border-radius:999px;text-decoration:none;background:var(--green);color:#fff}
 
 /* night-sky panel */
-.orrery{position:relative;margin:0;border-radius:28px;overflow:hidden;isolation:isolate;
-  background:radial-gradient(120% 90% at 50% 45%,var(--sky-1) 0%,var(--sky-2) 55%,var(--sky-3) 100%);
-  border:1px solid var(--sky-line);box-shadow:0 30px 70px rgba(4,16,11,.35)}
-.orrery::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(40% 30% at 22% 18%,rgba(77,175,130,.16),transparent 70%),radial-gradient(35% 28% at 82% 80%,rgba(208,182,134,.12),transparent 70%)}
+.sky-hero{position:relative;overflow:hidden;isolation:isolate;color:var(--sky-ink);
+  background:radial-gradient(90% 120% at 72% 45%,var(--sky-1) 0%,var(--sky-2) 50%,var(--sky-3) 100%)}
+.sky-hero .nebula{position:absolute;inset:-40px;z-index:-1;pointer-events:none;will-change:transform;
+  background:radial-gradient(30% 35% at 18% 22%,rgba(77,175,130,.16),transparent 70%),radial-gradient(28% 30% at 85% 82%,rgba(208,182,134,.12),transparent 70%),radial-gradient(22% 26% at 52% 92%,rgba(77,175,130,.08),transparent 70%)}
+#starfield{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.sky-hero h1{color:var(--sky-ink)}
+.sky-hero h1 em{color:var(--green-lt)!important}
+.sky-hero .sub{color:var(--sky-muted)}
+.sky-hero .badges span{background:rgba(9,26,19,.6);border-color:var(--sky-line);color:var(--sky-ink)}
+.sky-hero .btn{background:var(--green-lt);color:#04140c}
+.orrery{position:relative;margin:0;will-change:transform}
 .orrery svg{display:block;width:100%;height:auto;touch-action:manipulation}
 svg text{text-rendering:geometricPrecision}
 #stars,#meteor,#rings-back,#rings-front,#shop,#sparks{pointer-events:none}
@@ -75,13 +81,18 @@ svg text{text-rendering:geometricPrecision}
 .caption span{display:block;color:var(--sky-muted);font-size:.9rem;margin-top:2px}
 .hint{position:absolute;left:0;right:0;bottom:14px;margin:0;text-align:center;font:500 .7rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sky-muted);pointer-events:none;transition:opacity .3s}
 .note{border-top:1px solid var(--card-line);padding-block:20px 40px;color:var(--muted);font-size:.88rem}
-@media (prefers-reduced-motion:reduce){.twinkle{animation:none}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="bar"><span><b>Bristol Business Systems</b> · hero illustration demo</span><button class="toggle" id="theme" type="button">Switch to dark</button></div>
 
+</div>
+<div class="sky-hero" id="skyhero">
+  <div class="nebula" id="nebula"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="wrap">
   <section class="hero" aria-labelledby="h">
     <div>
       <div class="badges"><span>Built for Small &amp; Medium Business</span><span>Bristol, Vermont</span></div>
@@ -116,8 +127,6 @@ svg text{text-rendering:geometricPrecision}
             <stop offset="1" stop-color="#fff" stop-opacity=".9"/>
           </linearGradient>
         </defs>
-        <g id="stars"></g>
-        <line id="meteor" x1="0" y1="0" x2="0" y2="0" stroke="url(#trail)" stroke-width="1.6" stroke-linecap="round" opacity="0"/>
         <g id="rings-back"></g>
         <g id="layer-back"></g>
         <g id="shop" aria-hidden="true">
@@ -146,8 +155,10 @@ svg text{text-rendering:geometricPrecision}
       <p class="hint" id="hint">Point at a planet to see what it does</p>
     </figure>
   </section>
-
-  <p class="note">Demo for review. Not linked from the site and hidden from search engines. Respects reduced-motion settings and pauses when off-screen.</p>
+  </div>
+</div>
+<div class="wrap">
+  <p class="note" style="margin-top:0;border-top:0">Demo for review. Not linked from the site and hidden from search engines. Respects reduced-motion settings and pauses when off-screen.</p>
 </div>
 
 <script>
@@ -163,16 +174,6 @@ svg text{text-rendering:geometricPrecision}
   function lab(){tb.textContent=isDark()?'Switch to light':'Switch to dark';}
   tb.addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');lab();});lab();
 
-  /* stars: seeded so the sky looks the same on every load */
-  var seed=7; function rnd(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646;}
-  var sg=$('stars');
-  for(var i=0;i<170;i++){
-    var x=VB.x+rnd()*VB.w, y=VB.y+rnd()*VB.h, big=rnd()<.1;
-    var dx=x-CX, dy=(y-CY)*1.6; if(Math.hypot(dx,dy)<120)continue;      // keep the sun's glow clean
-    var s=el('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:(big?1.3+rnd()*.7:.35+rnd()*.75).toFixed(2),class:'star'+(rnd()<.18?' warm':''),'fill-opacity':(.35+rnd()*.65).toFixed(2)},sg);
-    if(rnd()<.45){s.classList.add('twinkle');s.style.setProperty('--d',(2.5+rnd()*4).toFixed(1)+'s');s.style.setProperty('--o',(-rnd()*6).toFixed(1)+'s');}
-    if(big){el('path',{d:'M'+(x-3.5).toFixed(1)+' '+y.toFixed(1)+'h7M'+x.toFixed(1)+' '+(y-3.5).toFixed(1)+'v7',stroke:'#f4f8ef','stroke-width':.6,opacity:.55},sg);}
-  }
 
   /* orbits */
   var RINGS=[{a:168,b:68,tilt:-6,period:30},{a:236,b:96,tilt:5,period:46},{a:300,b:122,tilt:-3,period:66}];
@@ -243,6 +244,7 @@ svg text{text-rendering:geometricPrecision}
 
   /* focus: freeze the system, lift the chosen planet, caption beside it */
   var focused=null, pinned=false, clearT=null, cap=$('cap'), hint=$('hint'), fig=$('orrery'), svg=$('sky');
+  if(window.matchMedia('(hover: none)').matches)hint.textContent='Tap a planet to see what it does';
   function setFocus(p){clearTimeout(clearT);focused=p;$('capt').textContent=p.name;$('capd').textContent=p.d;$('capdot').style.background=p.c[1];
     RINGS.forEach(function(R,i){var on=i===p.ring;R.gb.classList.toggle('ring-on',on);R.gf.classList.toggle('ring-on',on);});
     cap.classList.add('show');hint.style.opacity=0;}
@@ -308,16 +310,6 @@ svg text{text-rendering:geometricPrecision}
     $('doorlight').style.opacity=(.75+.25*f).toFixed(2); $('glow').setAttribute('r',(180+12*f).toFixed(1));
   }
 
-  /* a shooting star now and then */
-  var met=$('meteor'), metNext=performance.now()+2500, metS=null;
-  function stepMeteor(now){
-    if(!metS&&now>metNext){metS={x:VB.x+Math.random()*VB.w*.6,y:VB.y+10+Math.random()*90,t0:now};}
-    if(!metS)return;
-    var t=(now-metS.t0)/900; if(t>=1){met.setAttribute('opacity',0);metS=null;metNext=now+5000+Math.random()*6000;return;}
-    var hx=metS.x+t*260, hy=metS.y+t*110, L=70*Math.sin(Math.PI*t);
-    met.setAttribute('x1',(hx-L*.92).toFixed(1));met.setAttribute('y1',(hy-L*.39).toFixed(1));met.setAttribute('x2',hx.toFixed(1));met.setAttribute('y2',hy.toFixed(1));
-    met.setAttribute('opacity',Math.sin(Math.PI*t).toFixed(2));
-  }
 
   /* loop: when a planet is in focus the whole system eases to a full stop */
   var speed=1, last=null, clock=0, nextSpark=0, running=true;
@@ -331,7 +323,7 @@ svg text{text-rendering:geometricPrecision}
     PLANETS.forEach(function(p){place(p,p.phase+clock*2*Math.PI/RINGS[p.ring].period,now);});
     if(focused)placeCaption(focused);
     if(now>nextSpark&&!focused){spawn(now);nextSpark=now+900+Math.random()*700;}
-    stepSparks(now); stepMeteor(now);
+    stepSparks(now);
     requestAnimationFrame(frame);
   }
   if(reduce){
@@ -342,6 +334,63 @@ svg text{text-rendering:geometricPrecision}
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!running){running=true;requestAnimationFrame(frame);}running=v;}).observe(fig);
   }
+  document.addEventListener('visibilitychange',function(){if(document.hidden)running=false;else if(!running){running=true;requestAnimationFrame(frame);}});
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+/* full-hero starfield on a canvas, with gentle mouse parallax */
+(function(){
+  var hero=document.getElementById('skyhero'), cv=document.getElementById('starfield'), ctx=cv.getContext('2d');
+  var neb=document.getElementById('nebula'), orr=document.getElementById('orrery');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var seed=11; function rnd(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646;}
+  // three depth layers: far stars barely move, near ones move most
+  var LAYERS=[{n:260,r:[.3,.8],a:[.25,.6],par:4},{n:120,r:[.6,1.2],a:[.4,.8],par:9},{n:40,r:[1,1.8],a:[.6,1],par:16}];
+  var stars=[];
+  LAYERS.forEach(function(L,li){for(var i=0;i<L.n;i++)stars.push({x:rnd(),y:rnd(),r:L.r[0]+rnd()*(L.r[1]-L.r[0]),a:L.a[0]+rnd()*(L.a[1]-L.a[0]),
+    tw:rnd()<.4?1.5+rnd()*3.5:0,ph:rnd()*6.28,warm:rnd()<.16,cross:li===2&&rnd()<.35,L:li});});
+  var W=0,H=0,dpr=1;
+  function size(){dpr=Math.min(2,window.devicePixelRatio||1);var r=hero.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);}
+  size(); if('ResizeObserver' in window)new ResizeObserver(size).observe(hero); else window.addEventListener('resize',size);
+
+  var mx=0,my=0,px=0,py=0;                       // target and smoothed pointer (-1..1)
+  if(!reduce){
+    hero.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var r=hero.getBoundingClientRect();mx=((e.clientX-r.left)/r.width-.5)*2;my=((e.clientY-r.top)/r.height-.5)*2;});
+    hero.addEventListener('pointerleave',function(){mx=0;my=0;});
+  }
+  var met=null, metNext=performance.now()+2500;
+  function draw(now){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<stars.length;i++){
+      var s=stars[i], par=LAYERS[s.L].par;
+      var x=s.x*W-px*par, y=s.y*H-py*par;
+      var a=s.a*(s.tw&&!reduce?(.55+.45*Math.sin(now/1000*s.tw+s.ph)):1);
+      ctx.globalAlpha=a; ctx.fillStyle=s.warm?'#f1dcae':'#f4f8ef';
+      ctx.beginPath(); ctx.arc(x,y,s.r,0,6.2832); ctx.fill();
+      if(s.cross){ctx.globalAlpha=a*.45;ctx.fillRect(x-4,y-.3,8,.6);ctx.fillRect(x-.3,y-4,.6,8);}
+    }
+    if(!reduce){
+      if(!met&&now>metNext)met={x:rnd()*W*.7,y:rnd()*H*.35,t0:now,len:60+rnd()*50};
+      if(met){var t=(now-met.t0)/950;
+        if(t>=1){met=null;metNext=now+5000+rnd()*7000;}
+        else{var hx=met.x+t*W*.28, hy=met.y+t*W*.12, L=met.len*Math.sin(Math.PI*t), g=ctx.createLinearGradient(hx-L*.92,hy-L*.39,hx,hy);
+          g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(1,'rgba(255,255,255,.9)');
+          ctx.globalAlpha=Math.sin(Math.PI*t);ctx.strokeStyle=g;ctx.lineWidth=1.6;ctx.lineCap='round';
+          ctx.beginPath();ctx.moveTo(hx-L*.92,hy-L*.39);ctx.lineTo(hx,hy);ctx.stroke();}}
+    }
+    ctx.globalAlpha=1;
+  }
+  var running=true;
+  function frame(now){
+    if(!running)return;
+    px+=(mx-px)*.05; py+=(my-py)*.05;
+    neb.style.transform='translate('+(-px*6).toFixed(2)+'px,'+(-py*6).toFixed(2)+'px)';
+    orr.style.transform='translate('+(px*10).toFixed(2)+'px,'+(py*7).toFixed(2)+'px)';
+    draw(now); requestAnimationFrame(frame);
+  }
+  if(reduce){draw(0);window.addEventListener('resize',function(){draw(0);});return;}
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!running){running=true;requestAnimationFrame(frame);}running=v;}).observe(hero);
   document.addEventListener('visibilitychange',function(){if(document.hidden)running=false;else if(!running){running=true;requestAnimationFrame(frame);}});
   requestAnimationFrame(frame);
 })();
