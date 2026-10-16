@@ -1,0 +1,58 @@
+/* Homepage hero: night sky + "My Business" orrery. Copied from /demo/hero/ (the demo is the place to experiment). */
+.hero.hero-sky{
+  --sky-1:#0d2a1f; --sky-2:#06140f; --sky-3:#030a07; --sky-line:rgba(176,219,185,.16);
+  --sky-ink:#e9f2ec; --sky-muted:#a7bcae; --brass:#D0B686; --brass-dim:rgba(208,182,134,.28);
+  --display:'Montserrat',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  isolation:isolate; color:var(--sky-ink);
+  background:radial-gradient(90% 120% at 72% 45%,var(--sky-1) 0%,var(--sky-2) 50%,var(--sky-3) 100%);
+}
+.hero.hero-sky::before,.hero.hero-sky::after{display:none}
+.hero-sky .nebula{position:absolute;inset:-40px;z-index:-1;pointer-events:none;will-change:transform;
+  background:radial-gradient(30% 35% at 18% 22%,rgba(77,175,130,.16),transparent 70%),radial-gradient(28% 30% at 85% 82%,rgba(208,182,134,.12),transparent 70%),radial-gradient(22% 26% at 52% 92%,rgba(77,175,130,.08),transparent 70%)}
+.hero-sky .hero-grid{grid-template-columns:.95fr 1.15fr;gap:2.5rem}
+.hero-sky h1.hero-h1{color:var(--sky-ink)}
+.hero-sky h1.hero-h1 em{color:#4DAF82}
+.hero-sky .hero-sub{color:var(--sky-muted)}
+.hero-sky .hero-badge{background:rgba(9,26,19,.6);border-color:var(--sky-line);color:var(--sky-ink)}
+.hero-sky .btn-outline{color:var(--sky-ink);border-color:rgba(233,242,236,.35)}
+.hero-sky .btn-outline:hover{color:#fff;border-color:#4DAF82}
+.hero-sky .hero-stats{border-top-color:var(--sky-line)}
+.hero-sky .hero-stat strong{color:#4DAF82}
+.hero-sky .hero-stat span{color:var(--sky-muted)}
+.hero-sky .hero-visual{min-height:0;display:block;padding-bottom:0}
+@media (max-width:1040px){.hero-sky .hero-grid{grid-template-columns:1fr}}
+@media (max-width:700px){.hero-sky .hero-stats{border-top-color:var(--sky-line)}.hero-sky .hero-visual{min-height:0}}
+#starfield{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.orrery{position:relative;margin:0;will-change:transform}
+.orrery svg{display:block;width:100%;height:auto;touch-action:manipulation}
+svg text{text-rendering:geometricPrecision}
+.puff{opacity:0;animation:puff 5s ease-out infinite}
+.puff.p2{animation-delay:2.5s}
+@keyframes puff{0%{opacity:0;transform:translate(0,6px) scale(.5)}25%{opacity:.6}100%{opacity:0;transform:translate(6px,-14px) scale(1.3)}}
+.puff{transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:reduce){.puff{animation:none;opacity:.25}}
+#stars,#meteor,#rings-back,#rings-front,#shop,#sparks{pointer-events:none}
+.star{fill:#f4f8ef}
+.star.warm{fill:#f1dcae}
+.twinkle{animation:tw var(--d,4s) ease-in-out infinite;animation-delay:var(--o,0s)}
+@keyframes tw{0%,100%{opacity:1}50%{opacity:.18}}
+.ring-back{stroke:var(--brass-dim);fill:none;stroke-width:1.2;transition:stroke .3s}
+.ring-front{stroke:var(--brass);fill:none;stroke-width:1.4;opacity:.85;transition:stroke .3s,opacity .3s}
+.ticks{stroke:var(--brass);stroke-width:1;fill:none;opacity:.45}
+.ring-on .ring-back{stroke:rgba(241,220,174,.75)}
+.ring-on .ring-front{stroke:#f6e3b8;opacity:1}
+.planet{cursor:pointer;outline:none}
+.planet .label{font:500 12.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;fill:var(--sky-ink);paint-order:stroke;stroke:rgba(3,10,7,.85);stroke-width:3px}
+.planet .icon{stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;opacity:.92}
+.planet .focusring{fill:none;stroke:none}
+.planet:focus-visible .focusring{stroke:var(--brass);stroke-width:2.5;stroke-dasharray:4 4}
+.spark{fill:#f6e3b8}
+.caption{position:absolute;z-index:2;pointer-events:none;min-width:200px;max-width:260px;
+  background:rgba(9,26,19,.92);backdrop-filter:blur(6px);border:1px solid rgba(208,182,134,.45);border-radius:14px;
+  padding:12px 14px 12px 16px;color:var(--sky-ink);box-shadow:0 12px 30px rgba(0,0,0,.4);
+  opacity:0;transform:translateY(4px);transition:opacity .2s,transform .2s}
+.caption.show{opacity:1;transform:none}
+.caption b{display:flex;align-items:center;gap:8px;font:800 1rem var(--display)}
+.caption b i{width:10px;height:10px;border-radius:50%;flex:none}
+.caption span{display:block;color:var(--sky-muted);font-size:.9rem;margin-top:2px}
+.hint{position:absolute;left:0;right:0;bottom:14px;margin:0;text-align:center;font:500 .7rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sky-muted);pointer-events:none;transition:opacity .3s}
