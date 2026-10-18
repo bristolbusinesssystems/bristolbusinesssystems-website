@@ -109,6 +109,7 @@ section{padding-block:clamp(64px,9vw,112px);border-top:1px solid var(--line)}
 .plan p{margin:.4em 0 0;color:var(--muted);font-size:.96rem}
 .tag{font:700 .68rem var(--display);letter-spacing:.08em;text-transform:uppercase;background:rgba(208,182,134,.15);color:var(--gold);padding:4px 8px;border-radius:6px;margin-left:6px;vertical-align:middle}
 .addon{background:var(--bg-soft);border:2px dashed var(--line-hi);border-radius:var(--r-lg);padding:22px}
+.dirlist{background:var(--bg-soft);border:1px solid var(--line-hi);border-left:4px solid var(--gold);border-radius:var(--r-lg);padding:20px 22px}.dirlist h3{margin:0 0 6px}.dirlist .dom{color:var(--gold);overflow-wrap:anywhere}.dirlist p{margin:0;color:var(--muted);font-size:.95rem}
 .addon.on{border-style:solid;border-color:var(--green);background:var(--bg-alt)}
 .switch{display:flex;align-items:center;gap:14px;cursor:pointer}
 .switch input{position:absolute;opacity:0}
@@ -203,7 +204,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     <div>
       <span class="for"><b>Prepared for</b> Bristol Automotive · 13 South St, Bristol VT</span>
       <h1>Your website is <em>already built.</em></h1>
-      <p class="lede">You'd be the only repair shop in Bristol with a real website. It answers the "are you open?" questions for you, takes repair requests while you're under a car, and can book and remind customers on its own.</p>
+      <p class="lede">You&#x27;d be the only repair shop in Bristol with a real website. It answers the &quot;are you open?&quot; questions for you, takes repair requests while you&#x27;re under a car, and can book and remind customers on its own.</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://seashell-dog-230030.hostingersite.com/" target="_blank" rel="noopener">Open your live site →</a>
         <a class="btn btn-ghost" href="#plans">See plans from $49/mo</a>
@@ -219,13 +220,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 <section id="why-now">
   <div class="wrap">
     <span class="eyebrow">Why now</span>
-    <h2>Your customers already love you. Online, they can't find you.</h2>
-    <div class="stats">
-      <div class="stat"><div class="num">0 of 6</div><p><strong>repair shops in Bristol</strong> have a working website of their own. You'd be first.</p></div>
-      <div class="stat"><div class="num">4.8★</div><p><strong>from about 49 Google reviews</strong>, praising fast work, fair prices, and Pat by name. Today there's nowhere to send those people.</p></div>
-      <div class="stat"><div class="num">3</div><p><strong>different Saturday hours</strong> listed across the web. A website gives one official answer Google can trust.</p></div>
-      <div class="stat"><div class="num">24/7</div><p><strong>answers the phone questions.</strong> "Are you open? Where are you? Do you do inspections?" No more stopping work in the bay.</p></div>
-    </div>
+    <h2>Your customers already love you. Online, they can&#x27;t find you.</h2>
+    <div class="stats"><div class="stat"><div class="num">0 of 6</div><p><strong>repair shops in Bristol</strong> have a working website of their own. You&#x27;d be first.</p></div><div class="stat"><div class="num">4.8★</div><p><strong>from about 49 Google reviews,</strong> praising fast work, fair prices, and Pat by name. Today there&#x27;s nowhere to send those people.</p></div><div class="stat"><div class="num">3</div><p><strong>different Saturday hours</strong> listed across the web. A website gives one official answer Google can trust.</p></div><div class="stat"><div class="num">24/7</div><p><strong>answers the phone questions.</strong> &quot;Are you open? Where are you? Do you do inspections?&quot; No more stopping work in the bay.</p></div></div>
   </div>
 </section>
 
@@ -235,16 +231,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     <h2>Four pages, built for every driver in town.</h2>
     <p class="lede">Big readable text, big buttons, and it loads fast on a weak country signal. Pick a page to look around.</p>
     <div class="tabs" role="tablist" aria-label="Pages">
-      <button class="tab" role="tab" aria-selected="true" data-page="home">Home</button>
-      <button class="tab" role="tab" aria-selected="false" data-page="services">Services</button>
-      <button class="tab" role="tab" aria-selected="false" data-page="contact">Contact</button>
+      <button class="tab" role="tab" aria-selected="true" data-page="home">Home</button><button class="tab" role="tab" aria-selected="false" data-page="services">Services</button><button class="tab" role="tab" aria-selected="false" data-page="contact">Contact</button>
       <div class="viewtoggle" role="group" aria-label="Screen size">
         <button aria-pressed="true" data-view="desk">Computer</button>
         <button aria-pressed="false" data-view="mob">Phone</button>
       </div>
     </div>
     <div class="tour">
-      <div id="shot" class="shot"><img id="shotimg" src="/pitch/bristol-automotive/img/desk-home.jpg" alt="Bristol Automotive home page on a computer"></div>
+      <div id="shot" class="shot"><img id="shotimg" src="/pitch/bristol-automotive/img/desk-home.jpg" alt=""></div>
       <div>
         <ul id="notes"></ul>
         <div class="live">
@@ -262,37 +256,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     <p class="lede">Pick what fits now. You can add booking or texts any time.</p>
     <div class="builder">
       <div class="plans">
-        <label class="plan">
-          <input type="radio" name="plan" value="A" checked>
-          <span class="dot"></span>
-          <div class="head"><h3>A · Website <span class="tag">Start here</span></h3><span class="price">$49<small>/mo</small></span></div>
-          <p>The four-page site with the take-apart car, a repair request form sent to your email, plus domain, hosting, security, backups, updates, and small changes.</p>
-        </label>
-        <label class="plan">
-          <input type="radio" name="plan" value="B">
-          <span class="dot"></span>
-          <div class="head"><h3>B · Website + booking</h3><span class="price">$89<small>/mo total</small></span></div>
-          <p>Everything in A. Requests turn into bookings: customers pick from times you actually have free, and your calendar fills itself in. Includes a customer list with each car's history.</p>
-        </label>
-        <div class="addon" id="addon">
-          <label class="switch">
-            <input type="checkbox" id="sms">
-            <span class="track"></span>
-            <span><h3 style="margin:0">C · Text messages <span class="tag">Add-on</span></h3><span class="hint" style="margin:0">+$19/mo, includes 300 texts. An instant "we got it" text and a reminder the day before.</span></span>
-          </label>
-          <div class="texts" id="textsbox" hidden>
-            <div class="row" style="display:flex;justify-content:space-between;align-items:baseline">
-              <label class="range" for="texts">Texts per month</label><span class="rangeval" id="textsval">200</span>
-            </div>
-            <input type="range" id="texts" min="50" max="800" step="10" value="200">
-            <p class="hint">Each customer usually gets 2 texts. Over 300 in a month is 5¢ each.</p>
-          </div>
-        </div>
+        <label class="plan"><input type="radio" name="plan" value="A" checked><span class="dot"></span><div class="head"><h3>A · Website <span class="tag">Start here</span></h3><span class="price">$49<small>/mo</small></span></div><p>The four-page site with the take-apart car, a repair request form sent to your email, plus domain, hosting, security, backups, updates, and small changes.</p></label><label class="plan"><input type="radio" name="plan" value="B"><span class="dot"></span><div class="head"><h3>B · Website + booking</h3><span class="price">$89<small>/mo total</small></span></div><p>Everything in A. Requests turn into bookings: customers pick from times you actually have free, and your calendar fills itself in. Includes a customer list with each car&#x27;s history.</p></label>
+        <div class="addon" id="addon"><label class="switch"><input type="checkbox" id="addon-on"><span class="track"></span><span><h3 style="margin:0">C · Text messages <span class="tag">Add-on</span></h3><span class="hint" style="margin:0">+$19/mo, includes 300 texts. An instant &quot;we got it&quot; text and a reminder the day before.</span></span></label><div class="texts" id="unitsbox" hidden><div style="display:flex;justify-content:space-between;align-items:baseline"><label class="range" for="units">Texts per month</label><span class="rangeval" id="unitsval"></span></div><input type="range" id="units" min="50" max="800" step="10" value="200"><p class="hint">Each customer usually gets 2 texts. Over 300 in a month is 5¢ each.</p></div></div>
+        <div class="dirlist"><h3>Listed on <span class="dom">bristolbusinessdirect.com</span> <span class="tag">Included</span></h3><p>Because you're in Bristol, VT, Bristol Automotive is also included in Bristol Business Direct, the local directory for Bristol businesses, with a link straight to your new site. It comes with every plan.</p></div>
       </div>
       <aside class="summary" aria-live="polite">
         <span class="eyebrow" style="margin-bottom:4px">Your plan</span>
-        <div class="total" id="total">$49<small>/mo</small></div>
-        <div class="hint" id="planname">Website</div>
+        <div class="total" id="total"></div>
+        <div class="hint" id="planname"></div>
         <ul id="incl"></ul>
         <div class="lines" id="lines"></div>
       </aside>
@@ -304,33 +275,33 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   <div class="wrap">
     <span class="eyebrow">What it's worth</span>
     <h2>How many jobs does it take to pay for itself?</h2>
-    <p class="lede">People search at 10 p.m. and won't call until morning, or they call someone else. Move the sliders to match your shop.</p>
+    <p class="lede">People search at 10 p.m. and won&#x27;t call until morning, or they call someone else. Move the sliders to match your shop.</p>
     <div class="calc">
       <div class="inputs">
         <div>
-          <div class="row"><label class="range" for="leads">New people who find you online, per week</label><span class="rangeval" id="leadsval">3</span></div>
+          <div class="row"><label class="range" for="leads">New people who find you online, per week</label><span class="rangeval" id="leadsval"></span></div>
           <input type="range" id="leads" min="1" max="20" step="1" value="3">
           <p class="hint">People who land on your site and send a request or call.</p>
         </div>
         <div>
-          <div class="row"><label class="range" for="conv">How many of them become a job</label><span class="rangeval" id="convval">25%</span></div>
+          <div class="row"><label class="range" for="conv">How many of them become a job</label><span class="rangeval" id="convval"></span></div>
           <input type="range" id="conv" min="5" max="80" step="5" value="25">
         </div>
         <div>
-          <div class="row"><label class="range" for="ticket">Average repair bill</label><span class="rangeval" id="ticketval">$450</span></div>
+          <div class="row"><label class="range" for="ticket">Average repair bill</label><span class="rangeval" id="ticketval"></span></div>
           <input type="range" id="ticket" min="100" max="1500" step="25" value="450">
           <p class="hint">A typical US repair-shop bill is roughly $400–500. Use your own number.</p>
         </div>
       </div>
       <div class="result" aria-live="polite">
         <span class="eyebrow">Extra work per month</span>
-        <div class="big" id="rev">$1,463</div>
-        <p class="hint" id="jobs">about 3 extra jobs a month</p>
+        <div class="big" id="rev"></div>
+        <p class="hint" id="jobs"></p>
         <div class="bars">
-          <div class="barrow"><div class="lab"><span>Extra repair revenue</span><b id="revb">$1,463</b></div><div class="bar"><span class="rev" id="revbar"></span></div></div>
-          <div class="barrow"><div class="lab"><span>Your plan</span><b id="costb">$49</b></div><div class="bar"><span class="cost" id="costbar"></span></div></div>
+          <div class="barrow"><div class="lab"><span>Extra revenue</span><b id="revb"></b></div><div class="bar"><span class="rev" id="revbar"></span></div></div>
+          <div class="barrow"><div class="lab"><span>Your plan</span><b id="costb"></b></div><div class="bar"><span class="cost" id="costbar"></span></div></div>
         </div>
-        <div class="callout" id="payback">One repair job covers the website for 9 months.</div>
+        <div class="callout" id="payback"></div>
         <p class="fine">An illustration from the numbers you choose, not a promise. Your plan cost follows the plan you picked above.</p>
       </div>
     </div>
@@ -341,12 +312,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   <div class="wrap">
     <span class="eyebrow">How fast</span>
     <h2>Live in about a week.</h2>
-    <div class="steps">
-      <div class="step"><b>Today</b><p>Pick a plan and answer a few quick questions: where requests go, your legal name, the domain.</p></div>
-      <div class="step"><b>+2–3 days</b><p>Your answers dropped in, logo signed off, request emails set up.</p></div>
-      <div class="step"><b>+1 week</b><p>Live on your own domain. Google listing pointed at it.</p></div>
-      <div class="step"><b>With B or C</b><p>Text registration starts right away. Booking live in about 2–3 weeks.</p></div>
-    </div>
+    <div class="steps"><div class="step"><b>Today</b><p>Pick a plan and answer a few quick questions: where requests go, your legal name, the domain.</p></div><div class="step"><b>+2–3 days</b><p>Your answers dropped in, logo signed off, request emails set up.</p></div><div class="step"><b>+1 week</b><p>Live on your own domain. Google listing pointed at it.</p></div><div class="step"><b>With B or C</b><p>Text registration starts right away. Booking live in about 2–3 weeks.</p></div></div>
   </div>
 </section>
 
@@ -354,14 +320,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   <div class="wrap">
     <span class="eyebrow">Fair questions</span>
     <h2>What owners usually ask.</h2>
-    <div class="faq">
-      <details><summary>Most of my customers just call.</summary><p>Good. Call is the biggest button on every page. The site handles the people who search at night and would otherwise call someone else in the morning.</p></details>
-      <details><summary>I don't have time to keep a website up.</summary><p>You don't touch it. Updates, backups and changes are included. Text Shawn a new photo or new hours and it's done.</p></details>
-      <details><summary>Will booking put me in slots I can't do?</summary><p>No. With plan B you choose the job first, and it only offers times that are free in your calendar. Anyone can still just call.</p></details>
-      <details><summary>Facebook works fine for us.</summary><p>Keep it. The website is the one place that is always right and that Google trusts, and it links to your Facebook page.</p></details>
-      <details><summary>Do I have to sign something long?</summary><p>It's month to month. Shawn will go through the terms with you.</p></details>
-      <details><summary>Who owns the site?</summary><p>You own your domain and your content. One monthly fee, no lock-in surprises.</p></details>
-    </div>
+    <div class="faq"><details><summary>Most of my customers just call.</summary><p>Good. Call is the biggest button on every page. The site handles the people who search at night and would otherwise call someone else in the morning.</p></details><details><summary>I don&#x27;t have time to keep a website up.</summary><p>You don&#x27;t touch it. Updates, backups and changes are included. Text Shawn a new photo or new hours and it&#x27;s done.</p></details><details><summary>Will booking put me in slots I can&#x27;t do?</summary><p>No. With plan B you choose the job first, and it only offers times that are free in your calendar. Anyone can still just call.</p></details><details><summary>Facebook works fine for us.</summary><p>Keep it. The website is the one place that is always right and that Google trusts, and it links to your Facebook page.</p></details><details><summary>Do I have to sign something long?</summary><p>It&#x27;s month to month. Shawn will go through the terms with you.</p></details><details><summary>Who owns the site?</summary><p>You own your domain and your content. One monthly fee, no lock-in surprises.</p></details></div>
   </div>
 </section>
 
@@ -370,7 +329,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     <span class="eyebrow">Next step</span>
     <h2>Let's get it live.</h2>
     <p class="lede">We're right here in Bristol. The person who built it picks up the phone.</p>
-    <div class="choice" id="choice">You picked: <b>Website · $49/mo</b></div>
+    <div class="choice" id="choice"></div>
     <div class="cta">
       <a class="btn btn-primary" href="tel:+18023773369">Call Shawn · (802) 377-3369</a>
       <a class="btn btn-ghost" href="https://crm.bristolbusinesssystems.com/book/bristol-business-systems" target="_blank" rel="noopener">Book a time to talk</a>
@@ -382,33 +341,27 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
 <footer><div class="wrap"><span>© 2026 Bristol Business Systems · Bristol, Vermont</span><span>Prepared for Bristol Automotive</span></div></footer>
 
+<script>window.PITCH={"client_name": "Bristol Automotive", "preview_url": "https://seashell-dog-230030.hostingersite.com", "tour": {"heading": "Four pages, built for every driver in town.", "lede": "Big readable text, big buttons, and it loads fast on a weak country signal. Pick a page to look around.", "pages": [{"key": "home", "label": "Home", "path": "/", "notes": [["The car that takes itself apart", "Move the slider, or scroll on a phone. Each part is labelled and jumps to that service."], ["Call first", "A big Call button and today's hours, right at the top."], ["Your reviews, front and centre", "The people who read your 4.8\u2605 reviews finally have somewhere to land."]]}, {"key": "services", "label": "Services", "path": "/services/", "notes": [["Everything you fix, in plain words", "Brakes, tires, exhaust, suspension, electrical, engine, transmission, rust, oil changes, and Vermont inspection."], ["One tap to a request", "Each service opens a repair request that's already filled in."], ["Found on Google", "Proper titles and local-business details so searches for repairs in Bristol find you."]]}, {"key": "contact", "label": "Contact", "path": "/contact/", "notes": [["Call, then directions", "Phone first, then your address with a directions button and today's hours."], ["A 5-question request form", "Year, make, model, and what it's doing, in plain words. Sent straight to your email."], ["No \"click the traffic lights\"", "Spam is blocked without puzzles, so older customers aren't stuck."]]}]}, "plans": [{"id": "A", "name": "Website", "short": "Website", "tag": "Start here", "price": 49, "desc": "The four-page site with the take-apart car, a repair request form sent to your email, plus domain, hosting, security, backups, updates, and small changes.", "includes": ["<strong>Four-page website<\/strong> with the take-apart car", "Repair requests sent to your email", "Domain, hosting, security, backups", "Updates and small changes included", "Listed on <strong>bristolbusinessdirect.com<\/strong>"]}, {"id": "B", "name": "Website + booking", "short": "Website + booking", "price": 89, "price_suffix": "/mo total", "desc": "Everything in A. Requests turn into bookings: customers pick from times you actually have free, and your calendar fills itself in. Includes a customer list with each car's history.", "includes": ["<strong>Everything in A<\/strong>", "Customers book real open times", "Your calendar fills itself in", "\"Got your request\" and booked emails", "Customer list with each car's history", "Listed on <strong>bristolbusinessdirect.com<\/strong>"]}], "addon": {"id": "C", "name": "Text messages", "short": "Texts", "price": 19, "included": 300, "overage": 0.05, "unit": "texts", "min": 50, "max": 800, "step": 10, "default": 200, "blurb": "+$19/mo, includes 300 texts. An instant \"we got it\" text and a reminder the day before.", "hint": "Each customer usually gets 2 texts. Over 300 in a month is 5\u00a2 each.", "summary": "instant reply + day-before reminder"}, "calc": {"lede": "People search at 10 p.m. and won't call until morning, or they call someone else. Move the sliders to match your shop.", "leads_label": "New people who find you online, per week", "leads": 3, "leads_hint": "People who land on your site and send a request or call.", "conv": 25, "ticket_label": "Average repair bill", "ticket": 450, "ticket_min": 100, "ticket_max": 1500, "ticket_hint": "A typical US repair-shop bill is roughly $400\u2013500. Use your own number.", "job_noun": "repair job", "leads_max": 20, "conv_label": "How many of them become a job", "ticket_step": 25}, "img_base": "/pitch/bristol-automotive/img"};</script>
 <script>
 (function(){
-  var SITE='https://seashell-dog-230030.hostingersite.com';
-  var PAGES={
-    home:{path:'/',label:'home page',notes:[
-      ['The car that takes itself apart','Move the slider, or scroll on a phone. Each part is labelled and jumps to that service.'],
-      ['Call first','A big Call button and today’s hours, right at the top.'],
-      ['Your reviews, front and centre','The people who read your 4.8★ reviews finally have somewhere to land.']]},
-    services:{path:'/services/',label:'services page',notes:[
-      ['Everything you fix, in plain words','Brakes, tires, exhaust, suspension, electrical, engine, transmission, rust, oil changes, and Vermont inspection.'],
-      ['One tap to a request','Each service opens a repair request that’s already filled in.'],
-      ['Found on Google','Proper titles and local-business details so searches for repairs in Bristol find you.']]},
-    contact:{path:'/contact/',label:'contact page',notes:[
-      ['Call, then directions','Phone first, then your address with a directions button and today’s hours.'],
-      ['A 5-question request form','Year, make, model, and what it’s doing, in plain words. Sent straight to your email.'],
-      ['No “click the traffic lights”','Spam is blocked without puzzles, so older customers aren’t stuck.']]}
-  };
-  var page='home', view=window.matchMedia('(max-width:620px)').matches?'mob':'desk';
+  var P=window.PITCH, IMG=P.img_base, SITE=P.preview_url;
+  var $=function(id){return document.getElementById(id);};
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  var money=function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+  var money2=function(n){return '$'+n.toFixed(2).replace(/\.00$/,'');};
+
+  /* tour */
+  var pages={}; P.tour.pages.forEach(function(p){pages[p.key]=p;});
+  var page=P.tour.pages[0].key, view=window.matchMedia('(max-width:620px)').matches?'mob':'desk';
   document.querySelectorAll('.viewtoggle button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.view===view);});
-  var img=document.getElementById('shotimg'), shot=document.getElementById('shot'), notes=document.getElementById('notes'), live=document.getElementById('livelink');
+  var img=$('shotimg'), shot=$('shot');
   function renderTour(){
-    var p=PAGES[page];
-    img.src='/pitch/bristol-automotive/img/'+view+'-'+page+'.jpg';
-    img.alt='Bristol Automotive '+p.label+(view==='mob'?' on a phone':' on a computer');
+    var p=pages[page];
+    img.src=IMG+'/'+view+'-'+page+'.jpg';
+    img.alt=P.client_name+' '+p.label+' page'+(view==='mob'?' on a phone':' on a computer');
     shot.classList.toggle('mobile',view==='mob'); shot.scrollTop=0;
-    notes.innerHTML=p.notes.map(function(n){return '<li><strong>'+n[0]+'</strong>'+n[1]+'</li>';}).join('');
-    live.href=SITE+p.path;
+    $('notes').innerHTML=p.notes.map(function(n){return '<li><strong>'+esc(n[0])+'</strong>'+esc(n[1])+'</li>';}).join('');
+    $('livelink').href=SITE+p.path;
   }
   document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
     document.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected',x===t);});
@@ -420,50 +373,44 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   });});
   renderTour();
 
-  var $=function(id){return document.getElementById(id);};
-  var money=function(n){return '$'+Math.round(n).toLocaleString('en-US');};
-  var money2=function(n){return '$'+n.toFixed(2).replace(/\.00$/,'');};
-  var INCL={
-    A:['<strong>Four-page website</strong> with the take-apart car','Repair requests sent to your email','Domain, hosting, security, backups','Updates and small changes included'],
-    B:['<strong>Everything in A</strong>','Customers book real open times','Your calendar fills itself in','"Got your request" and booked emails','Customer list with each car’s history']
-  };
-  var monthly=49;
+  /* plan builder */
+  var plans={}; P.plans.forEach(function(p){plans[p.id]=p;});
+  var A=P.addon, monthly=0;
   function renderPlan(){
-    var plan=document.querySelector('input[name=plan]:checked').value;
-    var sms=$('sms').checked, texts=+$('texts').value;
-    var base=plan==='A'?49:89, add=0, over=0;
-    $('addon').classList.toggle('on',sms); $('textsbox').hidden=!sms;
-    $('textsval').textContent=texts;
-    if(sms){add=19; over=Math.max(0,texts-300)*0.05;}
-    monthly=base+add+over;
+    var plan=plans[document.querySelector('input[name=plan]:checked').value];
+    var on=A&&$('addon-on').checked, units=A?+$('units').value:0, over=0, add=0;
+    if(A){$('addon').classList.toggle('on',on); $('unitsbox').hidden=!on; $('unitsval').textContent=units;}
+    if(on){add=A.price; over=Math.max(0,units-A.included)*A.overage;}
+    monthly=plan.price+add+over;
     $('total').innerHTML=money2(monthly)+'<small>/mo</small>';
-    var name=(plan==='A'?'Website':'Website + booking')+(sms?' + texts':'');
+    var name=plan.short+(on?' + '+A.short:'');
     $('planname').textContent=name;
-    var items=INCL[plan].slice();
-    if(sms) items.push('<strong>Texts:</strong> instant reply + day-before reminder ('+Math.round(texts/2)+' customers/mo)');
+    var items=plan.includes.slice();
+    if(on) items.push('<strong>'+esc(A.short)+':</strong> '+esc(A.summary));
     $('incl').innerHTML=items.map(function(i){return '<li>'+i+'</li>';}).join('');
-    var lines='<div><span>'+(plan==='A'?'A · Website':'B · Website + booking')+'</span><span>$'+base+'</span></div>';
-    if(sms){lines+='<div><span>C · Texts (300 included)</span><span>$19</span></div>';
-      if(over>0) lines+='<div><span>'+(texts-300)+' extra texts × 5¢</span><span>'+money2(over)+'</span></div>';}
+    var lines='<div><span>'+esc(plan.id+' · '+plan.short)+'</span><span>'+money2(plan.price)+'</span></div>';
+    if(on){lines+='<div><span>'+esc(A.id+' · '+A.short+' ('+A.included+' included)')+'</span><span>'+money2(A.price)+'</span></div>';
+      if(over>0) lines+='<div><span>'+(units-A.included)+' extra '+esc(A.unit)+' × '+Math.round(A.overage*100)+'¢</span><span>'+money2(over)+'</span></div>';}
     $('lines').innerHTML=lines;
-    $('choice').innerHTML='You picked: <b>'+name+' · '+money2(monthly)+'/mo</b>';
+    $('choice').innerHTML='You picked: <b>'+esc(name)+' · '+money2(monthly)+'/mo</b>';
     renderCalc();
   }
   function renderCalc(){
     var leads=+$('leads').value, conv=+$('conv').value/100, ticket=+$('ticket').value;
     $('leadsval').textContent=leads; $('convval').textContent=Math.round(conv*100)+'%'; $('ticketval').textContent=money(ticket);
-    var jobs=leads*52/12*conv, rev=jobs*ticket;
+    var jobs=leads*52/12*conv, rev=jobs*ticket, noun=P.calc.job_noun||'job';
     $('rev').textContent=money(rev); $('revb').textContent=money(rev); $('costb').textContent=money2(monthly);
-    $('jobs').textContent='about '+(jobs<1?jobs.toFixed(1):Math.round(jobs))+' extra job'+(Math.round(jobs)===1?'':'s')+' a month';
+    var r=Math.round(jobs);
+    $('jobs').textContent='about '+(jobs<1?jobs.toFixed(1):r)+' extra '+noun+(r===1?'':'s')+' a month';
     var max=Math.max(rev,monthly);
     $('revbar').style.width=(rev/max*100)+'%'; $('costbar').style.width=Math.max(1.5,monthly/max*100)+'%';
-    var months=ticket/monthly;
+    var months=Math.floor(ticket/monthly);
     $('payback').textContent= months>=1
-      ? 'One '+money(ticket)+' repair job covers this plan for '+Math.floor(months)+' month'+(Math.floor(months)===1?'':'s')+'.'
-      : 'It takes '+Math.ceil(monthly/ticket)+' jobs a month to cover this plan.';
+      ? 'One '+money(ticket)+' '+noun+' covers this plan for '+months+' month'+(months===1?'':'s')+'.'
+      : 'It takes '+Math.ceil(monthly/ticket)+' '+noun+'s a month to cover this plan.';
   }
   document.querySelectorAll('input[name=plan]').forEach(function(r){r.addEventListener('change',renderPlan);});
-  ['sms','texts'].forEach(function(id){$(id).addEventListener('input',renderPlan);});
+  if(A){['addon-on','units'].forEach(function(id){$(id).addEventListener('input',renderPlan);});}
   ['leads','conv','ticket'].forEach(function(id){$(id).addEventListener('input',renderCalc);});
   renderPlan();
 })();
