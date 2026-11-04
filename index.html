@@ -87,6 +87,10 @@
       flex-shrink: 0;
     }
     .nav-logo img { width: 42px; height: auto; }
+    /* rotating 3D logo: the canvas sits over the flat logo, which shows until three.js has drawn */
+    .nav-logo-mark { position: relative; display: block; width: 64px; height: 64px; margin: -11px; }
+    .nav-logo-mark img { position: absolute; inset: 0; margin: auto; }
+    .nav-logo-mark.is-live img { visibility: hidden; }
     .nav-logo-text {
       font-family: "Montserrat", sans-serif;
       font-size: 0.82rem;
@@ -1486,7 +1490,9 @@
     <div class="container">
       <nav aria-label="Main navigation">
         <a class="nav-logo" href="#home" aria-label="Bristol Business Systems home">
-          <img src="brand assets/Bristol Business Systems Logo.png" alt="Bristol Business Systems logo" />
+          <span class="nav-logo-mark" id="nav-logo-3d">
+            <img src="brand assets/Bristol Business Systems Logo.png" alt="Bristol Business Systems logo" />
+          </span>
           <div class="nav-logo-text">Bristol Business<br>Systems</div>
         </a>
         <div class="nav-links">
@@ -2127,7 +2133,9 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo">
+            <span class="nav-logo-mark" id="nav-logo-3d">
             <img src="brand assets/Bristol Business Systems Logo.png" alt="Bristol Business Systems logo" />
+          </span>
             <div class="footer-logo-text">Bristol Business<br>Systems</div>
           </div>
           <p>Operations and marketing systems that help small and medium businesses grow with clarity, consistency, and confidence.</p>
@@ -2236,5 +2244,22 @@
 
   
   <script src="/assets/hero-orrery.js" defer></script>
+  <script src="/assets/3d/three.r170.min.js" defer></script>
+  <script src="/assets/3d/bbs-mark.js" defer></script>
+  <script src="/assets/3d/bbs-3d-runtime.js" defer></script>
+  <script src="/assets/3d/bbs-logo-metal.js" defer></script>
+  <script>
+    /* header logo: one full turn per 1400px of scrolling, eased */
+    addEventListener('DOMContentLoaded', function () {
+      var el = document.getElementById('nav-logo-3d');
+      if (!window.BBSLogoMetal) return;
+      try {
+        var st = BBSLogoMetal.mount(el, { period: 16, fill: 0.74, maxWidth: 0.74, transparent: true, shadow: false,
+          clock: function () { return 1.4 + scrollY / 1400 * 16; } });
+        addEventListener('scroll', st.kick, { passive: true });
+        el.classList.add('is-live');
+      } catch (e) {}
+    });
+  </script>
 </body>
 </html>
